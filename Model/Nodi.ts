@@ -1,7 +1,8 @@
 import {DataTypes,Sequelize} from 'sequelize'; //importo sequelize 
-import {singleton}  from './Singleton'; //import singleton 
+import {Singleton}  from './Singleton'; //import singleton 
+import {Grafo}  from '../Model/Grafo'; //import singleton 
 
-const sequelize: Sequelize = singleton.getConnection();
+const sequelize: Sequelize = Singleton.getConnection();
 
 export const Nodi = sequelize.define('Nodi', {
     id_nodi: {
