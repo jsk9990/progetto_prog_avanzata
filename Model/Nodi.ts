@@ -1,7 +1,7 @@
 import {DataTypes,Sequelize} from 'sequelize'; //importo sequelize 
-import {singleton}  from './Singleton'; //import singleton 
+import {Singleton}  from './Singleton'; //import singleton 
 
-const sequelize: Sequelize = singleton.getConnection();
+const sequelize: Sequelize = Singleton.getConnection();
 
 export const Nodi = sequelize.define('Nodi', {
     id_nodi: {
@@ -28,5 +28,9 @@ export const Nodi = sequelize.define('Nodi', {
     timestamps: false,
     freezeTableName: true
 }); 
+
+Nodi.belongsTo(Grafo, {
+    foreignKey: 'id_grafo',
+})
 
 module.exports = { Nodi: Nodi };
