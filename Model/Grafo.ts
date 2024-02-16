@@ -2,7 +2,7 @@ import {DataTypes,Sequelize} from 'sequelize'; //importo sequelize
 import {Singleton}  from '../Model/Singleton'; //import singleton 
 import { Utente } from './Utente';
 import { Nodi } from './Nodi';
-import archi
+import { Archi } from './Archi';
 
 
 const sequelize: Sequelize = Singleton.getConnection();
