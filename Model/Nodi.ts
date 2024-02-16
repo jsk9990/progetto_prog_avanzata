@@ -1,5 +1,6 @@
 import {DataTypes,Sequelize} from 'sequelize'; //importo sequelize 
 import {Singleton}  from './Singleton'; //import singleton 
+import {Grafo}  from '../Model/Grafo'; //import singleton 
 
 const sequelize: Sequelize = Singleton.getConnection();
 
