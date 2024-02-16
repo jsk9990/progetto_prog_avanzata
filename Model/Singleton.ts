@@ -1,11 +1,11 @@
 import { Sequelize } from "sequelize";
 
 
-export class singleton {
-    private static instance: singleton;
+export class Singleton {
+    private static instance: Singleton;
     private connection: Sequelize;
     private constructor() {
-        this.connection = new Sequelize('Blog','jsk','jsk',{
+        this.connection = new Sequelize('mydb','jsk','jsk',{
             host : 'localhost',
             dialect : 'mysql'
         }); 
@@ -13,11 +13,11 @@ export class singleton {
 
 
     public static getConnection(): Sequelize {
-        if (!singleton.instance) {
-            singleton.instance = new singleton();
+        if (!Singleton.instance) {
+            Singleton.instance = new Singleton();
         }
         
-        return singleton.instance.connection;   
+        return Singleton.instance.connection;   
             
         };    
 
