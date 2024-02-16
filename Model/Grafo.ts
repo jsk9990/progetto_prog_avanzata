@@ -11,7 +11,7 @@ export const Grafo = sequelize.define('Grafo', {
         allowNull: false,
         primaryKey: true
     },
-    id_utente: {
+    id_utente: { 
         type:DataTypes.INTEGER(),
         autoIncrement: true,
         allowNull: false,
