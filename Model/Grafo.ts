@@ -1,5 +1,8 @@
 import {DataTypes,Sequelize} from 'sequelize'; //importo sequelize 
 import {Singleton}  from '../Model/Singleton'; //import singleton 
+import { Utente } from './Utente';
+import { Nodi } from './Nodi';
+import archi
 
 
 const sequelize: Sequelize = Singleton.getConnection();
@@ -12,12 +15,12 @@ export const Grafo = sequelize.define('Grafo', {
         primaryKey: true
     },
     id_utente: {
-        type:DataTypes.INTEGER(),
+        type: DataTypes.INTEGER(),
         autoIncrement: true,
         allowNull: false,
         references: {
-            model: 'Utente', // Nome della tabella di riferimento
-            key: 'id_utente' // Chiave primaria nella tabella di riferimento
+            model: 'Utente', 
+            key: 'id_utente'
         }
     },
     nome_grafo: {
@@ -30,5 +33,18 @@ export const Grafo = sequelize.define('Grafo', {
     timestamps: false,
     freezeTableName: true
 }); 
+
+Grafo.belongsTo(Utente, {
+    foreignKey: 'id_grafo',
+    as: 'Utente',
+} ),
+
+Grafo.hasMany(Nodi, {
+     foreignKey: 'id_grafo'
+});
+
+Grafo.hasMany(Archi, {
+    foreignKey: 'id_grafo'
+})
 
 module.exports = { Grafo: Grafo };

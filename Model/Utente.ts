@@ -1,8 +1,9 @@
 import {DataTypes,Sequelize} from 'sequelize'; //importo sequelize 
-import {singleton}  from './Singleton'; //import singleton 
+import {Singleton}  from './Singleton'; //import singleton 
+import {Grafo}  from './Grafo'; //import Grafo
 
 
-const sequelize: Sequelize = singleton.getConnection();
+const sequelize: Sequelize = Singleton.getConnection();
 
 export const Utente = sequelize.define('Utente', {
     id_utente: {
@@ -39,5 +40,7 @@ export const Utente = sequelize.define('Utente', {
     timestamps: false,
     freezeTableName: true
 }); 
+
+Utente.hasMany(Grafo, {as: 'Grafo', foreignKey: 'id_utente'});
 
 module.exports = { Utente: Utente };
