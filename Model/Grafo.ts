@@ -1,5 +1,5 @@
 import {DataTypes,Sequelize} from 'sequelize'; //importo sequelize 
-import {Singleton}  from './Singleton'; //import singleton 
+import {Singleton}  from '../Model/Singleton'; //import singleton 
 
 
 const sequelize: Sequelize = Singleton.getConnection();
@@ -11,7 +11,7 @@ export const Grafo = sequelize.define('Grafo', {
         allowNull: false,
         primaryKey: true
     },
-    id_utente: {  
+    id_utente: {
         type:DataTypes.INTEGER(),
         autoIncrement: true,
         allowNull: false,
