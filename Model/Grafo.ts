@@ -3,6 +3,8 @@ import {Singleton}  from '../Model/Singleton'; //import singleton
 import { Utente } from './Utente';
 import { Nodi } from './Nodi';
 import { Archi } from './Archi';
+import { Richieste } from './Richieste';
+import { Simulazione } from './Simulazione';
 
 
 const sequelize: Sequelize = Singleton.getConnection();
@@ -47,4 +49,11 @@ Grafo.hasMany(Archi, {
     foreignKey: 'id_grafo'
 })
 
+Grafo.hasMany(Richieste, {
+    foreignKey: 'id_grafo'
+})
+
+Grafo.hasMany(Simulazione, {
+    foreignKey: 'id_grafo'
+})
 module.exports = { Grafo: Grafo };
