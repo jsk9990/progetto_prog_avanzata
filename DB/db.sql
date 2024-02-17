@@ -89,17 +89,17 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Archi` (
   INDEX `id_grafo_idx` (`id_grafo` ASC) VISIBLE,
   INDEX `id_nodo_partenza_idx` (`id_nodo_partenza` ASC) VISIBLE,
   INDEX `id_nodo_arrivo_idx` (`id_nodo_arrivo` ASC) VISIBLE,
-  CONSTRAINT `id_grafo`
+  CONSTRAINT `fk_grafo`
     FOREIGN KEY (`id_grafo`)
     REFERENCES `mydb`.`Grafo` (`id_grafo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `id_nodo_partenza`
+  CONSTRAINT `fk_nodo_partenza_fk`
     FOREIGN KEY (`id_nodo_partenza`)
     REFERENCES `mydb`.`Nodi` (`id_nodi`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `id_nodo_arrivo`
+  CONSTRAINT `fk_nodo_arrivo_fk`
     FOREIGN KEY (`id_nodo_arrivo`)
     REFERENCES `mydb`.`Nodi` (`id_nodi`)
     ON DELETE NO ACTION
