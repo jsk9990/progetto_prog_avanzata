@@ -4,9 +4,9 @@ import { Request, Response } from 'express';
 import { Sequelize } from 'sequelize';
 import { Singleton } from '../Model/Singleton';
 import { Utente } from '../Model/Utente';
+import { checkToken, generateToken } from '../Middleware/checkUtente';
 
-
-
+/*
 async function generateToken(userData: any) {
     const jwt = require('jsonwebtoken');
     try {
@@ -33,7 +33,7 @@ async function generateToken(userData: any) {
     }
 }
 
-
+*/
 
 export async function getUtenti( req: any, res: any) {
     try{
@@ -50,12 +50,9 @@ export async function creaUtente(req: Request, res: Response) {
 try {
     const {  email, password, credito, privilegi}  = req.body;
     const utente = await Utente.create({ email, password, credito, privilegi});
+    const token = await generateToken(req, res);
 
-
-    //const userId = parseInt(utente.);
-    const token = await generateToken(utente);
-
-    // Invia la risposta al client includendo il token
+    
     res.json({ message: 'I dati sono stati inseriti con successo', utente, token });
 }
 catch (error) {

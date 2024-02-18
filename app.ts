@@ -13,6 +13,7 @@ import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
 import { creaUtente, getUtenti } from './Controller/UTENTE';
+import { checkToken, generateToken } from './Middleware/checkUtente';
 
 
 
@@ -36,8 +37,8 @@ app.get('/home', (req: any, res: any) => {
     testDbConnection(req, res);
 });
 
-app.get('/login', (req: any, res: any) => { 
-    ;
+app.post('/login',checkToken, (req: any, res: any) => { 
+    res.send(200,{message: 'Login effettuato con successo'}); 
   });
 
 app.post('/sign_in', (req: any, res: any) => {
