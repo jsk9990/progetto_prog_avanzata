@@ -20,7 +20,7 @@ async function generateToken(userData: any) {
 
         // Creazione del token JWT in modo asincrono
         return new Promise((resolve, reject) => {
-            jwt.sign(userData, secretKey, options, (err: any, token: any) => {
+            jwt.sign({id : userData.idUtente}, secretKey, options, (err: any, token: any) => {
                 if (err) {
                     reject(err); // Se si verifica un errore, viene restituito un errore
                 } else {
@@ -53,7 +53,7 @@ try {
 
 
     //const userId = parseInt(utente.);
-    const token = await generateToken(password);
+    const token = await generateToken(utente);
 
     // Invia la risposta al client includendo il token
     res.json({ message: 'I dati sono stati inseriti con successo', utente, token });
