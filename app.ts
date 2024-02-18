@@ -12,7 +12,7 @@ import {Simulazione} from './Model/Simulazione';
 import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
-import { creaUtente } from './Controller/UTENTE';
+import { creaUtente, getUtenti } from './Controller/UTENTE';
 
 
 
@@ -44,7 +44,9 @@ app.post('/sign_in', (req: any, res: any) => {
     creaUtente(req, res);
 });
 
-
+app.get('/utenti', (req: any, res: any) => {
+    getUtenti(req, res);  
+})
 
 
 //----------------------------------------------------------------------//
