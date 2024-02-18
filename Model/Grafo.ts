@@ -12,13 +12,13 @@ const sequelize: Sequelize = Singleton.getConnection();
 export const Grafo = sequelize.define('Grafo', {
     id_grafo: {
         type:DataTypes.INTEGER(),
-        autoIncrement: true,
+        //autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
     id_utente: {
         type: DataTypes.INTEGER(),
-        autoIncrement: true,
+        //autoIncrement: true,
         allowNull: false,
         references: {
             model: 'Utente', 
@@ -36,6 +36,7 @@ export const Grafo = sequelize.define('Grafo', {
     freezeTableName: true
 }); 
 
+/*
 Grafo.belongsTo(Utente, {
     foreignKey: 'id_grafo',
     as: 'Utente',
@@ -45,6 +46,7 @@ Grafo.hasMany(Nodi, {
      foreignKey: 'id_grafo'
 });
 
+/*
 Grafo.hasMany(Archi, {
     foreignKey: 'id_grafo'
 })
@@ -56,4 +58,5 @@ Grafo.hasMany(Richieste, {
 Grafo.hasMany(Simulazione, {
     foreignKey: 'id_grafo'
 })
+*/
 module.exports = { Grafo: Grafo };

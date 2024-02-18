@@ -48,6 +48,7 @@ export const Archi = sequelize.define('Archi', {
     freezeTableName: true
 }); 
 
+/*
 // N archi fanno riferimneto ad un solo Grafo
 Archi.belongsTo(Grafo,{
     foreignKey : 'id_grafo',
@@ -66,6 +67,8 @@ Archi.belongsTo(Nodi,{
     foreignKey : 'id_nodo_arrivo',
     as : 'nodo_arrivo'    
 });
+
+*/
 
 
 

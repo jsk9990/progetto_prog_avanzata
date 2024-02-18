@@ -33,6 +33,8 @@ export const Nodi = sequelize.define('Nodi', {
 
 // Relazione Nodi-Grafo
 
+/*
+
 Nodi.belongsTo(Grafo, {
     foreignKey: 'id_grafo',
     targetKey: 'id_grafo'
@@ -41,5 +43,6 @@ Nodi.belongsTo(Grafo, {
 Nodi.hasMany(Archi, {
     foreignKey: 'id_nodi'
 })
+*/
 
 module.exports = { Nodi: Nodi };

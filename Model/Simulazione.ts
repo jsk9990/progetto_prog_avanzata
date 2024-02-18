@@ -55,6 +55,7 @@ export const Simulazione = sequelize.define('Simulazione', {
     freezeTableName: true
 }); 
 
+/*
 Simulazione.belongsTo(Utente,{
     foreignKey : 'id_utente',
     as : 'Utente_simulazione'
@@ -64,4 +65,4 @@ Simulazione.belongsTo(Grafo,{
     foreignKey : 'id_grafo',
     as : 'Grafo_simulazione'
 }); 
-
+*/

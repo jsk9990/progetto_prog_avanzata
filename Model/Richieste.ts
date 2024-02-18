@@ -53,6 +53,7 @@ export const Richieste = sequelize.define('Richieste', {
     freezeTableName: true
 }); 
 
+/*
 Richieste.belongsTo(Utente,{
     foreignKey : 'id_utente',
     as : 'Utente_richiesta'
@@ -62,3 +63,4 @@ Richieste.belongsTo(Grafo,{
     foreignKey : 'id_grafo',
     as : 'Utente_richiesta'
 }); 
+*/
