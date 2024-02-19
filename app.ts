@@ -30,6 +30,8 @@ app.use (express.json());
 import { generateToken } from './Middleware/generateToken';
 import {checkToken} from './Middleware/checkToken';
 import {checkUtente} from './Middleware/checkUtente';
+import { checkAdmin } from './Middleware/checkAdmin';
+import { decodeToken } from './Middleware/decodeToken';
 
 
 
@@ -53,6 +55,10 @@ app.post('/sign_in',checkUtente,generateToken, (req: any, res: any) => {
 
 app.get('/utenti', checkToken, (req: any, res: any) => {
     getUtenti(req, res);  
+})
+
+app.get('/login/admin',checkToken,checkAdmin, (req: any, res: any) => {
+  res.send('Admin accesso consentito');
 })
 
 
