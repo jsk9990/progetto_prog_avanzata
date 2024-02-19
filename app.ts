@@ -12,8 +12,8 @@ import {Simulazione} from './Model/Simulazione';
 import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
-import { creaUtente, getUtenti } from './Controller/UTENTE';
-import { checkToken, generateToken } from './Middleware/checkUtente';
+import { creaUtente, getUtenti } from './Controller/controllerUtente';
+
 
 
 
@@ -27,7 +27,9 @@ app.use (express.json());
 
 
 //-------------------MIDDLEWARE-------------------------------------------------//
-
+import { generateToken } from './Middleware/generateToken';
+import {checkToken} from './Middleware/checkToken';
+import {checkUtente} from './Middleware/checkUtente';
 
 
 
@@ -37,15 +39,19 @@ app.get('/home', (req: any, res: any) => {
     testDbConnection(req, res);
 });
 
-app.post('/login',checkToken, (req: any, res: any) => { 
-    res.send(200,{message: 'Login effettuato con successo'}); 
+app.post('/login',generateToken, (req: any, res: any) => { 
+    res.json({
+      message: 'Login effettuato con successo',
+      message2:'Ecco il tuo token:',
+      token: req.body.token  
+    },); 
   });
 
-app.post('/sign_in', (req: any, res: any) => {
+app.post('/sign_in',checkUtente,generateToken, (req: any, res: any) => {
     creaUtente(req, res);
 });
 
-app.get('/utenti', (req: any, res: any) => {
+app.get('/utenti', checkToken, (req: any, res: any) => {
     getUtenti(req, res);  
 })
 
