@@ -15,15 +15,15 @@ export async function checkAdmin(auth: any,req: Request, res: Response, next: Ne
     }
 
     const utente = await Utente.findOne({ where: { email: decoded.email, password: decoded.password } });
+    console.log(utente);
     if (!utente) {
       return res.status(401).json({ error: 'Utente non trovato' });
     }
     
-    if (utente.dataValues.privilegi === true) {
-      next();
-    } else {
+    if (!utente.dataValues.privilegi) {
       res.status(401).json({ error: 'Utente non autorizzato' });
-    }
+    } 
+    next();
 
 
   }

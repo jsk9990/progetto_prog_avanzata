@@ -13,7 +13,7 @@ import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
 import { creaUtente, getUtenti } from './Controller/controllerUtente';
-
+import { creaGrafo } from './Controller/controllerGrafo';
 
 
 
@@ -57,11 +57,13 @@ app.get('/utenti', checkToken, (req: any, res: any) => {
     getUtenti(req, res);  
 })
 
-app.get('/login/admin',checkToken,checkAdmin, (req: any, res: any) => {
+app.get('/login/admin',checkAdmin, (req: any, res: any) => {
   res.send('Admin accesso consentito');
 })
 
-
+app.post('/utenti/crea_grafo', (req: any, res: any) => {
+  creaGrafo(req, res);
+})
 //----------------------------------------------------------------------//
 
 

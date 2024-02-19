@@ -12,7 +12,7 @@ const sequelize: Sequelize = Singleton.getConnection();
 export const Grafo = sequelize.define('Grafo', {
     id_grafo: {
         type:DataTypes.INTEGER(),
-        //autoIncrement: true,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
@@ -46,7 +46,7 @@ Grafo.hasMany(Nodi, {
      foreignKey: 'id_grafo'
 });
 
-/*
+
 Grafo.hasMany(Archi, {
     foreignKey: 'id_grafo'
 })
