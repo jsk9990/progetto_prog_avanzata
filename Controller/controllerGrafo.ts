@@ -58,8 +58,30 @@ export async function creaGrafo(req: Request, res: Response) {
 
       for (const arco of struttura) {
         const { nodo_partenza, nodo_arrivo, peso } = arco;
-        const nodoPartenza = await Nodi.create({ nodo_nome: nodo_partenza, id_grafo: nuovoGrafo.dataValues.id_grafo });
-        const nodoArrivo = await Nodi.create({ nodo_nome: nodo_arrivo, id_grafo: nuovoGrafo.dataValues.id_grafo });
+        let nodoPartenza = await Nodi.findOne({ 
+            where: { 
+              nodo_nome: nodo_partenza,
+              id_grafo: nuovoGrafo.dataValues.id_grafo 
+            }
+            });
+            if (!nodoPartenza){
+              nodoPartenza = await Nodi.create({ 
+                nodo_nome: nodo_partenza,
+                id_grafo: nuovoGrafo.dataValues.id_grafo });
+        } 
+        let nodoArrivo = await Nodi.findOne({ 
+          where: { 
+            nodo_nome: nodo_arrivo,
+            id_grafo: nuovoGrafo.dataValues.id_grafo 
+          }
+          });
+            if (!nodoArrivo){
+              nodoArrivo = await Nodi.create({ 
+                nodo_nome: nodo_arrivo,
+                id_grafo: nuovoGrafo.dataValues.id_grafo });
+            } 
+        //const nodoPartenza = await Nodi.create({ nodo_nome: nodo_partenza, id_grafo: nuovoGrafo.dataValues.id_grafo });
+        //const nodoArrivo = await Nodi.create({ nodo_nome: nodo_arrivo, id_grafo: nuovoGrafo.dataValues.id_grafo });
         await Archi.create({
           id_grafo: nuovoGrafo.dataValues.id_grafo,
           id_nodo_partenza: nodoPartenza.dataValues.id_nodi,
@@ -92,13 +114,10 @@ export async function creaGrafo(req: Request, res: Response) {
 
 
 //Visuaizza Grafo  
-export async function VisualizzaGrafo (req: Request, res: Response) {
-  //Dati dal body
-  const {  id_utente } = req.body;
-  //Trovo utente 
+export async function VisualizzaGrafo (id_utente: any) {
   const utente = await Utente.findByPk(id_utente);
   const lista_grafi = await Grafo.findAll({ where: { id_utente } });
-  res.send("Utente :" + utente?.dataValues.email + "puoi modificare i seguenti grafi: \n" + lista_grafi)
+  console.log("Utente :" + utente?.dataValues.email + "puoi modificare i seguenti grafi: \n" + lista_grafi)
 
 
 }
@@ -110,7 +129,7 @@ export async function AggiornaGrafo (req: any,res: any) {
   //Dati dal body
   const { id_utente,grafonome, nodo1, nodo2 , peso} = req.body;
   //Visualizza grafi dell'utente
-  await VisualizzaGrafo(req,res);
+  await VisualizzaGrafo(id_utente);
   const grafo = await Grafo.findOne({where: { nome_grafo: grafonome }});
   //verifico esistenza Grafo
   if (!grafo) {
