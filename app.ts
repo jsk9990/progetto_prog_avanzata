@@ -32,6 +32,7 @@ import {checkToken} from './Middleware/checkToken';
 import {checkUtente} from './Middleware/checkUtente';
 // import { checkAdmin } from './Middleware/checkAdmin';
 import { decodeToken } from './Middleware/decodeToken';
+import { checkAdmin } from './Middleware/checkAdmin';
 
 
 
@@ -57,8 +58,8 @@ app.get('/utenti', checkToken, (req: any, res: any) => {
     getUtenti(req, res);  
 })
 
-app.get('/login/admin', (req: any, res: any) => {
-  res.send('Admin accesso consentito');
+app.get('/login/admin',decodeToken,checkAdmin, (req: any, res: any) => {
+  res.send('Admin accesso consentito'+ req.body);
 })
 
 app.post('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
