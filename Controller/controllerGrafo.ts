@@ -92,46 +92,55 @@ export async function creaGrafo(req: Request, res: Response) {
 
 
 //Visuaizza Grafo  
-export async function VisualizzaGrafo (req: Request, res: Response) {
-  //Dati dal body
-  const {  id_utente } = req.body;
+export async function VisualizzaGrafo (id_utente : any) {
   //Trovo utente 
   const utente = await Utente.findByPk(id_utente);
   const lista_grafi = await Grafo.findAll({ where: { id_utente } });
-  res.send("Utente :" + utente?.dataValues.email + "puoi modificare i seguenti grafi: \n" + lista_grafi)
+  console.log("Utente :" + utente?.dataValues.email + "puoi modificare i seguenti grafi: \n" + lista_grafi)
 
 
 }
-
-
-//Aggiorna Grafo  
 export async function AggiornaGrafo (req: any,res: any) {
-  
-  //Dati dal body
-  const { id_utente,grafonome, nodo1, nodo2 , peso} = req.body;
-  //Visualizza grafi dell'utente
-  await VisualizzaGrafo(req,res);
-  const grafo = await Grafo.findOne({where: { nome_grafo: grafonome }});
-  //verifico esistenza Grafo
+  const { id_utente, nome, nodo1, nodo2 , peso } = req.body;
+
+  console.log(req.body); // stampa i dati della richiesta
+
+  const grafo = await Grafo.findOne({ where: { nome_grafo: nome } });
+
   if (!grafo) {
     return res.status(404).send("Grafo non trovato");
   }
- 
-  // Trova tutti gli archi associati al grafo
-  const archi = await Archi.findAll({ where: { id_grafo: grafo.dataValues.id_grafo } }); 
-  // Trova tutti gli archi associati al grafo
+
+  const archi = await Archi.findAll({ where: { id_grafo: grafo.dataValues.id_grafo } });
+
   for (let arco of archi) {
-    const nodoPartenza = await Nodi.findOne({ where: { id_nodi: arco.dataValues.id_nodo_partenza } });
-    const nodoArrivo = await Nodi.findOne({ where: { id_nodi: arco.dataValues.id_nodo_arrivo } });
   
-    console.log("Nodo di partenza:" + nodoPartenza?.dataValues.nodo_nome);
-    console.log("Nodo di arrivo: "  + nodoArrivo?.dataValues.nodo_nome);
-    console.log("Peso: " + arco.dataValues.peso);
-  }
-}
-
-
-
-
-
-
+    const nodiPartenza = await Nodi.findAll({
+      where: {
+        id_grafo: grafo.dataValues.id_grafo,
+        id_nodi: arco.dataValues.id_nodo_partenza
+      }
+    });
+    const nodiArrivo = await Nodi.findAll({
+      where: {
+        id_grafo: grafo.dataValues.id_grafo,
+        id_nodi: arco.dataValues.id_nodo_arrivo
+      }
+    });
+    
+    
+    console.log("Nodo partenza: "+JSON.stringify(nodiPartenza, null, 2));
+    console.log("Nodo arrivo: "+JSON.stringify(nodiArrivo, null, 2));
+    await Archi.update(
+          { peso: req.body.peso },
+          {
+            where: {
+              id_grafo: grafo.dataValues.id_grafo,
+              id_nodo_partenza: arco.dataValues.id_nodo_partenza,
+              id_nodo_arrivo: arco.dataValues.id_nodo_arrivo
+            }
+          }
+        );
+        console.log("Sono riuscito ad aggiornare peso");
+      }
+    }
