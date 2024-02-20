@@ -30,7 +30,7 @@ app.use (express.json());
 import { generateToken } from './Middleware/generateToken';
 import {checkToken} from './Middleware/checkToken';
 import {checkUtente} from './Middleware/checkUtente';
-import { checkAdmin } from './Middleware/checkAdmin';
+// import { checkAdmin } from './Middleware/checkAdmin';
 import { decodeToken } from './Middleware/decodeToken';
 
 
@@ -57,12 +57,12 @@ app.get('/utenti', checkToken, (req: any, res: any) => {
     getUtenti(req, res);  
 })
 
-app.get('/login/admin',checkAdmin, (req: any, res: any) => {
+app.get('/login/admin', (req: any, res: any) => {
   res.send('Admin accesso consentito');
 })
 
-app.get('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
-  res.send ( req.body)
+app.post('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
+  creaGrafo(req, res);
 })
 //----------------------------------------------------------------------//
 

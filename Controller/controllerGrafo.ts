@@ -4,15 +4,22 @@ import { Nodi } from '../Model/Nodi';
 import { Archi } from '../Model/Archi';
 import { Utente } from '../Model/Utente';
 import Graph from "node-dijkstra"; // Importa la libreria node-dijkstra
-import { log } from 'console';
+
 
 
 //Crea Grafo 
 export async function creaGrafo(req: Request, res: Response) {
   //Dati dal body
-  const { nome_grafo, struttura, id_utente } = req.body;
+  const { nome_grafo, struttura, jwtDecode } = req.body;
+  console.log('Dati: ' + nome_grafo, struttura, jwtDecode);
   //Trovo utente 
-  const utente = await Utente.findByPk(id_utente);
+  const utente = await Utente.findOne({ where: { email: jwtDecode.email, password: jwtDecode.password } });
+  const id_utente = utente?.getDataValue('id_utente');
+  if (!id_utente) {
+    return res.status(400).json({ message: 'Utente non trovato' });
+  }
+  console.log ('L utente è: ' +utente); 
+  console.log ('L id utente è: ' + id_utente)
   //verifico il credito >0 
   if (utente?.dataValues.credito < 0) {
     return res.status(400).json({ message: 'Credito esaurito: Contattare admin per la ricarica' });
