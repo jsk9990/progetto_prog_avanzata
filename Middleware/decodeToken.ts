@@ -1,33 +1,29 @@
-
 import jwt from 'jsonwebtoken';
-import { NextFunction } from "express";
-/*
-export async function decodeToken(auth: any, req: any, res: any, next: NextFunction) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+import { Request, Response, NextFunction } from "express";
 
-    if(token != null){
-        try{
-            const decode = jwt.verify(token, 'il_tuo_segreto');
-            console.log (decode);
-            return decode;
-        }
-        catch(error){
-            res.send('Token non valido');
-        }
-    }
-    else{
-        res.status(401).send('Token non fornito');
-    }
-}
-*/ 
+const SECRET_KEY = 'il_tuo_segreto'; // Assicurati di sostituire con la tua chiave segreta
 
-
-export function decodeToken(token: string): any {
-    try {
-        const decoded = jwt.verify(token, 'il_tuo_segreto'); // Utilizza una variabile d'ambiente per il segreto
-        return decoded;
-    } catch (error) {
-        throw new Error('Token non valido');
+export const decodeToken = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+  
+  if (!authHeader) {
+    return res.status(401).json({ error: 'Token non fornito' });
+  }
+  
+  const token = authHeader.split(" ")[1];
+  
+  try {
+    const jwtDecode = jwt.verify(token, SECRET_KEY);
+    
+    if (jwtDecode) {
+      // Aggiungi il payload decodificato alla richiesta se necessario
+      req.body.jwtDecode = jwtDecode; 
+      next();
+    } else {
+      res.status(401).json({ error: 'Token non valido' });
     }
-}
+  } catch (error) {
+    res.status(401).json({ error: 'Token non valido o scaduto' });
+  }
+};
+

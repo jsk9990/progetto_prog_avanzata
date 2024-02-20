@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Utente } from '../Model/Utente';
 import { decodeToken } from './decodeToken';
-
+/*
 export async function checkAdmin(auth: any,req: Request, res: Response, next: NextFunction) {
   try {
     const token = req.headers.authorization?.split(' ')[1];
@@ -31,3 +31,4 @@ export async function checkAdmin(auth: any,req: Request, res: Response, next: Ne
     res.status(500).send('Errore: ' + error);
   }
 }
+*/
