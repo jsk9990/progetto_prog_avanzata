@@ -91,5 +91,47 @@ export async function creaGrafo(req: Request, res: Response) {
 }
 
 
+//Visuaizza Grafo  
+export async function VisualizzaGrafo (req: Request, res: Response) {
+  //Dati dal body
+  const {  id_utente } = req.body;
+  //Trovo utente 
+  const utente = await Utente.findByPk(id_utente);
+  const lista_grafi = await Grafo.findAll({ where: { id_utente } });
+  res.send("Utente :" + utente?.dataValues.email + "puoi modificare i seguenti grafi: \n" + lista_grafi)
+
+
+}
+
+
+//Aggiorna Grafo  
+export async function AggiornaGrafo (req: any,res: any) {
+  
+  //Dati dal body
+  const { id_utente,grafonome, nodo1, nodo2 , peso} = req.body;
+  //Visualizza grafi dell'utente
+  await VisualizzaGrafo(req,res);
+  const grafo = await Grafo.findOne({where: { nome_grafo: grafonome }});
+  //verifico esistenza Grafo
+  if (!grafo) {
+    return res.status(404).send("Grafo non trovato");
+  }
+ 
+  // Trova tutti gli archi associati al grafo
+  const archi = await Archi.findAll({ where: { id_grafo: grafo.dataValues.id_grafo } }); 
+  // Trova tutti gli archi associati al grafo
+  for (let arco of archi) {
+    const nodoPartenza = await Nodi.findOne({ where: { id_nodi: arco.dataValues.id_nodo_partenza } });
+    const nodoArrivo = await Nodi.findOne({ where: { id_nodi: arco.dataValues.id_nodo_arrivo } });
+  
+    console.log("Nodo di partenza:" + nodoPartenza?.dataValues.nodo_nome);
+    console.log("Nodo di arrivo: "  + nodoArrivo?.dataValues.nodo_nome);
+    console.log("Peso: " + arco.dataValues.peso);
+  }
+}
+
+
+
+
 
 
