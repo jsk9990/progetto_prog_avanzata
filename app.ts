@@ -61,8 +61,8 @@ app.get('/login/admin',checkAdmin, (req: any, res: any) => {
   res.send('Admin accesso consentito');
 })
 
-app.post('/utenti/crea_grafo', (req: any, res: any) => {
-  creaGrafo(req, res);
+app.get('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
+  res.send ( req.body)
 })
 //----------------------------------------------------------------------//
 

@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Utente` (
   `id_utente` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `Credito` INT NOT NULL, -- credito iniziale da aggiungere ( facciamo 10)
+  `Credito` FLOAT NOT NULL, -- credito iniziale da aggiungere ( facciamo 10)
   `privilegi` BOOLEAN NOT NULL, 
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_utente`))
@@ -115,17 +115,24 @@ DROP TABLE IF EXISTS `mydb`.`Richieste` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Richieste` (
   `id_richieste` INT NOT NULL AUTO_INCREMENT,
-  `id_utente` INT NOT NULL,
+  `id_utente_request` INT NOT NULL,
+  `id_utente_response` INT NOT NULL,
   `id_grafo` INT NOT NULL,
-  `descrizione` VARCHAR(255) , 
+  `descrizione` VARCHAR(255) NOT NULL, 
   `modifiche` JSON NOT NULL,
   `stato_richiesta` ENUM('pending','accettata', 'rifiutata') NOT NULL DEFAULT 'pending',
   `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_richieste`),
-  INDEX `id_utente_idx` (`id_utente` ASC) VISIBLE,
+  INDEX `id_utente_request_idx` (`id_utente_request` ASC) VISIBLE,
+  INDEX `id_utente_response_idx` (`id_utente_response` ASC) VISIBLE,
   INDEX `id_grafo_idx` (`id_grafo` ASC) VISIBLE,
-  CONSTRAINT `richieste_utente`
-    FOREIGN KEY (`id_utente`)
+  CONSTRAINT `richieste_utente_request`
+    FOREIGN KEY (`id_utente_request`)
+    REFERENCES `mydb`.`Utente` (`id_utente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `richieste_utente_response`
+    FOREIGN KEY (`id_utente_response`)
     REFERENCES `mydb`.`Utente` (`id_utente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
