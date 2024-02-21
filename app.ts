@@ -13,7 +13,8 @@ import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
 import { creaUtente, getUtenti } from './Controller/controllerUtente';
-import { creaGrafo } from './Controller/controllerGrafo';
+import { creaGrafo,AggiornaGrafo } from './Controller/controllerGrafo';
+import { calcolaPercorsoMinimo } from './Controller/controllerGrafo1';
 
 
 
@@ -65,6 +66,21 @@ app.get('/login/admin',decodeToken,checkAdmin, (req: any, res: any) => {
 app.post('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
   creaGrafo(req, res);
 })
+
+
+app.post ('/utente/aggiorna',checkToken,(req: any, res: any) => {
+  AggiornaGrafo(req, res);
+})
+
+
+app.get('/esecuzione_modello', (req: Request, res: Response) => { 
+
+ });
+
+app.post('/utente/esecuzione_modello',checkToken,decodeToken, (req: Request, res: Response) => {
+  calcolaPercorsoMinimo(req, res);
+ });
+
 //----------------------------------------------------------------------//
 
 

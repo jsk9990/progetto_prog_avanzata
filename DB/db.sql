@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Grafo` (
   `id_grafo` INT NOT NULL AUTO_INCREMENT,
   `id_utente` INT NOT NULL,
   `nome_grafo` VARCHAR(45) NOT NULL,
+  `costo` FLOAT NOT NULL,
   PRIMARY KEY (`id_grafo`),
   INDEX `id_utente_idx` (`id_utente` ASC) VISIBLE,
   CONSTRAINT `grafo_utente`
