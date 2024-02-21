@@ -37,21 +37,23 @@ export async function creaGrafo(req: Request, res: Response) {
     const numeroNodi = nodiUnici.size;
     //Map degli archi
     const numeroArchi = struttura.length;
+
     //calcolo costo totale
     const costoTotale = (numeroArchi * costoPerArco) + (numeroNodi * costoPerNodo);
     //aggiornamento credito utente 
     if (utente?.dataValues.credito < costoTotale) {
-      console.log ('Credito vecchio: ' + utente?.dataValues.credito);
       return res.status(400).json({ message: 'Credito insufficente per generare il grafo. Il credito disponibile è' + utente?.dataValues.credito });
     } else if (utente) {
       utente.dataValues.credito = utente.dataValues.credito - costoTotale;
       await utente.setDataValue('credito', utente.dataValues.credito);
       await utente.save();
-      console.log('Credito nuovo: ' + utente.dataValues.credito);
     }
+
+    
+
     //creazione del grafo 
     try {
-      const nuovoGrafo = await Grafo.create({ nome_grafo, id_utente });
+      const nuovoGrafo = await Grafo.create({ nome_grafo, id_utente, costo: costoTotale });
       const rappresentazione_grafo: any = {};
 
       const grafoDijkstra = new Graph();
@@ -101,7 +103,8 @@ export async function creaGrafo(req: Request, res: Response) {
 
       return res.status(201).json({
         message: 'Grafo creato con successo',
-        grafo: rappresentazione_grafo
+        grafo: rappresentazione_grafo, 
+        costo : costoTotale
       });
     } catch (error) {
       return res.status(500).json({
