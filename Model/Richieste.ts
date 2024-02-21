@@ -14,6 +14,7 @@ export const Richieste = sequelize.define('Richieste', {
         allowNull: false,
         primaryKey: true
     },
+    /*
     id_utente: {
         type: DataTypes.INTEGER(),
         allowNull: false,
@@ -21,7 +22,7 @@ export const Richieste = sequelize.define('Richieste', {
             model: 'Utente', 
             key: 'id_utente'
         }
-    },
+    },*/
     id_grafo: {
         type: DataTypes.INTEGER(),
         allowNull: false,
@@ -29,6 +30,14 @@ export const Richieste = sequelize.define('Richieste', {
             model: 'Grafo', 
             key: 'id_grafo'
         }
+    },
+    id_utente_request: {
+        type: DataTypes.INTEGER(),
+        allowNull: false,
+    },
+    id_utente_response: {
+        type: DataTypes.INTEGER(),
+        allowNull: false,
     },
     descrizione: {
         type:DataTypes.STRING(255),
@@ -39,14 +48,17 @@ export const Richieste = sequelize.define('Richieste', {
         allowNull: false,
     },
     stato_richiesta: {
-        type:DataTypes.ENUM('aperto','in_corso','completata'),
+        type:DataTypes.ENUM('accettata','peeding','rifiutato'),
         allowNull: false,
+        defaultValue: 'pending'
     },
+    /*
     time_stamp: {
         type:DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW
     }
+    */
 },
 {
     timestamps: false,
