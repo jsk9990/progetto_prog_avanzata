@@ -28,7 +28,12 @@ export const Grafo = sequelize.define('Grafo', {
     nome_grafo: {
         type: DataTypes.STRING(45),
         allowNull: false
-    }
+    },
+    costo: {
+        type: DataTypes.FLOAT(),
+        allowNull: false
+    },
+  
   
 },
 { 
