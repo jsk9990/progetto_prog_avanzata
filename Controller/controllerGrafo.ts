@@ -4,7 +4,10 @@ import { Nodi } from '../Model/Nodi';
 import { Archi } from '../Model/Archi';
 import { Utente } from '../Model/Utente';
 import Graph from "node-dijkstra"; // Importa la libreria node-dijkstra
+<<<<<<< HEAD
 import { Richieste } from '../Model/Richieste';
+=======
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
 
 
 
@@ -38,29 +41,73 @@ export async function creaGrafo(req: Request, res: Response) {
     const numeroNodi = nodiUnici.size;
     //Map degli archi
     const numeroArchi = struttura.length;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
     //calcolo costo totale
     const costoTotale = (numeroArchi * costoPerArco) + (numeroNodi * costoPerNodo);
     //aggiornamento credito utente 
     if (utente?.dataValues.credito < costoTotale) {
+<<<<<<< HEAD
       console.log ('Credito vecchio: ' + utente?.dataValues.credito);
+=======
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
       return res.status(400).json({ message: 'Credito insufficente per generare il grafo. Il credito disponibile è' + utente?.dataValues.credito });
     } else if (utente) {
       utente.dataValues.credito = utente.dataValues.credito - costoTotale;
       await utente.setDataValue('credito', utente.dataValues.credito);
       await utente.save();
+<<<<<<< HEAD
       console.log('Credito nuovo: ' + utente.dataValues.credito);
     }
     //creazione del grafo 
     try {
       const nuovoGrafo = await Grafo.create({ nome_grafo, id_utente });
+=======
+    }
+
+    
+
+    //creazione del grafo 
+    try {
+      const nuovoGrafo = await Grafo.create({ nome_grafo, id_utente, costo: costoTotale });
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
       const rappresentazione_grafo: any = {};
 
       const grafoDijkstra = new Graph();
 
       for (const arco of struttura) {
         const { nodo_partenza, nodo_arrivo, peso } = arco;
+<<<<<<< HEAD
         const nodoPartenza = await Nodi.create({ nodo_nome: nodo_partenza, id_grafo: nuovoGrafo.dataValues.id_grafo });
         const nodoArrivo = await Nodi.create({ nodo_nome: nodo_arrivo, id_grafo: nuovoGrafo.dataValues.id_grafo });
+=======
+        let nodoPartenza = await Nodi.findOne({ 
+            where: { 
+              nodo_nome: nodo_partenza,
+              id_grafo: nuovoGrafo.dataValues.id_grafo 
+            }
+            });
+            if (!nodoPartenza){
+              nodoPartenza = await Nodi.create({ 
+                nodo_nome: nodo_partenza,
+                id_grafo: nuovoGrafo.dataValues.id_grafo });
+        } 
+        let nodoArrivo = await Nodi.findOne({ 
+          where: { 
+            nodo_nome: nodo_arrivo,
+            id_grafo: nuovoGrafo.dataValues.id_grafo 
+          }
+          });
+            if (!nodoArrivo){
+              nodoArrivo = await Nodi.create({ 
+                nodo_nome: nodo_arrivo,
+                id_grafo: nuovoGrafo.dataValues.id_grafo });
+            } 
+        //const nodoPartenza = await Nodi.create({ nodo_nome: nodo_partenza, id_grafo: nuovoGrafo.dataValues.id_grafo });
+        //const nodoArrivo = await Nodi.create({ nodo_nome: nodo_arrivo, id_grafo: nuovoGrafo.dataValues.id_grafo });
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
         await Archi.create({
           id_grafo: nuovoGrafo.dataValues.id_grafo,
           id_nodo_partenza: nodoPartenza.dataValues.id_nodi,
@@ -80,7 +127,12 @@ export async function creaGrafo(req: Request, res: Response) {
 
       return res.status(201).json({
         message: 'Grafo creato con successo',
+<<<<<<< HEAD
         grafo: rappresentazione_grafo
+=======
+        grafo: rappresentazione_grafo, 
+        costo : costoTotale
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
       });
     } catch (error) {
       return res.status(500).json({
@@ -188,4 +240,6 @@ export async function AggiornaGrafo (req: any,res: any) {
         
       };
 }
+
+
 

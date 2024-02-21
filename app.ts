@@ -13,7 +13,7 @@ import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
 import { creaUtente, getUtenti } from './Controller/controllerUtente';
-import { creaGrafo , AggiornaGrafo, verificaProprietario} from './Controller/controllerGrafo';
+import { creaGrafo , AggiornaGrafo} from './Controller/controllerGrafo';
 
 
 
