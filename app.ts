@@ -13,7 +13,7 @@ import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
 import { creaUtente, getUtenti } from './Controller/controllerUtente';
-import { creaGrafo } from './Controller/controllerGrafo';
+import { creaGrafo , AggiornaGrafo, verificaProprietario} from './Controller/controllerGrafo';
 
 
 
@@ -32,6 +32,7 @@ import {checkToken} from './Middleware/checkToken';
 import {checkUtente} from './Middleware/checkUtente';
 // import { checkAdmin } from './Middleware/checkAdmin';
 import { decodeToken } from './Middleware/decodeToken';
+
 
 
 
@@ -63,6 +64,14 @@ app.get('/login/admin', (req: any, res: any) => {
 
 app.post('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
   creaGrafo(req, res);
+})
+
+app.post('/utenti/aggiorna',checkToken,decodeToken, (req: any, res: any) => {
+  AggiornaGrafo(req, res);
+})
+
+app.post('/utenti/verificaProprieta',checkToken,decodeToken, (req: any, res: any) => {
+  verificaProprietario(req, res);
 })
 //----------------------------------------------------------------------//
 
