@@ -10,7 +10,7 @@ import { Performance } from 'perf_hooks';
 
 
 
-async function getGrafoConNodiEArchi(id_grafo: number): Promise<any> {
+export async function getGrafoConNodiEArchi(id_grafo: number): Promise<any> {
   try {
     // Fetch the graph by its primary key
     const grafo = await Grafo.findByPk(id_grafo);
@@ -48,7 +48,7 @@ async function getGrafoConNodiEArchi(id_grafo: number): Promise<any> {
 
 
   
-function convertiArchiInFormatoDijkstra(archi: any[]): { [key: string]: { [key: string]: number } } {
+export function convertiArchiInFormatoDijkstra(archi: any[]): { [key: string]: { [key: string]: number } } {
   const grafoDijkstra: { [key: string]: { [key: string]: number } } = {};
 
   archi.forEach(arco => {
