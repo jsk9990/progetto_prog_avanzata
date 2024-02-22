@@ -4,6 +4,10 @@ import { Nodi } from '../Model/Nodi';
 import { Archi } from '../Model/Archi';
 import { Utente } from '../Model/Utente';
 import Graph from "node-dijkstra"; // Importa la libreria node-dijkstra
+<<<<<<< HEAD
+import { Richieste } from '../Model/Richieste';
+=======
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
 
 
 
@@ -37,16 +41,30 @@ export async function creaGrafo(req: Request, res: Response) {
     const numeroNodi = nodiUnici.size;
     //Map degli archi
     const numeroArchi = struttura.length;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
     //calcolo costo totale
     const costoTotale = (numeroArchi * costoPerArco) + (numeroNodi * costoPerNodo);
     //aggiornamento credito utente 
     if (utente?.dataValues.credito < costoTotale) {
+<<<<<<< HEAD
+      console.log ('Credito vecchio: ' + utente?.dataValues.credito);
+=======
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
       return res.status(400).json({ message: 'Credito insufficente per generare il grafo. Il credito disponibile è' + utente?.dataValues.credito });
     } else if (utente) {
       utente.dataValues.credito = utente.dataValues.credito - costoTotale;
       await utente.setDataValue('credito', utente.dataValues.credito);
       await utente.save();
+<<<<<<< HEAD
+      console.log('Credito nuovo: ' + utente.dataValues.credito);
+    }
+    //creazione del grafo 
+    try {
+      const nuovoGrafo = await Grafo.create({ nome_grafo, id_utente });
+=======
     }
 
     
@@ -54,12 +72,17 @@ export async function creaGrafo(req: Request, res: Response) {
     //creazione del grafo 
     try {
       const nuovoGrafo = await Grafo.create({ nome_grafo, id_utente, costo: costoTotale });
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
       const rappresentazione_grafo: any = {};
 
       const grafoDijkstra = new Graph();
 
       for (const arco of struttura) {
         const { nodo_partenza, nodo_arrivo, peso } = arco;
+<<<<<<< HEAD
+        const nodoPartenza = await Nodi.create({ nodo_nome: nodo_partenza, id_grafo: nuovoGrafo.dataValues.id_grafo });
+        const nodoArrivo = await Nodi.create({ nodo_nome: nodo_arrivo, id_grafo: nuovoGrafo.dataValues.id_grafo });
+=======
         let nodoPartenza = await Nodi.findOne({ 
             where: { 
               nodo_nome: nodo_partenza,
@@ -84,6 +107,7 @@ export async function creaGrafo(req: Request, res: Response) {
             } 
         //const nodoPartenza = await Nodi.create({ nodo_nome: nodo_partenza, id_grafo: nuovoGrafo.dataValues.id_grafo });
         //const nodoArrivo = await Nodi.create({ nodo_nome: nodo_arrivo, id_grafo: nuovoGrafo.dataValues.id_grafo });
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
         await Archi.create({
           id_grafo: nuovoGrafo.dataValues.id_grafo,
           id_nodo_partenza: nodoPartenza.dataValues.id_nodi,
@@ -103,8 +127,12 @@ export async function creaGrafo(req: Request, res: Response) {
 
       return res.status(201).json({
         message: 'Grafo creato con successo',
+<<<<<<< HEAD
+        grafo: rappresentazione_grafo
+=======
         grafo: rappresentazione_grafo, 
         costo : costoTotale
+>>>>>>> 3a24652c3ddf868b400d3e69017c18b53d8bb186
       });
     } catch (error) {
       return res.status(500).json({
@@ -116,44 +144,102 @@ export async function creaGrafo(req: Request, res: Response) {
 }
 
 
-//Visuaizza Grafo  
-export async function VisualizzaGrafo (id_utente: any) {
-  const utente = await Utente.findByPk(id_utente);
-  const lista_grafi = await Grafo.findAll({ where: { id_utente } });
-  console.log("Utente :" + utente?.dataValues.email + "puoi modificare i seguenti grafi: \n" + lista_grafi)
+export async function verificaProprietario (email: any,nome: any) {
+    //const { email, nome, } = req.body
+    
+    const grafo = await Grafo.findOne({ where: { nome_grafo: nome } });
+    const utente = await Utente.findOne({ where: {email: email } });
+    
 
+    const id_utente = utente?.getDataValue('id_utente');
+    const id_utente_grafo = grafo?.getDataValue('id_utente');
+
+    console.log('id_utente: '+ id_utente+"\n");
+    console.log('id_utente_grado: '+ id_utente_grafo+"\n");
+
+    if (id_utente === id_utente_grafo){
+        return true 
+    } else {
+        return false 
+    }
 
 }
 
-
-//Aggiorna Grafo  
 export async function AggiornaGrafo (req: any,res: any) {
-  
-  //Dati dal body
-  const { id_utente,grafonome, nodo1, nodo2 , peso} = req.body;
-  //Visualizza grafi dell'utente
-  await VisualizzaGrafo(id_utente);
-  const grafo = await Grafo.findOne({where: { nome_grafo: grafonome }});
-  //verifico esistenza Grafo
+
+  const { id_utente, nome, nodo1, nodo2 , peso } = req.body;
+  const utente = await Utente.findOne({ where: {id_utente: id_utente } });
+  const email = utente?.getDataValue('email');
+  const grafo = await Grafo.findOne({ where: { nome_grafo: nome } });
+  const id_grafo = grafo?.getDataValue('id_grafo');
+
+  const id_utente_grafo = grafo?.getDataValue('id_utente');
+  console.log('id_utente: '+ id_utente+' id_utente_grado: '+ id_utente_grafo+"\n");
+
+  if (id_utente === id_utente_grafo){
+  console.log(req.body); // stampa i dati della richiesta
+  const grafo = await Grafo.findOne({ where: { nome_grafo: nome } });
   if (!grafo) {
     return res.status(404).send("Grafo non trovato");
   }
- 
-  // Trova tutti gli archi associati al grafo
-  const archi = await Archi.findAll({ where: { id_grafo: grafo.dataValues.id_grafo } }); 
-  // Trova tutti gli archi associati al grafo
+  const archi = await Archi.findAll({ where: { id_grafo: grafo.dataValues.id_grafo } });
   for (let arco of archi) {
-    const nodoPartenza = await Nodi.findOne({ where: { id_nodi: arco.dataValues.id_nodo_partenza } });
-    const nodoArrivo = await Nodi.findOne({ where: { id_nodi: arco.dataValues.id_nodo_arrivo } });
   
-    console.log("Nodo di partenza:" + nodoPartenza?.dataValues.nodo_nome);
-    console.log("Nodo di arrivo: "  + nodoArrivo?.dataValues.nodo_nome);
-    console.log("Peso: " + arco.dataValues.peso);
-  }
+        const nodoPartenza = await Nodi.findOne({
+        where: {
+            id_grafo: grafo.dataValues.id_grafo,
+            id_nodi: arco.dataValues.id_nodo_partenza
+        }
+        });
+        const nodoArrivo = await Nodi.findOne({
+        where: {
+            id_grafo: grafo.dataValues.id_grafo,
+            id_nodi: arco.dataValues.id_nodo_arrivo
+        }
+        });
+        const nomeNodoArrivo = nodoArrivo?.getDataValue('nodo_nome');
+        const nomeNodoPartenza = nodoPartenza?.getDataValue('nodo_nome');
+        
+
+        if (JSON.stringify(nomeNodoPartenza===req.body.nodo1 && JSON.stringify(nomeNodoArrivo)=== req.body.nodo2)){
+            await Archi.update(
+                { peso: req.body.peso },
+                {
+                where: {
+                    id_grafo: grafo.dataValues.id_grafo,
+                    id_nodo_partenza: arco.dataValues.id_nodo_partenza,
+                    id_nodo_arrivo: arco.dataValues.id_nodo_arrivo
+                }
+                }
+            );  
+        }
+    }
+}else{ 
+    console.log("Chiedi consenso");
+    const descrizione = "L'utente "+id_utente+" Non è proprietario"+"ma vuole modificare il grafo con nome "+nome+" associato utente proprietario "+id_utente_grafo;
+    console.log(descrizione);
+        try {
+        //const { id_utente, nome } = req.body;
+        const grafo = await Grafo.findOne({ where: { nome_grafo: nome } });
+        const id_grafo1 = grafo?.getDataValue('id_grafo');
+        const descrizione = "L'utente "+id_utente+" Non è proprietario"+"ma vuole modificare il grafo con nome "+nome+" associato utente proprietario "+id_utente_grafo;
+
+        const newRichiesta = await Richieste.create({
+            id_utente_request: id_utente,
+            id_utente_response: id_utente_grafo,
+            id_grafo: id_grafo1,
+            descrizione: descrizione,
+            stato_richiesta: 'pending',
+            modifiche: {}
+        });
+        console.log(newRichiesta);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send('Errore del server');
+          }
+        
+      };
 }
-
-
-
 
 
 
