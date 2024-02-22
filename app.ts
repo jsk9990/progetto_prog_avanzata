@@ -15,6 +15,7 @@ import {testDbConnection} from './Controller/DB'; //importo controller utente
 import { creaUtente, getUtenti } from './Controller/controllerUtente';
 import { creaGrafo,AggiornaGrafo } from './Controller/controllerGrafo';
 import { calcolaPercorsoMinimo } from './Controller/controllerGrafo1';
+import { getSimulazione } from './Controller/controllerGrafo2';
 
 
 
@@ -68,12 +69,12 @@ app.post('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
 
 
 app.post ('/utente/aggiorna',checkToken,(req: any, res: any) => {
-  AggiornaGrafo(req, res);
+  AggiornaGrafo(req, res); 
 })
 
 
-app.get('/esecuzione_modello', (req: Request, res: Response) => { 
-
+app.post('/utente/simulazione', (req: Request, res: Response) => { 
+  getSimulazione(req, res);
  });
 
 app.post('/utente/esecuzione_modello',checkToken,decodeToken, (req: Request, res: Response) => {
