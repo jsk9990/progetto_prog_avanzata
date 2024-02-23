@@ -65,8 +65,8 @@ $ CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
 //Gestione dei privilegi di accesso al databaseù
 $ GRANT ALL PRIVILEGES ON *.* TO ‘username’@'localhost';
 ```
-Dopo aver creato un account abbiamo bisogno di fare un Data Import, dopodichè aggiorniamo lo schema del database e possiamo visualizzarlo nella finestra di destra. Ora possiamo creare dei file dove è possibile fare delle query. 
-![](/IMMAGINI/DATABASE.png)
+Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale 'http://localhost:/' nella porta '3036'. Dopodichè aggiorniamo lo schema del database e possiamo visualizzarlo nella finestra di destra. Ora possiamo creare dei file dove è possibile fare delle 'query'. 
+![](/IMMAGINI/DATABASE1.png)
 ## Richieste
 
 ## Pattern Utilizzati
