@@ -48,7 +48,9 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ## Diagramma UML
 ## Database 
 ![](/IMMAGINI/DATABASE.png)
-MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. Inanzitutto andiamo ad istallare mysql da terminale.I comandi fanno riferimento ad un sistema operativo Linux.
+MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. 
+### Installazione 
+Inanzitutto andiamo ad istallare mysql da terminale.I comandi fanno riferimento ad un sistema operativo Linux su Ubuntu 20.04.
 ```
 //Aggiorno il sistema e installo MySql
 $ sudo apt update
