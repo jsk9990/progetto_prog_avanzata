@@ -3,15 +3,15 @@
 ## Indice
 
 1. [Introduzione](#introduzione)
-2. [Richieste](#richieste)
-3. [Diagramma UML](#diagrammaUML)
-4. [Casi D'Uso ](#CasiD'Uso)
-5. [Funzionamento principale](#funzionamentoprincipale)
-6. [Diagramma UML](#diagramma-uml)
+2. [Diagramma UML](#diagrammaUML)
+3. [Casi D'Uso ](#CasiD'Uso)
+4. [Funzionamento principale](#funzionamentoprincipale)
+5. [Richieste](#richieste)
+6. [Configurazioni iniziali](#configurazioni)
 7. [Pattern Utilizzati](#pattern-utilizzati)
 8. [Avvio Tramite Docker](#avvio-tramite-docker)
 9. [Software Utilizzati](#software-utilizzati)
-10. [Autori](#autori)
+10.[Autori](#autori)
 
 ## Introduzione
 ![](/IMMAGINI/GRAFO.png)
