@@ -132,7 +132,51 @@ Infine, è necessario modificare il file package.json per aggiungere un comando 
 
 
 ## Avvio Tramite Docker
+### Installazione Docker su Ubuntu 20.04
+L’installazione di Docker sul vostro sistema Linux con Ubuntu 20.04 prevede solo pochi passaggi.
+#### Primo passaggio: preparare il sistema
+In primo luogo, accertatevi che il vostro sistema e tutti i pacchetti siano aggiornati. A tal fine, inserite i seguenti comandi nel vostro terminale per aggiornare il sistema:
 
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
+Qualora sia già stata utilizzata una versione di anteprima o beta di Docker, occorre rimuoverla prima di iniziare l’installazione di Docker, compresi tutti i file creati con quella versione:
+```
+sudo apt remove docker-desktop
+rm -r $HOME/.docker/desktop
+sudo rm /usr/local/bin/com.docker.cli
+sudo apt purge docker-desktop
+```
+#### Secondo passaggio: aggiungere il repository di Docker
+Per l’installazione di Docker e per gli aggiornamenti successivi, è indispensabile utilizzare un repository che deve essere prima aggiunto al sistema. Per questo, bisogna prima installare i seguenti pacchetti:
+```
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+A questo punto possiamo aggiungere la chiave GPG di Docker al nostro sistema:
+```
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+Per concludere, dovete configurare il repository Docker con il seguente comando:
+```
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+#### Terzo passaggio: installare Docker Engine
+Ora potete scaricare Docker Engine su Ubuntu 20.04. Anche questo può essere fatto attraverso il terminale. Se desiderate installare la versione attuale di Docker sul vostro sistema, eseguite il seguente comando:
+```
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+Al termine dell’installazione potete avviare il container Docker “Hello World” tramite riga di comando per accertarvi che tutto sia andato a buon fine:
+```
+sudo docker run hello-world
+```
 
 
 ## Software Utilizzati
