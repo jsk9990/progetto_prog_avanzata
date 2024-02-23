@@ -64,6 +64,12 @@ $ CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
 $ GRANT ALL PRIVILEGES ON *.* TO ‘username’@'localhost';
 ```
 Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale http://localhost:/ nella porta 3036. Dopodichè aggiorniamo lo schema del database.Ora possiamo creare dei file dove è possibile fare delle 'query', questo ci aiuta a visualizzare il contenuto del database. 
+
+Per poter visualizzare se il server Mysql sia attivo occore usare i seguenti comendi:
+```
+$ sudo service mysql star
+$ sudo service mysql status
+```
 ![](/IMMAGINI/DATABASE1.png)
 ## Rotte
 ![](/IMMAGINI/ROTTE.png)
@@ -80,7 +86,7 @@ Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo
 | /admin | GET | Accedo nell'area admin se ho i giusti privilegi |
 | /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
-| /accetta_rifiuta | PUT | Le richieste in pending e possono diventare  accettate o rifiutate|
+| /accetta_rifiuta | PUT | Le richieste in pending possono diventare  accettate o rifiutate|
 
 ## Pattern Utilizzati
 
