@@ -21,6 +21,10 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ![](/IMMAGINI/USECASE1.png)
 ![](/IMMAGINI/USECASE2.png)
 
+- **Login e SignIn:**
+    - l'utente non registrato deve creare un account
+    - l'utente gia registrato deve accedere all'area utenti con email e password 
+
 - **Creazione di Nuovi Modelli:**
     - Gli utenti possono creare nuovi modelli specificando il grafo e i relativi pesi degli archi.
     - La richiesta di creazione viene validata e il costo è calcolato in base al numero di nodi e archi specificati.
@@ -31,21 +35,17 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
     - Le richieste di aggiornamento possono essere approvate o rifiutate dall'utente creatore del modello.
     - Il costo delle richieste di aggiornamento dipende dal numero di archi da aggiornare.
     - Il nuovo peso degli archi è calcolato tramite una media esponenziale.
+    - Se l'utente non è proprietario deve inviare una richiesta e se accettata può aggiornare il grafo
 
 - **Visualizzazione delle Richieste:**
-    - È possibile visualizzare lo stato delle richieste di aggiornamento di un modello, filtrando per data e stato.
-    - È disponibile una rotta per visualizzare le richieste di aggiornamento in sospeso relative ai modelli dell'utente autenticato.
+    - È possibile visualizzare lo stato delle richieste di aggiornamento di un modello, puo essere pending,accettato e/o rifiutato
 
 - **Approvazione/Rifiuto delle Richieste:**
-    - Solo l'utente creatore del modello può approvare o rifiutare le richieste di aggiornamento, anche in modalità bulk.
-
-- **Esecuzione del Modello:**
-    - È possibile eseguire un modello specificando un nodo di partenza e di arrivo.
-    - Il costo dell'esecuzione è pari a quello addebitato durante la creazione del modello.
+    - Solo l'utente creatore del modello può approvare o rifiutare le richieste di aggiornament
 
 - **Simulazione dei Pesi:**
-    - È possibile variare il peso relativo di un arco specificando un valore di inizio, fine e passo di incremento.
-    - Vengono restituiti tutti i risultati e il miglior risultato con la configurazione dei pesi utilizzati.
+    - È possibile variare il peso relativo di un arco considerando un valore di inizio, fine e passo di incremento.
+    - Vengono restituiti tutti i risultati e il miglior risultato(best result) con la configurazione dei pesi utilizzati.
 ## Diagramma UML
 ## Database 
 
