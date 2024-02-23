@@ -185,6 +185,8 @@ sudo docker run hello-world
 
 
 ## Autori
+### GIUSEPPE de STASIO
+### ANDREA LANGIOTTI 
 
 
 ## Tecnologie Utilizzate
