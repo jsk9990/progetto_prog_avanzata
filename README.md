@@ -1,7 +1,5 @@
 
 # Progetto: Gestione di Modelli di Ottimizzazione su Grafo
-# Nome del Progetto
-
 ## Indice
 
 1. [Introduzione](#introduzione)
@@ -13,14 +11,13 @@
 7. [Software Utilizzati](#software-utilizzati)
 8. [Autori](#autori)
 
-## Introduzione
-
-
-## Richieste
-
-
+## Introduzionev
+Questo progetto implementa un sistema per la gestione di modelli di ottimizzazione su grafi, consentendo agli utenti autenticati di creare e valutare tali modelli utilizzando JSON Web Tokens (JWT). Il sistema simula il concetto di crowd-sourcing, permettendo agli utenti di contribuire attivamente. Abbiamo sviluppato un progetto lato back-end implementando il framework Node.js e Express per la creazione dell'applicazione lato server, sequelize per garantirci che le richieste che facciamo abbiano un solo istanza e Mysql per la creazione del database.
 
 ## Diagramma UML
+
+## Casi D'Uso 
+
 
 ## Funzionalità Principali
 
@@ -50,7 +47,7 @@
     - È possibile variare il peso relativo di un arco specificando un valore di inizio, fine e passo di incremento.
     - Vengono restituiti tutti i risultati e il miglior risultato con la configurazione dei pesi utilizzati.
 
-
+## Richieste
 
 ## Pattern Utilizzati
 
@@ -64,10 +61,6 @@
 
 
 ## Autori
-
-
-
-Questo progetto implementa un sistema per la gestione di modelli di ottimizzazione su grafi, consentendo agli utenti autenticati di creare e valutare tali modelli utilizzando JSON Web Tokens (JWT). Il sistema simula il concetto di crowd-sourcing, permettendo agli utenti di contribuire attivamente.
 
 
 ## Tecnologie Utilizzate
