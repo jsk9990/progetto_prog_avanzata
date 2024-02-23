@@ -1,18 +1,18 @@
 
 # Progetto: Gestione di Modelli di Ottimizzazione su Grafo
 ![](/IMMAGINI/GRAFO.png)
-## Indice
-1. [Introduzione](#introduzione)
-2. [Casi D'Uso ](#CasiD'Uso)
-3. [Diagramma UML](#diagrammaUML)
-4. [Database](#Database)
-5. [Rotte](#rotte)
-6. [Configurazioni iniziali](#configurazioni)
-7. [Pattern Utilizzati](#pattern-utilizzati)
-8. [Avvio Tramite Docker](#avvio-tramite-docker)
-9.  [Software Utilizzati](#software-utilizzati)
-10.[Autori](#autori)
+## 📚 Indice
 
+- [🚀 Introduzione](#introduzione)
+- [💼 Casi D'Uso](#CasiD'Uso)
+- [📐 Diagramma UML](#diagrammaUML)
+- [💽 Database](#Database)
+- [🔀 Rotte](#rotte)
+- [⚙️ Configurazioni iniziali](#configurazioni)
+- [🧩 Pattern Utilizzati](#pattern-utilizzati)
+- [🐳 Avvio Tramite Docker](#avvio-tramite-docker)
+- [🛠️ Software Utilizzati](#software-utilizzati)
+- [👥 Autori](#autori)
 ## Introduzione
 Questo progetto implementa un sistema per la gestione di modelli di ottimizzazione su grafi, consentendo agli utenti autenticati di creare e valutare tali modelli utilizzando JSON Web Tokens (JWT).Lo scopo è di trovare il percorso minimo del grafo utilizzando l'ALgoritmo Dijkstra.Il sistema simula il concetto di crowd-sourcing, permettendo agli utenti di contribuire attivamente. Abbiamo sviluppato un progetto lato back-end tramite il framework Node.js e Express per la creazione dell'applicazione lato server, sequelize per garantirci che le richieste che facciamo abbiano una sola istanza e Mysql per la creazione del database.
 
