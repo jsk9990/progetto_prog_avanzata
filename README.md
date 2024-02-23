@@ -1,7 +1,26 @@
 
 # Progetto: Gestione di Modelli di Ottimizzazione su Grafo
+# Nome del Progetto
 
-Questo progetto implementa un sistema per la gestione di modelli di ottimizzazione su grafi, consentendo agli utenti autenticati di creare e valutare tali modelli utilizzando JSON Web Tokens (JWT). Il sistema simula il concetto di crowd-sourcing, permettendo agli utenti di contribuire attivamente.
+## Indice
+
+1. [Introduzione](#introduzione)
+2. [Richieste](#richieste)
+3. [Funzionamento principale](#funzionamentoprincipale)
+4. [Diagramma UML](#diagramma-uml)
+5. [Pattern Utilizzati](#pattern-utilizzati)
+6. [Avvio Tramite Docker](#avvio-tramite-docker)
+7. [Software Utilizzati](#software-utilizzati)
+8. [Autori](#autori)
+
+## Introduzione
+
+
+## Richieste
+
+
+
+## Diagramma UML
 
 ## Funzionalità Principali
 
@@ -30,6 +49,26 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 - **Simulazione dei Pesi:**
     - È possibile variare il peso relativo di un arco specificando un valore di inizio, fine e passo di incremento.
     - Vengono restituiti tutti i risultati e il miglior risultato con la configurazione dei pesi utilizzati.
+
+
+
+## Pattern Utilizzati
+
+
+
+## Avvio Tramite Docker
+
+
+
+## Software Utilizzati
+
+
+## Autori
+
+
+
+Questo progetto implementa un sistema per la gestione di modelli di ottimizzazione su grafi, consentendo agli utenti autenticati di creare e valutare tali modelli utilizzando JSON Web Tokens (JWT). Il sistema simula il concetto di crowd-sourcing, permettendo agli utenti di contribuire attivamente.
+
 
 ## Tecnologie Utilizzate
 
