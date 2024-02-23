@@ -3,27 +3,23 @@
 ## Indice
 
 1. [Introduzione](#introduzione)
-2. [Diagramma UML](#diagrammaUML)
-3. [Casi D'Uso ](#CasiD'Uso)
-4. [Funzionamento principale](#funzionamentoprincipale)
+2. [Casi D'Uso ](#CasiD'Uso)
+3. [Diagramma UML](#diagrammaUML)
+4. [Database](#Database)
 5. [Richieste](#richieste)
 6. [Configurazioni iniziali](#configurazioni)
 7. [Pattern Utilizzati](#pattern-utilizzati)
 8. [Avvio Tramite Docker](#avvio-tramite-docker)
-9. [Software Utilizzati](#software-utilizzati)
+9.  [Software Utilizzati](#software-utilizzati)
 10.[Autori](#autori)
 
 ## Introduzione
 ![](/IMMAGINI/GRAFO.png)
 Questo progetto implementa un sistema per la gestione di modelli di ottimizzazione su grafi, consentendo agli utenti autenticati di creare e valutare tali modelli utilizzando JSON Web Tokens (JWT).Lo scopo è di trovare il percorso minimo del grafo utilizzando l'ALgoritmo Dijkstra.Il sistema simula il concetto di crowd-sourcing, permettendo agli utenti di contribuire attivamente. Abbiamo sviluppato un progetto lato back-end tramite il framework Node.js e Express per la creazione dell'applicazione lato server, sequelize per garantirci che le richieste che facciamo abbiano una sola istanza e Mysql per la creazione del database.
 
-
-## Diagramma UML
-
-## Casi D'Uso 
-
-
-## Funzionalità Principali
+## Casi D'Uso
+![](/IMMAGINI/USECASE1.png)
+![](/IMMAGINI/USECASE2.png)
 
 - **Creazione di Nuovi Modelli:**
     - Gli utenti possono creare nuovi modelli specificando il grafo e i relativi pesi degli archi.
@@ -50,6 +46,8 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 - **Simulazione dei Pesi:**
     - È possibile variare il peso relativo di un arco specificando un valore di inizio, fine e passo di incremento.
     - Vengono restituiti tutti i risultati e il miglior risultato con la configurazione dei pesi utilizzati.
+## Diagramma UML
+## Database 
 
 ## Richieste
 
