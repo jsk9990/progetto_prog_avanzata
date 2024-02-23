@@ -5,7 +5,7 @@ export class Singleton {
     private static instance: Singleton;
     private connection: Sequelize;
     private constructor() {
-        this.connection = new Sequelize('mydb','andrea','Zafon30x*x327',{
+        this.connection = new Sequelize('mydb','jsk','jsk',{
             host : 'localhost',
             dialect : 'mysql'
         }); 
