@@ -6,7 +6,7 @@
 2. [Casi D'Uso ](#CasiD'Uso)
 3. [Diagramma UML](#diagrammaUML)
 4. [Database](#Database)
-5. [Rotte(#rotte)
+5. [Rotte](#rotte)
 6. [Configurazioni iniziali](#configurazioni)
 7. [Pattern Utilizzati](#pattern-utilizzati)
 8. [Avvio Tramite Docker](#avvio-tramite-docker)
@@ -65,7 +65,7 @@ $ GRANT ALL PRIVILEGES ON *.* TO ‘username’@'localhost';
 ```
 Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale http://localhost:/ nella porta 3036. Dopodichè aggiorniamo lo schema del database.Ora possiamo creare dei file dove è possibile fare delle 'query', questo ci aiuta a visualizzare il contenuto del database. 
 
-Per poter visualizzare se il server Mysql sia attivo occore usare i seguenti comendi:
+Per poter visualizzare il server Mysql sia attivo ,o meno, occorre usare i seguenti comandi:
 ```
 $ sudo service mysql star
 $ sudo service mysql status
@@ -87,7 +87,46 @@ $ sudo service mysql status
 | /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
 | /accetta_rifiuta | PUT | Le richieste in pending possono diventare  accettate o rifiutate|
+## Configurazioni iniziali
 
+Questo è un progetto basato su Node.js e TypeScript. Qui sono riportati i passaggi per configurare il tuo progetto.
+
+### Configurazione Iniziale
+Inizia inizializzando il tuo progetto con npm. Questo creerà un file `package.json` per il tuo progetto.
+```
+npm init -y
+```
+### Installazione Dipendenze
+Il tuo progetto ha bisogno di alcune dipendenze, tra cui Express per il server web e TypeScript per la scrittura di codice JavaScript tipizzato. Installa queste dipendenze con il seguente comando:
+```
+npm install express typescript @types/node @types/express
+```
+### Configurazione TypeScript
+TypeScript ha bisogno di un file di configurazione, chiamato tsconfig.json, per funzionare correttamente. Crea questo file e aggiungi il seguente codice:
+```
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true
+  }
+}
+```
+### Configurazione Nodemon & TypeScript
+Nodemon è uno strumento che aiuta a sviluppare applicazioni basate su node.js rilevando automaticamente i cambiamenti dei file e riavviando il server. TypeScript è un superset di JavaScript che aggiunge tipi statici. Questi possono essere installati come dipendenze di sviluppo con i seguenti comandi:
+```
+npm install --save-dev nodemon
+npm install --save-dev ts-node
+```
+### Modifica package.json
+Infine, è necessario modificare il file package.json per aggiungere un comando start che avvia il tuo progetto con Nodemon e TypeScript. Questo permette di eseguire il tuo progetto con il comando npm start.
+```
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec ts-node app.ts"
+  }
+```
 ## Pattern Utilizzati
 
 
