@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Richieste` (
   `id_grafo` INT NOT NULL,
   `descrizione` VARCHAR(255) NOT NULL, 
   `modifiche` JSON NOT NULL,
-  `stato_richiesta` ENUM('pending','accettata', 'rifiutata') NOT NULL DEFAULT 'pending',
+  `stato_richiesta` VARCHAR(20) NOT NULL DEFAULT 'pending',
   `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_richieste`),
   INDEX `id_utente_request_idx` (`id_utente_request` ASC) VISIBLE,

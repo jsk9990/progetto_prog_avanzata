@@ -120,7 +120,7 @@ export async function creaGrafo(req: Request, res: Response) {
 export async function verificaProprietario (email: any,nome: any) {
     //const { email, nome, } = req.body
     
-    const grafo = await Grafo.findOne({ where: { nome_grafo: nome } });
+    const grafo = await Grafo.findOne({ where: { nome_grafo: nome } }); // non va bene, bisogna trovare tramite l'ID il grafo, perchè possiamo avere diversi grafi con lo stesso nome
     const utente = await Utente.findOne({ where: {email: email } });
     
 
@@ -141,7 +141,7 @@ export async function verificaProprietario (email: any,nome: any) {
 export async function AggiornaGrafo (req: any,res: any) {
 
   const { id_utente, nome, nodo1, nodo2 , peso } = req.body;
-  const utente = await Utente.findOne({ where: {id_utente: id_utente } });
+  const utente = await Utente.findOne({ where: {id_utente: id_utente } }); // non va bene, perchè non dovresti passarglielo tramite id, ma bensi il tuo email
   const email = utente?.getDataValue('email');
   const grafo = await Grafo.findOne({ where: { nome_grafo: nome } });
   const id_grafo = grafo?.getDataValue('id_grafo');

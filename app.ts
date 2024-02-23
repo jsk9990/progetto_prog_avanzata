@@ -17,12 +17,12 @@ import { creaUtente, getUtenti } from './Controller/controllerUtente';
 import { calcolaPercorsoMinimo } from './Controller/controllerGrafo1';
 import { getSimulazione } from './Controller/controllerGrafo2';
 import { creaGrafo , AggiornaGrafo} from './Controller/controllerGrafo';
-
+import { updateGrafo, updateArcoAfterRequest } from './Controller/controllerGrafo3';
 
 
 //----------------CONFIGURAZIONI INIZIALI----------------------------------------//
 const app = express();
-const port = 3000;
+const port = 3001;
 app.use (express.json());
 
 //-----------------CREAZIONE ROUTES----------------------------------------------//
@@ -61,7 +61,7 @@ app.get('/utenti', checkToken, (req: any, res: any) => {
     getUtenti(req, res);  
 })
 
-app.get('/login/admin', (req: any, res: any) => {
+app.get('/utenti/admin', (req: any, res: any) => {
   res.send('Admin accesso consentito');
 })
 
@@ -90,6 +90,15 @@ app.post('/utenti/aggiorna',checkToken,decodeToken, (req: any, res: any) => {
 app.post('/utenti/verificaProprieta',checkToken,decodeToken, (req: any, res: any) => {
   //verificaProprietario(req, res);
 })
+
+app.post('/utenti/aggiornaGrafo',checkToken,decodeToken, (req: any, res: any) => {
+  updateGrafo(req, res);
+})
+
+app.post('/utenti/richieste/aggiornaGrafo',checkToken,decodeToken, (req: any, res: any) => {
+  updateArcoAfterRequest(req, res);
+})
+
 //----------------------------------------------------------------------//
 
 
