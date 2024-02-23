@@ -6,7 +6,7 @@
 2. [Casi D'Uso ](#CasiD'Uso)
 3. [Diagramma UML](#diagrammaUML)
 4. [Database](#Database)
-5. [Richieste](#richieste)
+5. [Rotte(#rotte)
 6. [Configurazioni iniziali](#configurazioni)
 7. [Pattern Utilizzati](#pattern-utilizzati)
 8. [Avvio Tramite Docker](#avvio-tramite-docker)
@@ -65,7 +65,8 @@ $ GRANT ALL PRIVILEGES ON *.* TO ‘username’@'localhost';
 ```
 Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale http://localhost:/ nella porta 3036. Dopodichè aggiorniamo lo schema del database.Ora possiamo creare dei file dove è possibile fare delle 'query', questo ci aiuta a visualizzare il contenuto del database. 
 ![](/IMMAGINI/DATABASE1.png)
-## Richieste
+## Rotte
+![](/IMMAGINI/ROTTE.png)
 
 ## Pattern Utilizzati
 
