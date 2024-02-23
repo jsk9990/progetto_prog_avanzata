@@ -48,11 +48,9 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ## Diagramma UML
 ## Database 
 ![](/IMMAGINI/DATABASE.png)
-MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).Per poterlo utilizzare abbiamo bisogno dell'istallazione. 
-
-È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. Per poterlo utilizzare occore creare un account:
+MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. Inanzitutto andiamo ad istallare mysql da terminale.I comandi fanno riferimento ad un sistema operativo Linux.
 ```
-//Aggiorno sistema e installo MySql
+//Aggiorno il sistema e installo MySql
 $ sudo apt update
 $ sudo apt update
 //verifico se installazione sia corretta
@@ -65,7 +63,7 @@ $ CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
 //Gestione dei privilegi di accesso al databaseù
 $ GRANT ALL PRIVILEGES ON *.* TO ‘username’@'localhost';
 ```
-Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale 'http://localhost:/' nella porta '3036'. Dopodichè aggiorniamo lo schema del database e possiamo visualizzarlo nella finestra di destra. Ora possiamo creare dei file dove è possibile fare delle 'query'. 
+Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale http://localhost:/ nella porta 3036. Dopodichè aggiorniamo lo schema del database.Ora possiamo creare dei file dove è possibile fare delle 'query', questo ci aiuta a visualizzare il contenuto del database. 
 ![](/IMMAGINI/DATABASE1.png)
 ## Richieste
 
