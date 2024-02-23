@@ -68,6 +68,20 @@ Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo
 ## Rotte
 ![](/IMMAGINI/ROTTE.png)
 
+| Rotta | Tipo | Descrizione |
+| ----- | ---- | ----------- |
+| /home | GET | Ci connettiamo al database |
+| /login | POST | Accedo tramite credeziali  |
+| /sign_in | POST | Creo un account |
+| /utente | GET | Accedo nel area Utente |
+| /creagrafo | POST | Creo il grafo  |
+| /aggiorna | PUT |Aggiorno il grafo esistente |
+| /richieste | GET |Accedo nell'area Richieste |
+| /admin | GET | Accedo nell'area admin se ho i giusti privilegi |
+| /simulazione | POST | Vado a similare il funzionamento ipotetico dalla creazione del garfo al calcolo del percorso minimo  |
+| /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
+| /accetta_rifiuta | PUT | Rotta che ci permette di estrapolare tutte le richieste in pending e settarle come accettate o rifiutate|
+
 ## Pattern Utilizzati
 
 
