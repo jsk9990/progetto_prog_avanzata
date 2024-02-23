@@ -78,9 +78,9 @@ Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo
 | /aggiorna | PUT |Aggiorno il grafo esistente |
 | /richieste | GET |Accedo nell'area Richieste |
 | /admin | GET | Accedo nell'area admin se ho i giusti privilegi |
-| /simulazione | POST | Vado a similare il funzionamento ipotetico dalla creazione del garfo al calcolo del percorso minimo  |
+| /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
-| /accetta_rifiuta | PUT | Rotta che ci permette di estrapolare tutte le richieste in pending e settarle come accettate o rifiutate|
+| /accetta_rifiuta | PUT | Le richieste in pending e possono diventare  accettate o rifiutate|
 
 ## Pattern Utilizzati
 
