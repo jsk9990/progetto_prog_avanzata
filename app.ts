@@ -16,8 +16,8 @@ import { creaUtente, getUtenti } from './Controller/controllerUtente';
 //import { creaGrafo,AggiornaGrafo } from './Controller/controllerGrafo';
 import { calcolaPercorsoMinimo } from './Controller/controllerGrafo1';
 import { getSimulazione } from './Controller/controllerGrafo2';
-import { creaGrafo , AggiornaGrafo} from './Controller/controllerGrafo';
-import { updateGrafo, updateArcoAfterRequest } from './Controller/controllerGrafo3';
+import { creaGrafo } from './Controller/controllerGrafo';
+import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta } from './Controller/controllerGrafo3';
 
 
 //----------------CONFIGURAZIONI INIZIALI----------------------------------------//
@@ -70,29 +70,26 @@ app.post('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
 })
 
 
-app.post ('/utente/aggiorna',checkToken,(req: any, res: any) => {
-  AggiornaGrafo(req, res); 
+app.post ('/utenti/aggiornaGrafo',checkToken,decodeToken,(req: any, res: any) => {
+  updateGrafo(req, res); 
 })
 
 
-app.post('/utente/simulazione', (req: Request, res: Response) => { 
+app.post('/utenti/simulazione', (req: Request, res: Response) => { 
   getSimulazione(req, res);
  });
 
-app.post('/utente/esecuzione_modello',checkToken,decodeToken, (req: Request, res: Response) => {
+app.post('/utenti/esecuzione_modello',checkToken,decodeToken, (req: Request, res: Response) => {
   calcolaPercorsoMinimo(req, res);
  });
 
-app.post('/utenti/aggiorna',checkToken,decodeToken, (req: any, res: any) => {
-  AggiornaGrafo(req, res);
+
+app.get('/utenti/richieste',checkToken,decodeToken, (req: any, res: any) => {
+  getRichieste(req, res);
 })
 
-app.post('/utenti/verificaProprieta',checkToken,decodeToken, (req: any, res: any) => {
-  //verificaProprietario(req, res);
-})
-
-app.post('/utenti/aggiornaGrafo',checkToken,decodeToken, (req: any, res: any) => {
-  updateGrafo(req, res);
+app.post ('/utenti/richieste/approvaRichiesta',checkToken,decodeToken, (req: any, res: any) => {
+approvaRichiesta(req, res);
 })
 
 app.post('/utenti/richieste/aggiornaGrafo',checkToken,decodeToken, (req: any, res: any) => {

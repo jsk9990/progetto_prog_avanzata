@@ -4,6 +4,7 @@ import { Nodi } from '../Model/Nodi';
 import { Archi } from '../Model/Archi';
 import { Utente } from '../Model/Utente';
 import { Richieste } from '../Model/Richieste';
+import exp from 'constants';
 
 async function updateArco (id_grafo: any, id_archi: any, peso: any){
     const alpha = 0.8;
@@ -30,14 +31,19 @@ async function verifiedPropriety (jwtDecode: any, id_grafo: any) {
     }
 }
 
-async function gestioneRichiesta(jwtDecode: any, id_grafo: any, id_richiesta: any) {
-    const richiesta = await Richieste.findOne({ where: { id_richiesta: id_richiesta } });
-    if (richiesta?.dataValues.stato_richiesta === 'accettata') {
-        return 'accettata'
-    } else if(richiesta?.dataValues.stato_richiesta === 'rifiutata') {
-        return 'rifiutata'
+async function gestioneRichiesta(jwtDecode: any, id_grafo: any, id_richieste: any) {
+    const richieste = await Richieste.findOne({ 
+        where: { 
+           id_richieste: id_richieste,
+        },
+        attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta']
+     });
+    if (richieste?.getDataValue('stato_richiesta') === 'accettata') {
+        return richieste?.getDataValue('stato_richiesta')
+    } else if(richieste?.getDataValue('stato_richiesta') === 'rifiutata') {
+        return richieste?.getDataValue('stato_richiesta')
     }else {
-        return 'pending'
+        return richieste?.getDataValue('stato_richiesta')
     }
 }
 
@@ -75,12 +81,8 @@ export async function updateGrafo(req: Request, res: Response) {
         peso,
     });
 
-    res.json(
-      "Grafo aggiornato con successo" +
-        JSON.stringify(update) +
-        "\n Richiesta \n " +
-        JSON.stringify(richiesta)
-    );
+    res.json({
+      message : "Grafo aggiornato con successo", update: update, msg :"Richiesta", richiesta: richiesta });
   }
 
   if (verifica === false) {
@@ -104,16 +106,54 @@ export async function updateGrafo(req: Request, res: Response) {
 }   
 
 
-export async function updateArcoAfterRequest (req: Request, res: Response) {
-    const { jwtDecode, id_grafo,id_richiesta, id_archi, peso } = req.body;
+export async function updateArcoAfterRequest (req: Request, res: Response) { 
+    const { jwtDecode, id_grafo,id_richieste, id_archi, peso } = req.body;
+
+    console.log(req.body);
     
-    const risultatoRichiesta = await gestioneRichiesta(jwtDecode, id_grafo, id_richiesta);
+    
+    const risultatoRichiesta = await gestioneRichiesta(jwtDecode, id_grafo, id_richieste);
+
+    console.log(JSON.stringify(risultatoRichiesta));
+
     if (risultatoRichiesta === 'accettata') {
         const update = await updateArco(id_grafo, id_archi, peso);
-        res.json(update);
+        res.status(200).json( {risultatoRichiesta : risultatoRichiesta , update : update});
     } else if (risultatoRichiesta === 'rifiutata') {
         res.json('Richiesta rifiutata');
     } else {
         res.json('Richiesta in attesa');
     }
 }
+ 
+
+export async function getRichieste(req: Request, res: Response) {
+    const { jwtDecode, id_grafo } = req.body;
+    const utente = await Utente.findOne({ where: { email : jwtDecode.email, password: jwtDecode.password } });
+    const id_utente = utente?.dataValues.id_utente;
+
+    const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, id_utente_request: id_utente } , attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+    res.status(200).json({richieste : richieste});
+}
+
+
+export async function approvaRichiesta(req: Request, res: Response) {
+    const { jwtDecode, id_richieste,stato_richiesta } = req.body;
+    const utente = await Utente.findOne({ where: { email : jwtDecode.email, password: jwtDecode.password } });
+    const id_utente = utente?.dataValues.id_utente;
+    if (stato_richiesta === 'accettata') {
+        const update = await Richieste.findOne({ where: { id_richieste: id_richieste, id_utente_request: id_utente }, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta']});
+        if (update){
+            update.setDataValue('stato_richiesta', 'accettata');
+            await update?.save();     
+        }
+        res.status(200).json({update : update});
+    } else if (stato_richiesta === 'rifiutata') {
+        const update = await Richieste.findOne({ where: { id_richieste: id_richieste, id_utente_request: id_utente }, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta']});
+        if (update){
+            update?.setDataValue('stato_richiesta', 'rifiutata');  
+            await update?.save();
+        }
+        res.status(200).json({update : update});
+    }  
+} 

@@ -116,7 +116,7 @@ export async function creaGrafo(req: Request, res: Response) {
   }
 }
 
-
+/*
 export async function verificaProprietario (email: any,nome: any) {
     //const { email, nome, } = req.body
     
@@ -213,6 +213,6 @@ export async function AggiornaGrafo (req: any,res: any) {
         
       };
 }
-
+*/
 
 
