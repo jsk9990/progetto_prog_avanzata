@@ -161,6 +161,7 @@ $ sudo service mysql status
 ```    
 ###  /creagrafo 
 ![](/IMMAGINI/login.png)
+![](/IMMAGINI/GRAFOO.png)
 
 #### INPUT: 
 ```
