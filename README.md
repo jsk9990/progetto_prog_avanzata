@@ -327,13 +327,11 @@ sudo docker run hello-world
 ### Avvio tramite Docker
 
 ## Software Utilizzati
-- "Visual Studio Code" : Editor di codice multipiattaforma sviluppato da Microsoft, offre funzionalità come debugging, controllo Git.
+- **Visual Studio Code**: Editor di codice multipiattaforma sviluppato da Microsoft, offre funzionalità come debugging, controllo Git.
+- **TypeScript**: Linguaggio di programmazione open source sviluppato da Microsoft che estende JavaScript aggiungendo tipi statici e classi.
+- **Node.js**: Ambiente di runtime open source per JavaScript, consente di eseguire codice JavaScript lato server per lo sviluppo di applicazioni web.
+- **Express**: Framework per applicazioni web Node.js, fornisce un insieme di funzionalità per creare applicazioni web e mobile in modo rapido ed efficiente.
 
-- "TypeScript" : Linguaggio di programmazione open source sviluppato da Microsoft che estende JavaScript aggiungendo tipi statici e classi.
-
-- "Node.js" : Ambiente di runtime open source per JavaScript, consente di eseguire codice JavaScript lato server per lo sviluppo di applicazioni web.
-
-- "Express" : Framework per applicazioni web Node.js, fornisce un insieme di funzionalità per creare applicazioni web e mobile in modo rapido ed efficiente.
 
 ## Autori
 GIUSEPPE de STASIO
