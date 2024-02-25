@@ -10,11 +10,13 @@ interface GrafoRequest {
   }
   
 
-export async function checkGrafoEsecuzione (req: Request, res: Response, next: NextFunction)  {
+export async function checkGrafoEsecuzione (req: Request, res: Response, next: NextFunction) {
 
   const { nome_grafo, nodo_partenza, nodo_arrivo } : GrafoRequest = req.body;
 
-  console.log('Fino qui almeno arriva' + req.body);
+  console.log('Fino qui almeno arriva' + nome_grafo);
+  console.log('Fino qui almeno arriva' + nodo_partenza);
+  console.log('Fino qui almeno arriva' + nodo_arrivo);
   
   // Verifica la struttura del JSON
   if (!nome_grafo || !nodo_partenza || !nodo_arrivo) {
@@ -23,13 +25,13 @@ export async function checkGrafoEsecuzione (req: Request, res: Response, next: N
   
   try {
     // Verifica la presenza dei nodi nel grafo
-    const grafo = await Grafo.findOne({ where: { nome: nome_grafo } });
+    const grafo = await Grafo.findOne({ where: { nome_grafo: nome_grafo } });
     
     if (!grafo) {
       return res.status(404).json({ error: `Grafo ${nome_grafo} non trovato` });
     }
     
-    const id_grafo = grafo.dataValues.id_grafo;
+    const id_grafo = grafo.getDataValue('id_grafo');
 
     const nodoPartenza = await Nodi.findAll({ where: { id_grafo : id_grafo } }); 
     const nodoArrivo = await Nodi.findAll({ where: { id_grafo : id_grafo } });
