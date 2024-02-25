@@ -95,28 +95,33 @@ $ sudo service mysql status
 ###  /login
 ![](/IMMAGINI/login.png)
 #### INPUT: 
+```
 { 
     "email": "andrea.com",
     "password": "andrea"
-} 
+}
+```
 #### OUTPUT: 
+```
 {
     "message": "Login effettuato con successo",
     "message2": "Ecco il tuo token:",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYS5jb20iLCJwYXNzd29yZCI6ImFuZHJlYSIsImlhdCI6MTcwODg3MDY2Nn0.bNRx9dQJkTuVm-idRpNKp6qMXMFHhyRNR5x2pxIxUTg"
 }
-
+```
 ###  /sign_in 
 ![](/IMMAGINI/sign.png)
 #### INPUT: 
-
+```
 { 
     "email": "andrea.com",
     "password": "andrea",
     "credito" : 70,
     "privilegi": true 
 }
+```
 #### OUTPUT: 
+```
 {
     "message": "I dati sono stati inseriti con successo",
     "utente": {
@@ -129,10 +134,11 @@ $ sudo service mysql status
     },
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYS5jb20iLCJwYXNzd29yZCI6ImFuZHJlYSIsImlhdCI6MTcwODg3MDUwNn0.jrgJA8F_7lSk4XU-1igbDWKhjV9CriGj4xMv_O2bWQQ"
 }
-    
+```    
 ###  /utenti 
 ![](/IMMAGINI/utenti.png)
 #### OUTPUT: 
+```
 [
     
     {
@@ -152,11 +158,12 @@ $ sudo service mysql status
         "create_time": "2024-02-25T14:55:15.000Z"
     }
 ]
-    
+```    
 ###  /creagrafo 
 ![](/IMMAGINI/login.png)
 
 #### INPUT: 
+```
 {
     "nome_grafo": "grafo giuseppe",
     "struttura": [
@@ -182,7 +189,9 @@ $ sudo service mysql status
         }
     ]
 }
+```
 #### OUTPUT: 
+```
 {
     "message": "Grafo creato con successo",
     "grafo": {
@@ -201,7 +210,7 @@ $ sudo service mysql status
     },
     "costo": 0.48000000000000004
 }
-
+```
 
 
 ###  /aggiorna 
