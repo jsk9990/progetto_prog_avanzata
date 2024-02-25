@@ -58,10 +58,11 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 | /aggiorna | PUT |Aggiorno il grafo esistente |
 | /admin | GET |Preleva tutti gli utenti  |
 | /ricaricaCredito| POST | Ricarica credito dell'utente  |
-| /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
+| /simulazione | POST | Creazione del grafo e calcolo del percorso minimo con variazione di peso dell'arco  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
 | /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
 | /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
+| /esecuzione | POST | Creazione del grafo e calcolo del percorso minimo  |
 
 ## Diagramma UML
 ## /home 
@@ -199,6 +200,35 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 
 ##  /aggiorna2
 ![](/IMMAGINI/AGGIORNA3.png)
+
+## /esecuzione 
+![](/IMMAGINI/.png)
+
+#### INPUT: 
+```
+{ 
+    "nome_grafo": "grafo giuseppe 5", 
+    "nodo_partenza": "Naruto", 
+    "nodo_arrivo": "Kisame" 
+}
+```
+#### OUTPUT :
+```
+{
+    "percorso": {
+        "path": [
+            "Naruto",
+            "Sasuke",
+            "Itachi",
+            "Kisame"
+        ],
+        "cost": 9
+    },
+    "tempoEsecuzione": 0.11963500001002103,
+    "costoAddebbitato": 0.48,
+    "creditoResiduo": 23.56
+}
+```
 
 ##  /simulazione
 ![](/IMMAGINI/simulazione.png)
