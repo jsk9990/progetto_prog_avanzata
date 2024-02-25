@@ -10,6 +10,7 @@
 - [💽 Database](#Database)
 - [⚙️ Configurazioni iniziali](#configurazioni)
 - [🧩 Pattern Utilizzati](#pattern-utilizzati)
+- [🧩 Programmazione Asincrona](#pattern-utilizzati)
 - [🐳 Docker](#avvio-tramite-docker)
 - [🛠️ Software Utilizzati](#software-utilizzati)
 - [👥 Autori](#autori)
@@ -293,12 +294,14 @@ Infine, è necessario modificare il file package.json per aggiungere un comando 
 ```
 ## Pattern Utilizzati
 ### Chain of Responsability
-### Factory Method
+............COMING.SOON........................
 ### Singleton 
+............COMING.SOON........................
 ### Model-View-Controller 
+............COMING.SOON........................
 
-
-
+## Programmazione Asincrona 
+............COMING.SOON........................
 ## Docker
 ### Installazione Docker su Ubuntu 20.04
 L’installazione di Docker sul vostro sistema Linux con Ubuntu 20.04 prevede solo pochi passaggi.
