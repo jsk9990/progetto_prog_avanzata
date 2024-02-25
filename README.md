@@ -88,7 +88,10 @@ $ sudo service mysql status
 | /admin | GET | Accedo nell'area admin se ho i giusti privilegi |
 | /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
-| /accetta_rifiuta | PUT | Le richieste in pending possono diventare  accettate o rifiutate|
+| /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
+| /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
+
+
 ## Configurazioni iniziali
 
 Questo è un progetto basato su Node.js e TypeScript. Qui sono riportati i passaggi per configurare il tuo progetto.
@@ -191,7 +194,4 @@ sudo docker run hello-world
 
 ## Tecnologie Utilizzate
 
-- TypeScript per lo sviluppo del codice.
-- JSON Web Tokens (JWT) per l'autenticazione degli utenti.
-- Seed di database per inizializzare il credito degli utenti.
-- Rotte per l'utente con ruolo admin per ricaricare il credito degli utenti.
+
