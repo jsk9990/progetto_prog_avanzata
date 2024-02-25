@@ -5,9 +5,9 @@
 
 - [🚀 Introduzione](#introduzione)
 - [💼 Casi D'Uso](#CasiD'Uso)
+- [🔀 Rotte](#rotte)
 - [📐 Diagramma UML](#diagrammaUML)
 - [💽 Database](#Database)
-- [🔀 Rotte](#rotte)
 - [⚙️ Configurazioni iniziali](#configurazioni)
 - [🧩 Pattern Utilizzati](#pattern-utilizzati)
 - [🐳 Docker](#avvio-tramite-docker)
@@ -45,6 +45,23 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 - **Simulazione dei Pesi:**
     - È possibile variare il peso relativo di un arco considerando un valore di inizio, fine e passo di incremento.
     - Vengono restituiti tutti i risultati e il miglior risultato(best result) con la configurazione dei pesi utilizzati.
+## Rotte
+![](/IMMAGINI/ROTTE.png)
+| Rotta | Tipo | Descrizione |
+| ----- | ---- | ----------- |
+| /home | GET | Ci connettiamo al database |
+| /login | POST | Accedo tramite credeziali  |
+| /sign_in | POST | Creo un account |
+| /utenti | GET | Accedo nel area Utente |
+| /creagrafo | POST | Creo il grafo  |
+| /aggiorna | PUT |Aggiorno il grafo esistente |
+| /admin | GET |Preleva tutti gli utenti  |
+| /admin_ricarica | POST | Ricarica credito dell'utente  |
+| /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
+| /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
+| /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
+| /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
+
 ## Diagramma UML
 ## /home 
 ![](/IMMAGINI/home.png)
@@ -214,24 +231,6 @@ $ sudo service mysql star
 $ sudo service mysql status
 ```
 ![](/IMMAGINI/DATABASE1.png)
-## Rotte
-![](/IMMAGINI/ROTTE.png)
-
-| Rotta | Tipo | Descrizione |
-| ----- | ---- | ----------- |
-| /home | GET | Ci connettiamo al database |
-| /login | POST | Accedo tramite credeziali  |
-| /sign_in | POST | Creo un account |
-| /utenti | GET | Accedo nel area Utente |
-| /creagrafo | POST | Creo il grafo  |
-| /aggiorna | PUT |Aggiorno il grafo esistente |
-| /admin | GET |Preleva tutti gli utenti  |
-| /admin_ricarica | POST | Ricarica credito dell'utente  |
-| /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
-| /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
-| /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
-| /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
-
 
 ## Configurazioni iniziali
 Questo è un progetto basato su Node.js e TypeScript. Qui sono riportati i passaggi per configurare il tuo progetto.
