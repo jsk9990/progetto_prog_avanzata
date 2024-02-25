@@ -56,7 +56,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 | /creagrafo | POST | Creo il grafo  |
 | /aggiorna | PUT |Aggiorno il grafo esistente |
 | /admin | GET |Preleva tutti gli utenti  |
-| /admin_ricarica | POST | Ricarica credito dell'utente  |
+| /ricaricaCredito| POST | Ricarica credito dell'utente  |
 | /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
 | /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
@@ -201,9 +201,30 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ![](/IMMAGINI/simulazione.png)
 ##  /admin 
 ![](/IMMAGINI/ADMIN.png)
-## /admin_ricarica_credito
+## /ricarica_credito
 ![](/IMMAGINI/ADMIN1.png)
 
+#### INPUT: 
+```
+{
+    "utente_da_ricaricare": "giuseppe@giuseppe.com", 
+    "nuovo_credito" : 25
+}
+```
+#### OUTPUT :
+```
+{
+    "message": "Il credito è stato aggiornato con successo con successo: \n",
+    "index": {
+        "id_utente": 6,
+        "email": "giuseppe@giuseppe.com",
+        "password": "giuseppe",
+        "credito": 25,
+        "privilegi": true,
+        "create_time": "2024-02-25T14:55:15.000Z"
+    }
+}
+```
 ## Database 
 ![](/IMMAGINI/DATABASE.png)
 MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. 
