@@ -92,7 +92,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 }
 ```    
 ##  /utenti 
-![](/IMMAGINI/utenti.png)
+![](/IMMAGINI/utente.png)
 #### OUTPUT: 
 ```
 [
