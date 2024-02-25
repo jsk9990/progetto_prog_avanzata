@@ -292,6 +292,10 @@ Infine, è necessario modificare il file package.json per aggiungere un comando 
   }
 ```
 ## Pattern Utilizzati
+### Chain of Responsability
+### Factory Method
+### Singleton 
+### Model-View-Controller 
 
 
 
@@ -349,6 +353,8 @@ sudo docker run hello-world
 - **TypeScript**: Linguaggio di programmazione open source sviluppato da Microsoft che estende JavaScript aggiungendo tipi statici e classi.
 - **Node.js**: Ambiente di runtime open source per JavaScript, consente di eseguire codice JavaScript lato server per lo sviluppo di applicazioni web.
 - **Express**: Framework per applicazioni web Node.js, fornisce un insieme di funzionalità per creare applicazioni web e mobile in modo rapido ed efficiente.
+- **Docker** : Gestore di container
+- **Postman** : Software per l'API Testing
 ## Autori
 GIUSEPPE de STASIO
 ANDREA LANGIOTTI 
