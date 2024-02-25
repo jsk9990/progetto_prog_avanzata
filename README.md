@@ -185,7 +185,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ##  /admin 
 ![](/IMMAGINI/ADMIN.png)
 ## /admin_ricarica_credito
-![](/IMMAGINI/ADMIN2.png)
+![](/IMMAGINI/ADMIN1.png)
 
 ## Database 
 ![](/IMMAGINI/DATABASE.png)
@@ -225,16 +225,16 @@ $ sudo service mysql status
 | /utenti | GET | Accedo nel area Utente |
 | /creagrafo | POST | Creo il grafo  |
 | /aggiorna | PUT |Aggiorno il grafo esistente |
-| /admin | GET | Accedo nell'area admin se ho i giusti privilegi |
+| /admin | GET |Preleva tutti gli utenti  |
+| /admin_ricarica | POST | Ricarica credito dell'utente  |
 | /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
 | /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
 | /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
 
+
 ## Configurazioni iniziali
-
 Questo è un progetto basato su Node.js e TypeScript. Qui sono riportati i passaggi per configurare il tuo progetto.
-
 ### Configurazione Iniziale
 Inizia inizializzando il tuo progetto con npm. Questo creerà un file `package.json` per il tuo progetto.
 ```
