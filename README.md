@@ -117,8 +117,6 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ```    
 ## /creagrafo 
 ![](/IMMAGINI/login.png)
-![](/IMMAGINI/GRAFOO.png)
-
 #### INPUT: 
 ```
 {
@@ -147,6 +145,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
     ]
 }
 ```
+![](/IMMAGINI/GRAFOO.png)
 #### OUTPUT: 
 ```
 {
