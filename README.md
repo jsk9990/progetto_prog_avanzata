@@ -94,10 +94,116 @@ $ sudo service mysql status
 ![](/IMMAGINI/home.png)
 ###  /login
 ![](/IMMAGINI/login.png)
+#### INPUT: 
+{ 
+    "email": "andrea.com",
+    "password": "andrea"
+} 
+#### OUTPUT: 
+{
+    "message": "Login effettuato con successo",
+    "message2": "Ecco il tuo token:",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYS5jb20iLCJwYXNzd29yZCI6ImFuZHJlYSIsImlhdCI6MTcwODg3MDY2Nn0.bNRx9dQJkTuVm-idRpNKp6qMXMFHhyRNR5x2pxIxUTg"
+}
+
 ###  /sign_in 
 ![](/IMMAGINI/sign.png)
+#### INPUT: 
+
+{ 
+    "email": "andrea.com",
+    "password": "andrea",
+    "credito" : 70,
+    "privilegi": true 
+}
+#### OUTPUT: 
+{
+    "message": "I dati sono stati inseriti con successo",
+    "utente": {
+        "create_time": "2024-02-25T14:15:06.629Z",
+        "id_utente": 3,
+        "email": "andrea.com",
+        "password": "andrea",
+        "credito": 70,
+        "privilegi": true
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYS5jb20iLCJwYXNzd29yZCI6ImFuZHJlYSIsImlhdCI6MTcwODg3MDUwNn0.jrgJA8F_7lSk4XU-1igbDWKhjV9CriGj4xMv_O2bWQQ"
+}
+    
+###  /utenti 
+![](/IMMAGINI/utenti.png)
+#### OUTPUT: 
+[
+    
+    {
+        "id_utente": 1,
+        "email": "andrea@andrea.com",
+        "password": "andrea",
+        "credito": 70,
+        "privilegi": true,
+        "create_time": "2024-02-25T14:52:47.000Z"
+    },
+    {
+        "id_utente": 2,
+        "email": "giuseppe@giuseppe.com",
+        "password": "giuseppe",
+        "credito": 98,
+        "privilegi": true,
+        "create_time": "2024-02-25T14:55:15.000Z"
+    }
+]
+    
 ###  /creagrafo 
 ![](/IMMAGINI/login.png)
+
+#### INPUT: 
+{
+    "nome_grafo": "grafo giuseppe",
+    "struttura": [
+        {
+            "nodo_partenza": "Naruto",
+            "nodo_arrivo": "Sasuke",
+            "peso": 5
+        },
+        {
+            "nodo_partenza": "Sasuke",
+            "nodo_arrivo": "Itachi",
+            "peso": 1
+        },
+        {
+            "nodo_partenza": "Itachi",
+            "nodo_arrivo": "Kisame",
+            "peso": 3
+        },
+        {
+            "nodo_partenza": "Kisame",
+            "nodo_arrivo": "Naruto",
+            "peso": 2
+        }
+    ]
+}
+#### OUTPUT: 
+{
+    "message": "Grafo creato con successo",
+    "grafo": {
+        "Naruto": {
+            "Sasuke": 5
+        },
+        "Sasuke": {
+            "Itachi": 1
+        },
+        "Itachi": {
+            "Kisame": 3
+        },
+        "Kisame": {
+            "Naruto": 2
+        }
+    },
+    "costo": 0.48000000000000004
+}
+
+
+
 ###  /aggiorna 
 ![](/IMMAGINI/aggiorna1.png)
 ![](/IMMAGINI/aggiorna2.png)
