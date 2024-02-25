@@ -183,9 +183,9 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ##  /simulazione
 ![](/IMMAGINI/simulazione.png)
 ##  /admin 
-![](/IMMAGINI/admin.png)
+![](/IMMAGINI/ADMIN.png)
 ## /admin_ricarica_credito
-![](/IMMAGINI/admin.png)
+![](/IMMAGINI/ADMIN2.png)
 
 ## Database 
 ![](/IMMAGINI/DATABASE.png)
