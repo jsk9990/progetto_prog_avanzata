@@ -46,7 +46,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
     - È possibile variare il peso relativo di un arco considerando un valore di inizio, fine e passo di incremento.
     - Vengono restituiti tutti i risultati e il miglior risultato(best result) con la configurazione dei pesi utilizzati.
 ## Diagramma UML
-###  /home 
+## /home 
 ![](/IMMAGINI/home.png)
 ###  /login
 ![](/IMMAGINI/login.png)
@@ -65,7 +65,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYS5jb20iLCJwYXNzd29yZCI6ImFuZHJlYSIsImlhdCI6MTcwODg3MDY2Nn0.bNRx9dQJkTuVm-idRpNKp6qMXMFHhyRNR5x2pxIxUTg"
 }
 ```
-###  /sign_in 
+##  /sign_in 
 ![](/IMMAGINI/sign.png)
 #### INPUT: 
 ```
@@ -91,7 +91,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYS5jb20iLCJwYXNzd29yZCI6ImFuZHJlYSIsImlhdCI6MTcwODg3MDUwNn0.jrgJA8F_7lSk4XU-1igbDWKhjV9CriGj4xMv_O2bWQQ"
 }
 ```    
-###  /utenti 
+##  /utenti 
 ![](/IMMAGINI/utenti.png)
 #### OUTPUT: 
 ```
@@ -115,7 +115,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
     }
 ]
 ```    
-###  /creagrafo 
+## /creagrafo 
 ![](/IMMAGINI/login.png)
 ![](/IMMAGINI/GRAFOO.png)
 
@@ -170,20 +170,20 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ```
 
 
-###  /aggiorna 
+##  /aggiorna 
 #### CASO1: UTENTE E' PROPRIETARIO
 ![](/IMMAGINI/aggiorna1.png)
 #### CASO1: UTENTE NON E' PROPRIETARIO
 ![](/IMMAGINI/aggiorna2.png)
-###  /view_richieste 
+##  /view_richieste 
 ![](/IMMAGINI/view-richieste.png)
-###  /accetta_rifiuta 
+##  /accetta_rifiuta 
 ![](/IMMAGINI/accetta-rifiuta.png)
-###  /aggiorna2
+##  /aggiorna2
 ![](/IMMAGINI/aggiorna3.png)
-###  /simulazione
+##  /simulazione
 ![](/IMMAGINI/simulazione.png)
-###  /admin 
+##  /admin 
 ![](/IMMAGINI/admin.png)
 
 
