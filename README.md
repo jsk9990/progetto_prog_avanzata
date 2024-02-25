@@ -198,7 +198,7 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 ![](/IMMAGINI/accetta-rifiuta.png)
 
 ##  /aggiorna2
-![](/IMMAGINI/aggiorna3.png)
+![](/IMMAGINI/AGGIORNA3.png)
 
 ##  /simulazione
 ![](/IMMAGINI/simulazione.png)
