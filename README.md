@@ -81,15 +81,37 @@ $ sudo service mysql status
 | /home | GET | Ci connettiamo al database |
 | /login | POST | Accedo tramite credeziali  |
 | /sign_in | POST | Creo un account |
-| /utente | GET | Accedo nel area Utente |
+| /utenti | GET | Accedo nel area Utente |
 | /creagrafo | POST | Creo il grafo  |
 | /aggiorna | PUT |Aggiorno il grafo esistente |
-| /richieste | GET |Accedo nell'area Richieste |
 | /admin | GET | Accedo nell'area admin se ho i giusti privilegi |
 | /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
 | /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
 | /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
+
+###  /home 
+![](/IMMAGINI/home.png)
+###  /login
+![](/IMMAGINI/login.png)
+###  /sign_in 
+![](/IMMAGINI/sign.png)
+###  /creagrafo 
+![](/IMMAGINI/login.png)
+###  /aggiorna 
+![](/IMMAGINI/aggiorna1.png)
+![](/IMMAGINI/aggiorna2.png)
+###  /view_richieste 
+![](/IMMAGINI/view-richieste.png)
+###  /accetta_rifiuta 
+![](/IMMAGINI/accetta-rifiuta.png)
+###  /aggiorna2
+![](/IMMAGINI/aggiorna3.png)
+###  /simulazione
+![](/IMMAGINI/simulazione.png)
+###  /admin 
+![](/IMMAGINI/admin.png)
+
 
 
 ## Configurazioni iniziali
