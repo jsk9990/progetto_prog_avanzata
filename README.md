@@ -65,7 +65,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYS5jb20iLCJwYXNzd29yZCI6ImFuZHJlYSIsImlhdCI6MTcwODg3MDY2Nn0.bNRx9dQJkTuVm-idRpNKp6qMXMFHhyRNR5x2pxIxUTg"
 }
 ```
-##  /sign_in 
+## /sign_in 
 ![](/IMMAGINI/sign.png)
 #### INPUT: 
 ```
