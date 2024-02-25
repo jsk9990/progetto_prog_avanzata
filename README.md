@@ -46,50 +46,6 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
     - È possibile variare il peso relativo di un arco considerando un valore di inizio, fine e passo di incremento.
     - Vengono restituiti tutti i risultati e il miglior risultato(best result) con la configurazione dei pesi utilizzati.
 ## Diagramma UML
-## Database 
-![](/IMMAGINI/DATABASE.png)
-MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. 
-### Installazione 
-Inanzitutto andiamo ad istallare mysql da terminale.I comandi fanno riferimento ad un sistema operativo Linux su Ubuntu 20.04.
-```
-//Aggiorno il sistema e installo MySql
-$ sudo apt update
-$ sudo apt update
-//verifico se installazione sia corretta
-$ sudo mysqld --version
-```
-Ora vado a creare un account 
-```
-$ mysql
-$ CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-//Gestione dei privilegi di accesso al databaseù
-$ GRANT ALL PRIVILEGES ON *.* TO ‘username’@'localhost';
-```
-Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale http://localhost:/ nella porta 3036. Dopodichè aggiorniamo lo schema del database.Ora possiamo creare dei file dove è possibile fare delle 'query', questo ci aiuta a visualizzare il contenuto del database. 
-
-Per poter visualizzare il server Mysql sia attivo ,o meno, occorre usare i seguenti comandi:
-```
-$ sudo service mysql star
-$ sudo service mysql status
-```
-![](/IMMAGINI/DATABASE1.png)
-## Rotte
-![](/IMMAGINI/ROTTE.png)
-
-| Rotta | Tipo | Descrizione |
-| ----- | ---- | ----------- |
-| /home | GET | Ci connettiamo al database |
-| /login | POST | Accedo tramite credeziali  |
-| /sign_in | POST | Creo un account |
-| /utenti | GET | Accedo nel area Utente |
-| /creagrafo | POST | Creo il grafo  |
-| /aggiorna | PUT |Aggiorno il grafo esistente |
-| /admin | GET | Accedo nell'area admin se ho i giusti privilegi |
-| /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
-| /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
-| /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
-| /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
-
 ###  /home 
 ![](/IMMAGINI/home.png)
 ###  /login
@@ -215,7 +171,9 @@ $ sudo service mysql status
 
 
 ###  /aggiorna 
+#### CASO1: UTENTE E' PROPRIETARIO
 ![](/IMMAGINI/aggiorna1.png)
+#### CASO1: UTENTE NON E' PROPRIETARIO
 ![](/IMMAGINI/aggiorna2.png)
 ###  /view_richieste 
 ![](/IMMAGINI/view-richieste.png)
@@ -229,6 +187,50 @@ $ sudo service mysql status
 ![](/IMMAGINI/admin.png)
 
 
+
+## Database 
+![](/IMMAGINI/DATABASE.png)
+MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. 
+### Installazione 
+Inanzitutto andiamo ad istallare mysql da terminale.I comandi fanno riferimento ad un sistema operativo Linux su Ubuntu 20.04.
+```
+//Aggiorno il sistema e installo MySql
+$ sudo apt update
+$ sudo apt update
+//verifico se installazione sia corretta
+$ sudo mysqld --version
+```
+Ora vado a creare un account 
+```
+$ mysql
+$ CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+//Gestione dei privilegi di accesso al databaseù
+$ GRANT ALL PRIVILEGES ON *.* TO ‘username’@'localhost';
+```
+Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale http://localhost:/ nella porta 3036. Dopodichè aggiorniamo lo schema del database.Ora possiamo creare dei file dove è possibile fare delle 'query', questo ci aiuta a visualizzare il contenuto del database. 
+
+Per poter visualizzare il server Mysql sia attivo ,o meno, occorre usare i seguenti comandi:
+```
+$ sudo service mysql star
+$ sudo service mysql status
+```
+![](/IMMAGINI/DATABASE1.png)
+## Rotte
+![](/IMMAGINI/ROTTE.png)
+
+| Rotta | Tipo | Descrizione |
+| ----- | ---- | ----------- |
+| /home | GET | Ci connettiamo al database |
+| /login | POST | Accedo tramite credeziali  |
+| /sign_in | POST | Creo un account |
+| /utenti | GET | Accedo nel area Utente |
+| /creagrafo | POST | Creo il grafo  |
+| /aggiorna | PUT |Aggiorno il grafo esistente |
+| /admin | GET | Accedo nell'area admin se ho i giusti privilegi |
+| /simulazione | POST | Creazione del grafo e calcolo del percorso minimo  |
+| /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
+| /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
+| /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
 
 ## Configurazioni iniziali
 
