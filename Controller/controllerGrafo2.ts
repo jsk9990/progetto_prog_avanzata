@@ -3,7 +3,7 @@ import { Grafo} from '../Model/Grafo';
 import { Nodi } from '../Model/Nodi';
 import { Archi } from '../Model/Archi';
 import Graph from "node-dijkstra"; // Importa la libreria node-dijkstra
-import { convertiArchiInFormatoDijkstra } from './controllerGrafo1';
+import { convertiArchiInFormatoDijkstra } from '../Utilitis/convertiArchiInFormatoDijkstra';
 
 interface bestResult {
   cost: number;

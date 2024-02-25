@@ -5,6 +5,7 @@ import { Archi } from '../Model/Archi';
 import { Utente } from '../Model/Utente';
 import Graph from "node-dijkstra"; // Importa la libreria node-dijkstra
 import { Richieste } from '../Model/Richieste';
+import { calcolaCostoGrafo } from '../Utilitis/calcolaCostoGrafo';
 
 
 
@@ -12,15 +13,18 @@ import { Richieste } from '../Model/Richieste';
 export async function creaGrafo(req: Request, res: Response) {
   //Dati dal body
   const { nome_grafo, struttura, jwtDecode } = req.body;
-  console.log('Dati: ' + nome_grafo, struttura, jwtDecode);
+  
+  //const costoTotale = calcolaCostoGrafo(req, res, jwtDecode, struttura);
+
+  
+
   //Trovo utente 
   const utente = await Utente.findOne({ where: { email: jwtDecode.email, password: jwtDecode.password } });
   const id_utente = utente?.getDataValue('id_utente');
   if (!id_utente) {
     return res.status(400).json({ message: 'Utente non trovato' });
   }
-  console.log ('L utente è: ' +utente); 
-  console.log ('L id utente è: ' + id_utente)
+
   //verifico il credito >0 
   if (utente?.dataValues.credito < 0) {
     return res.status(400).json({ message: 'Credito esaurito: Contattare admin per la ricarica' });
@@ -83,8 +87,6 @@ export async function creaGrafo(req: Request, res: Response) {
                 nodo_nome: nodo_arrivo,
                 id_grafo: nuovoGrafo.dataValues.id_grafo });
             } 
-        //const nodoPartenza = await Nodi.create({ nodo_nome: nodo_partenza, id_grafo: nuovoGrafo.dataValues.id_grafo });
-        //const nodoArrivo = await Nodi.create({ nodo_nome: nodo_arrivo, id_grafo: nuovoGrafo.dataValues.id_grafo });
         await Archi.create({
           id_grafo: nuovoGrafo.dataValues.id_grafo,
           id_nodo_partenza: nodoPartenza.dataValues.id_nodi,
@@ -115,6 +117,7 @@ export async function creaGrafo(req: Request, res: Response) {
     }
   }
 }
+
 
 /*
 export async function verificaProprietario (email: any,nome: any) {

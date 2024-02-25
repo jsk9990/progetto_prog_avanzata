@@ -12,7 +12,7 @@ import {Simulazione} from './Model/Simulazione';
 import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
-import { creaUtente, getUtenti } from './Controller/controllerUtente';
+import { creaUtente, getUtenti, updateCredito} from './Controller/controllerUtente';
 //import { creaGrafo,AggiornaGrafo } from './Controller/controllerGrafo';
 import { calcolaPercorsoMinimo } from './Controller/controllerGrafo1';
 import { getSimulazione } from './Controller/controllerGrafo2';
@@ -32,9 +32,12 @@ app.use (express.json());
 //-------------------MIDDLEWARE-------------------------------------------------//
 import { generateToken } from './Middleware/generateToken';
 import {checkToken} from './Middleware/checkToken';
-import {checkUtente} from './Middleware/checkUtente';
-// import { checkAdmin } from './Middleware/checkAdmin';
+import {checkUtente, checkCredenziali, checkEmailFormat} from './Middleware/checkUtente';
+import { checkGrafoEsecuzione } from './Middleware/checkGrafoEsecuzione';
 import { decodeToken } from './Middleware/decodeToken';
+import { verificaStrutturaGrafo , verificaGrafoConnesso } from './Middleware/checkGrafo';
+import { checkAdmin } from './Middleware/checkAdmin';
+
 
 
 
@@ -45,7 +48,7 @@ app.get('/home', (req: any, res: any) => {
     testDbConnection(req, res);
 });
 
-app.post('/login',generateToken, (req: any, res: any) => { 
+app.post('/login',checkEmailFormat,checkCredenziali,generateToken, (req: any, res: any) => { 
     res.json({
       message: 'Login effettuato con successo',
       message2:'Ecco il tuo token:',
@@ -53,7 +56,7 @@ app.post('/login',generateToken, (req: any, res: any) => {
     },); 
   });
 
-app.post('/sign_in',checkUtente,generateToken, (req: any, res: any) => {
+app.post('/sign_in',checkEmailFormat,checkUtente,generateToken, (req: any, res: any) => {
     creaUtente(req, res);
 });
 
@@ -61,13 +64,21 @@ app.get('/utenti', checkToken, (req: any, res: any) => {
     getUtenti(req, res);  
 })
 
-app.get('/utenti/admin', (req: any, res: any) => {
-  res.send('Admin accesso consentito');
+app.get('/utenti/admin',checkToken,decodeToken,checkAdmin, (req: any, res: any) => { 
+  getUtenti(req, res);
 })
 
-app.post('/utenti/crea_grafo',checkToken,decodeToken, (req: any, res: any) => {
+app.post('/utenti/admin/ricaricaCredito',checkToken,decodeToken,checkAdmin, (req: any, res: any) => {
+  updateCredito(req, res);
+}) ; 
+
+app.post('/utenti/crea_grafo',checkToken,decodeToken,verificaStrutturaGrafo,verificaGrafoConnesso, (req: any, res: any) => {
   creaGrafo(req, res);
-})
+}) ; 
+
+app.post('/utenti/esecuzione_modello',checkToken,decodeToken,checkGrafoEsecuzione, (req: Request, res: Response) => {
+  calcolaPercorsoMinimo(req, res);
+ });
 
 
 app.post ('/utenti/aggiornaGrafo',checkToken,decodeToken,(req: any, res: any) => {
@@ -79,9 +90,6 @@ app.post('/utenti/simulazione', (req: Request, res: Response) => {
   getSimulazione(req, res);
  });
 
-app.post('/utenti/esecuzione_modello',checkToken,decodeToken, (req: Request, res: Response) => {
-  calcolaPercorsoMinimo(req, res);
- });
 
 
 app.get('/utenti/richieste',checkToken,decodeToken, (req: any, res: any) => {
