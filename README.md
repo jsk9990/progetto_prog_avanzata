@@ -116,7 +116,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ]
 ```    
 ## /creagrafo 
-![](/IMMAGINI/login.png)
+![](/IMMAGINI/creagrafo.png)
 #### INPUT: 
 ```
 {
