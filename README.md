@@ -185,26 +185,29 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
     "costo": 0.48000000000000004
 }
 ```
-
-
 ##  /aggiorna 
 #### CASO1: UTENTE E' PROPRIETARIO
 ![](/IMMAGINI/aggiorna1.png)
 #### CASO1: UTENTE NON E' PROPRIETARIO
 ![](/IMMAGINI/aggiorna2.png)
+
 ##  /view_richieste 
 ![](/IMMAGINI/view-richieste.png)
+
 ##  /accetta_rifiuta 
 ![](/IMMAGINI/accetta-rifiuta.png)
+
 ##  /aggiorna2
 ![](/IMMAGINI/aggiorna3.png)
+
 ##  /simulazione
 ![](/IMMAGINI/simulazione.png)
+
 ##  /admin 
 ![](/IMMAGINI/ADMIN.png)
+
 ## /ricarica_credito
 ![](/IMMAGINI/ADMIN1.png)
-
 #### INPUT: 
 ```
 {
@@ -230,7 +233,7 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 ![](/IMMAGINI/DATABASE.png)
 MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. 
 ### Installazione 
-Inanzitutto andiamo ad istallare mysql da terminale.I comandi fanno riferimento ad un sistema operativo Linux su Ubuntu 20.04.
+Andiamo ad istallare mysql da terminal. I comandi fanno riferimento ad un sistema operativo **Ubuntu 20.04** .
 ```
 //Aggiorno il sistema e installo MySql
 $ sudo apt update
