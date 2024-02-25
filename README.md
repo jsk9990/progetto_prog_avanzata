@@ -275,13 +275,11 @@ Infine, è necessario modificare il file package.json per aggiungere un comando 
 
 
 
-## Avvio Tramite Docker
-
+## Docker
 ### Installazione Docker su Ubuntu 20.04
 L’installazione di Docker sul vostro sistema Linux con Ubuntu 20.04 prevede solo pochi passaggi.
 #### Primo passaggio: preparare il sistema
 In primo luogo, accertatevi che il vostro sistema e tutti i pacchetti siano aggiornati. A tal fine, inserite i seguenti comandi nel vostro terminale per aggiornare il sistema:
-
 ```
 sudo apt-get update
 sudo apt-get upgrade
@@ -323,16 +321,14 @@ Al termine dell’installazione potete avviare il container Docker “Hello Worl
 sudo docker run hello-world
 ```
 ### Dockerizzazione 
-
+............COMING.SOON........................
 ### Avvio tramite Docker
-
+............COMING.SOON........................
 ## Software Utilizzati
 - **Visual Studio Code**: Editor di codice multipiattaforma sviluppato da Microsoft, offre funzionalità come debugging, controllo Git.
 - **TypeScript**: Linguaggio di programmazione open source sviluppato da Microsoft che estende JavaScript aggiungendo tipi statici e classi.
 - **Node.js**: Ambiente di runtime open source per JavaScript, consente di eseguire codice JavaScript lato server per lo sviluppo di applicazioni web.
 - **Express**: Framework per applicazioni web Node.js, fornisce un insieme di funzionalità per creare applicazioni web e mobile in modo rapido ed efficiente.
-
-
 ## Autori
 GIUSEPPE de STASIO
 ANDREA LANGIOTTI 
