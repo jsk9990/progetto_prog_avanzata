@@ -202,7 +202,7 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 ![](/IMMAGINI/AGGIORNA3.png)
 
 ## /esecuzione 
-![](/IMMAGINI/.png)
+![](/IMMAGINI/esecuzione.png)
 
 #### INPUT: 
 ```
