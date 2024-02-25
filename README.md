@@ -48,7 +48,7 @@ Questo progetto implementa un sistema per la gestione di modelli di ottimizzazio
 ## Diagramma UML
 ## /home 
 ![](/IMMAGINI/home.png)
-###  /login
+### /login
 ![](/IMMAGINI/login.png)
 #### INPUT: 
 ```
