@@ -356,7 +356,8 @@ sudo docker run hello-world
 - **Docker** : Gestore di container
 - **Postman** : Software per l'API Testing
 ## Autori
-GIUSEPPE de STASIO
-ANDREA LANGIOTTI 
+[GIUSEPPE de STASIO](https://github.com/jsk9990)
+[ANDREA LANGIOTTI](https://github.com/Langiott)
+
 
 
