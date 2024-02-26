@@ -445,13 +445,30 @@ Nel pattern MVC abbiamo tre componenti principali che svolgono compiti diversi:
 - **View** : Qui possiamo visualizzare i i dari. Il client che utilizzerà l'appicazione può solo interagire con la View.
   
 #### Pro di MVC:
-Il codice più facile da gestire e da riutilizzare, perché suddivide il programma in parti più piccole e indipendenti.Questo permette di avere diverse visualizzazioni dei dati. Ad esempio, potresti avere gli stessi dati mostrati in un grafico o in una tabella.Inoltre, promuove la creazione di moduli, che sono parti di codice che possono essere facilmente riutilizzate.
+Il codice più facile da gestire e da riutilizzare, perché suddivide il programma in parti più piccole e indipendenti.Questo permette di avere diverse visualizzazioni dei dati.Inoltre, promuove la creazione di moduli, che sono parti di codice che possono essere facilmente riutilizzate.
 
 #### Contro di MVC:
 Il controller può diventare un collo di bottiglia per applicazioni complesse con molte interazioni con l'utente.Può essere difficile da implementare per applicazioni con molte interazioni con l'utente.
 
-## Programmazione Asincrona 
-............COMING.SOON........................
+## Programmazione Asincrona
+Una funzione asincrona è una funzione che restituisce una Promessa. Quando chiami una funzione asincrona, essa avvia un'operazione asincrona, restituisce una promessa, e poi continua ad eseguire il codice successivo. Quando l'operazione asincrona è completa, la promessa viene risolta o rifiutata.
+
+Le funzioni asincrone in TypeScript sono definite con la parola chiave async prima della parola chiave function. All'interno di una funzione asincrona, è possibile utilizzare la parola chiave await per mettere in pausa l'esecuzione del codice fino a quando una promessa non viene risolta.
+
+```
+export async function creaUtente(req: Request, res: Response) {
+try {
+    const {  email, password, credito, privilegi, token }  = req.body; 
+    const utente = await Utente.create({ email, password, credito, privilegi});
+    
+    res.json({ message: 'I dati sono stati inseriti con successo', utente, token });
+}
+catch (error) {
+    res.send('Errore:  '+ error);
+}
+```
+Nel esempio, creaUtente è una funzione asincrona che crea un nuovo utente. Utilizza await per aspettare che la funzione Utente.create sia completata prima di procedere. Se Utente.create ha successo, invia una risposta JSON con un messaggio di successo e i dati dell'utente. Se si verifica un errore, invia una risposta con un messaggio di errore.
+
 ## Docker
 ### Installazione Docker su Ubuntu 20.04
 L’installazione di Docker sul vostro sistema Linux con Ubuntu 20.04 prevede solo pochi passaggi.
