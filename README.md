@@ -336,6 +336,7 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 ```
 ## Database 
 ![](/IMMAGINI/DATABASE.png)
+
 MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. 
 ### Installazione 
 Andiamo ad istallare mysql da terminal. I comandi fanno riferimento ad un sistema operativo **Ubuntu 20.04** .
@@ -465,11 +466,11 @@ catch (error) {
 Nel esempio, creaUtente è una funzione asincrona che crea un nuovo utente. Utilizza await per aspettare che la funzione Utente.create sia completata prima di procedere. Se Utente.create ha successo, invia una risposta JSON con un messaggio di successo e i dati dell'utente. Se si verifica un errore, invia una risposta con un messaggio di errore.
 
 ## Docker
-**Docker** nasce dall difficolta dei sviluppatori di creare un appicazione che è in grado di essere usata da tutti i client con sistemi operativi diversi. Docker offre la possibilita di risolvere queste problematiche: automatizza il deployment, la scalabilità e la gestione isolata di applicazioni attraverso l'uso di container.IL Docker per funzionare del **Immagine** Docker cioè un insieme di file, che contiene tutto ciò che è necessario per eseguire un'applicazione, compreso il codice sorgente, le librerie di sistema, le dipendenze e altri file necessari. L'immagine Docker è utilizzata per creare i **Container** Docker in cui l'applicazione viene effettivamente eseguita.
+**Docker** nasce dalla difficoltà dei sviluppatori di creare un applicazione che è in grado di essere eseguita da tutti i client con sistemi operativi diversi. Docker offre la possibilita di risolvere queste problematiche; automatizza il deployment, la scalabilità e la gestione isolata di applicazioni attraverso l'uso di container.IL Docker per funzionare ha bisogno del **Immagine** Docker cioè un insieme di file, che contiene tutto ciò che è necessario per eseguire un'applicazione, compreso il codice sorgente, le librerie di sistema, le dipendenze e altri file necessari. L'immagine Docker è utilizzata per creare i **Container** Docker in cui l'applicazione viene effettivamente eseguita.
 
 ### Installazione Docker su Ubuntu 20.04
-L’installazione di Docker sul vostro sistema Linux con Ubuntu 20.04 prevede solo pochi passaggi.
-#### Primo passaggio: preparare il sistema
+L’installazione di Docker fa riferimento al sistema operativo Ubuntu 20.04 e prevede solo pochi passaggi.
+#### 1°: preparare il sistema
 In primo luogo, accertatevi che il vostro sistema e tutti i pacchetti siano aggiornati. A tal fine, inserite i seguenti comandi nel vostro terminale per aggiornare il sistema:
 ```
 sudo apt-get update
@@ -482,7 +483,7 @@ rm -r $HOME/.docker/desktop
 sudo rm /usr/local/bin/com.docker.cli
 sudo apt purge docker-desktop
 ```
-#### Secondo passaggio: aggiungere il repository di Docker
+#### 2°: aggiungere il repository di Docker
 Per l’installazione di Docker e per gli aggiornamenti successivi, è indispensabile utilizzare un repository che deve essere prima aggiunto al sistema. Per questo, bisogna prima installare i seguenti pacchetti:
 ```
 sudo apt-get install \
@@ -502,7 +503,7 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
-#### Terzo passaggio: installare Docker Engine
+#### 3°: installare Docker Engine
 Ora potete scaricare Docker Engine su Ubuntu 20.04. Anche questo può essere fatto attraverso il terminale. Se desiderate installare la versione attuale di Docker sul vostro sistema, eseguite il seguente comando:
 ```
 sudo apt-get install docker-ce docker-ce-cli containerd.io
