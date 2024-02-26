@@ -233,6 +233,81 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 ##  /simulazione
 ![](/IMMAGINI/simulazione.png)
 
+#### INPUT: 
+```
+{
+    "nome_grafo": 12,
+    "id_arco" : 42,
+    "nodo_partenza" : "Goku",  
+    "nodo_arrivo" : "Gohan", 
+    "start_peso": 1,
+    "stop_peso" :  5,
+    "step" : 1
+}
+```
+#### OUTPUT :
+```
+ {
+    "risultati": [
+        {
+            "peso": 1,
+            "cost": 1,
+            "path": [
+                "Goku",
+                "Gohan"
+            ]
+        },
+        {
+            "peso": 2,
+            "cost": 2,
+            "path": [
+                "Goku",
+                "Gohan"
+            ]
+        },
+        {
+            "peso": 3,
+            "cost": 3,
+            "path": [
+                "Goku",
+                "Gohan"
+            ]
+        },
+        {
+            "peso": 4,
+            "cost": 3,
+            "path": [
+                "Goku",
+                "Trunks",
+                "Vegeta",
+                "Gohan"
+            ]
+        },
+        {
+            "peso": 5,
+            "cost": 3,
+            "path": [
+                "Goku",
+                "Trunks",
+                "Vegeta",
+                "Gohan"
+            ]
+        }
+    ],
+    "bestResult": {
+        "cost": 1,
+        "configuration": [
+            "1"
+        ],
+        "path": [
+            "Goku",
+            "Gohan"
+        ]
+    }
+}
+```
+![](/IMMAGINI/1.png)
+![](/IMMAGINI/2.png)
 ##  /admin 
 ![](/IMMAGINI/ADMIN.png)
 
