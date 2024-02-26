@@ -4,7 +4,8 @@ import { Nodi } from '../Model/Nodi';
 import { Archi } from '../Model/Archi';
 import { Utente } from '../Model/Utente';
 import { Richieste } from '../Model/Richieste';
-import exp from 'constants';
+import { Op } from 'sequelize';
+import { timeStamp } from 'console';
 
 async function updateArco (id_grafo: any, id_archi: any, peso: any){
     const alpha = 0.8;
@@ -128,12 +129,26 @@ export async function updateArcoAfterRequest (req: Request, res: Response) {
  
 
 export async function getRichieste(req: Request, res: Response) {
-    const { jwtDecode, id_grafo } = req.body;
+    const { jwtDecode, nome_grafo } = req.body;
     const utente = await Utente.findOne({ where: { email : jwtDecode.email, password: jwtDecode.password } });
     const id_utente = utente?.dataValues.id_utente;
 
-    const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, id_utente_request: id_utente } , attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
-    res.status(200).json({richieste : richieste});
+    const grafo = await Grafo.findOne({ where: { nome_grafo: nome_grafo, id_utente: id_utente } });
+    
+    try{
+        if (!grafo){
+        res.json('Grafo non trovato');
+    } 
+    const id_grafo = grafo?.dataValues.id_grafo;
+
+        const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, id_utente_request: id_utente } , attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+        res.status(200).json({richieste : richieste});
+    } 
+    catch (err) {
+        res.json({error : err , message : 'Grafo non trovato'});
+    }
+    
+    
 }
 
 
@@ -157,3 +172,27 @@ export async function approvaRichiesta(req: Request, res: Response) {
         res.status(200).json({update : update});
     }  
 } 
+
+
+export async function viewRichiestePerData(req:Request, res:Response) {
+
+    const { jwtDecode, nome_grafo, from, to, stato } = req.body;
+
+    const utente = await Utente.findOne({ where: { email : jwtDecode.email, password: jwtDecode.password } });
+    const id_utente = utente?.dataValues.id_utente;
+
+    const grafo = await Grafo.findOne({ where: { nome_grafo: nome_grafo, id_utente: id_utente } });
+    const id_grafo = grafo?.dataValues.id_grafo;
+
+    if ( stato === 'accettata'){
+
+        const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date: { [Op.gte]: from, [Op.lte]: to }, stato_richiesta: 'accettata' },attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+    res.status(200).json({richieste : richieste});
+    }
+
+    if ( stato === 'rifiutata'){
+        const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date : { [Op.gte]: from, [Op.lte]: to } , stato_richiesta: 'rifiutata' }, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+    res.status(200).json({richieste : richieste});
+    }
+    
+}

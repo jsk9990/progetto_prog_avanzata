@@ -40,7 +40,13 @@ async function preprareData (arco: any, id_grafo: number): Promise<any> {
 
 
 export async function getSimulazione(req: Request, res: Response) {
-  const { id_grafo, id_arco, nodo_partenza, nodo_arrivo, start_peso, stop_peso, step } = req.body;
+  const { nome_grafo, id_arco, nodo_partenza, nodo_arrivo, start_peso, stop_peso, step } = req.body;
+
+  const grafo = await Grafo.findOne({ where: { nome_grafo : nome_grafo } });
+  if (!grafo) {
+    return res.status(404).json({ error: 'Grafo non trovato' });
+  }
+  const id_grafo = grafo.dataValues.id_grafo;
 
   const archi = await Archi.findAll({ where: { id_grafo } });
   const archiOriginali = [...archi];

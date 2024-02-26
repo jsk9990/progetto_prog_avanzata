@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Richieste` (
   `descrizione` VARCHAR(255) NOT NULL, 
   `modifiche` JSON NOT NULL,
   `stato_richiesta` VARCHAR(20) NOT NULL DEFAULT 'pending',
-  `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` DATE NOT NULL DEFAULT (CURDATE()),
   PRIMARY KEY (`id_richieste`),
   INDEX `id_utente_request_idx` (`id_utente_request` ASC) VISIBLE,
   INDEX `id_utente_response_idx` (`id_utente_response` ASC) VISIBLE,

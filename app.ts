@@ -17,7 +17,7 @@ import { creaUtente, getUtenti, updateCredito} from './Controller/controllerUten
 import { calcolaPercorsoMinimo } from './Controller/controllerGrafo1';
 import { getSimulazione } from './Controller/controllerGrafo2';
 import { creaGrafo } from './Controller/controllerGrafo';
-import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta } from './Controller/controllerGrafo3';
+import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta, viewRichiestePerData } from './Controller/controllerGrafo3';
 
 
 //----------------CONFIGURAZIONI INIZIALI----------------------------------------//
@@ -37,6 +37,7 @@ import { checkGrafoEsecuzione } from './Middleware/checkGrafoEsecuzione';
 import { decodeToken } from './Middleware/decodeToken';
 import { verificaStrutturaGrafo , verificaGrafoConnesso } from './Middleware/checkGrafo';
 import { checkAdmin } from './Middleware/checkAdmin';
+import { checkGrafoSimulazione, checkVerificaRequisiti} from './Middleware/checkGrafoSimulazione';
 
 
 
@@ -80,21 +81,26 @@ app.post('/utenti/esecuzione_modello',checkToken,decodeToken,checkGrafoEsecuzion
   calcolaPercorsoMinimo(req, res);
  });
 
+app.post('/utenti/simulazione',checkToken,checkGrafoSimulazione,checkVerificaRequisiti, (req: Request, res: Response) => { 
+  getSimulazione(req, res);
+ });
+
 
 app.post ('/utenti/aggiornaGrafo',checkToken,decodeToken,(req: any, res: any) => {
   updateGrafo(req, res); 
 })
 
-
-app.post('/utenti/simulazione', (req: Request, res: Response) => { 
-  getSimulazione(req, res);
- });
-
-
-
+//prendo tutte le richieste 
 app.get('/utenti/richieste',checkToken,decodeToken, (req: any, res: any) => {
   getRichieste(req, res);
 })
+
+//prendo le richieste accettate e rifiutate in base alla data
+
+app.get('/utenti/view_aggiornamenti',checkToken,decodeToken, (req: any, res: any) => {
+  viewRichiestePerData(req, res);
+})
+
 
 app.post ('/utenti/richieste/approvaRichiesta',checkToken,decodeToken, (req: any, res: any) => {
 approvaRichiesta(req, res);

@@ -52,13 +52,13 @@ export const Richieste = sequelize.define('Richieste', {
         allowNull: false,
         defaultValue: 'pending'
     },
-    /*
-    time_stamp: {
+    
+    update_date: {
         type:DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW
     }
-    */
+    
 },
 {
     timestamps: false,
