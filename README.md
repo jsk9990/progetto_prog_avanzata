@@ -513,7 +513,7 @@ Al termine dell’installazione potete avviare il container Docker “Hello Worl
 sudo docker run hello-world
 ```
 ### Dockerizzazione 
-............COMING.SOON........................
+link utile----->https://thriveread.com/docker-nodejs-typescript-and-mysql/
 ### Avvio tramite Docker
 ............COMING.SOON........................
 ## Software Utilizzati
