@@ -403,14 +403,9 @@ Infine, è necessario modificare il file package.json per aggiungere un comando 
 ## Pattern Utilizzati
 ### Chain of Responsability 
 La chain Responsability è uno dei pattern comportamentali che ci permette di metter in comunicazione diversi oggetti tra loro .La chain Responsability ci permette di passare una richiesta attraverso una catena di handler. Nel momento un  handler  riceve una richiesta;deve decide se processare la richiesta o passarla all'handler successivo.Sotto viene riportato il diagramma delle sequenze della catena delle responsabilità.
-
 ![](/IMMAGINI/cor.png)
-
 Middleware: Le funzioni di middleware costituiscono la spina dorsale di un'applicazione Express.js. Queste funzioni possono intercettare le richieste in arrivo ed eseguire azioni prima di passarle al middleware successivo o di restituire una risposta. I middleware possono essere utilizzati per vari scopi, come l'autenticazione, la registrazione, la gestione degli errori e altro ancora.
-
 ![](/IMMAGINI/middlware.png)
-
-
 
 ### Singleton 
 I design pattern mettono a disposizione agli sviluppatori dei metodi che vanno a risolvere problemi ricorrenti.Il singleton pattern appartiene alla categoria dei modelli creazionali.Questo pattern vien utilizzato nella applicazioni che hanno bisogno di una singola instanza di una data classe. Questo ci permette di lavorare sempre con lo stesso dato. Se ad esempio si dovesse fare una connessione ad un database ,lavoreremo sempre con lo stesso dato. Non avremmmo connessioni multiple ad un batabase all'interno dell'applicazone. 
@@ -470,6 +465,8 @@ catch (error) {
 Nel esempio, creaUtente è una funzione asincrona che crea un nuovo utente. Utilizza await per aspettare che la funzione Utente.create sia completata prima di procedere. Se Utente.create ha successo, invia una risposta JSON con un messaggio di successo e i dati dell'utente. Se si verifica un errore, invia una risposta con un messaggio di errore.
 
 ## Docker
+**Docker** nasce dall difficolta dei sviluppatori di creare un appicazione che è in grado di essere usata da tutti i client con sistemi operativi diversi. Docker offre la possibilita di risolvere queste problematiche: automatizza il deployment, la scalabilità e la gestione isolata di applicazioni attraverso l'uso di container.IL Docker per funzionare del **Immagine** Docker cioè un insieme di file, che contiene tutto ciò che è necessario per eseguire un'applicazione, compreso il codice sorgente, le librerie di sistema, le dipendenze e altri file necessari. L'immagine Docker è utilizzata per creare i **Container** Docker in cui l'applicazione viene effettivamente eseguita.
+
 ### Installazione Docker su Ubuntu 20.04
 L’installazione di Docker sul vostro sistema Linux con Ubuntu 20.04 prevede solo pochi passaggi.
 #### Primo passaggio: preparare il sistema
