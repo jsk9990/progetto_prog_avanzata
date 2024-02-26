@@ -392,7 +392,7 @@ Nodemon è uno strumento che aiuta a sviluppare applicazioni basate su node.js r
 npm install --save-dev nodemon
 npm install --save-dev ts-node
 ```
-### Modifica package.json
+### Modifica package.jsonlavoreremo 
 Infine, è necessario modificare il file package.json per aggiungere un comando start che avvia il tuo progetto con Nodemon e TypeScript. Questo permette di eseguire il tuo progetto con il comando npm start.
 ```
  "scripts": {
@@ -404,7 +404,31 @@ Infine, è necessario modificare il file package.json per aggiungere un comando 
 ### Chain of Responsability
 ............COMING.SOON........................
 ### Singleton 
-............COMING.SOON........................
+I design pattern mettono a disposizione agli sviluppatori dei metodi che vanno a risolvere problemi ricorrenti.Il singleton pattern appartiene alla categoria dei modelli creazionali.Questo pattern si utilizza in nella applicazioni che hanno bisogno di una singola instanza di una data classe. Questo ci permette di lavorare sempre con lo stesso. Se ad esempio si dovesse fare una connessione ad un database ,lavoreremo sempre con lo stesso dato. Non avremmmo connessioni multiple ad un batabase all'interno dell'applicazone. 
+```
+export class Singleton {
+    private static instance: Singleton;
+    private connection: Sequelize;
+    private constructor() {
+        this.connection = new Sequelize('mydb','andrea','*********',{
+            host : 'localhost',
+            dialect : 'mysql',
+            logging: console.log
+        }); 
+    }; 
+
+    public static getConnection(): Sequelize {
+        if (!Singleton.instance) {
+            Singleton.instance = new Singleton();
+        }
+        
+        return Singleton.instance.connection;   
+            
+        };    
+
+}
+```
+Per poter costruire la classe Singleton ho bisogno Object-Relational Mapping (ORM) per Node.js: Sequelize. È utilizzato per interagire con il database  MySQL e molti altri. Sequelize fornisce vari metodi utili per semplificare le operazioni di database come le query, la migrazione dei dati, la creazione e la gestione delle tabelle.
 ### Model-View-Controller 
 ............COMING.SOON........................
 
