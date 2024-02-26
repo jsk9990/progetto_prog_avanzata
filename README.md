@@ -404,7 +404,7 @@ Infine, è necessario modificare il file package.json per aggiungere un comando 
 ### Chain of Responsability
 ............COMING.SOON........................
 ### Singleton 
-I design pattern mettono a disposizione agli sviluppatori dei metodi che vanno a risolvere problemi ricorrenti.Il singleton pattern appartiene alla categoria dei modelli creazionali.Questo pattern si utilizza in nella applicazioni che hanno bisogno di una singola instanza di una data classe. Questo ci permette di lavorare sempre con lo stesso. Se ad esempio si dovesse fare una connessione ad un database ,lavoreremo sempre con lo stesso dato. Non avremmmo connessioni multiple ad un batabase all'interno dell'applicazone. 
+I design pattern mettono a disposizione agli sviluppatori dei metodi che vanno a risolvere problemi ricorrenti.Il singleton pattern appartiene alla categoria dei modelli creazionali.Questo pattern vien utilizzato nella applicazioni che hanno bisogno di una singola instanza di una data classe. Questo ci permette di lavorare sempre con lo stesso dato. Se ad esempio si dovesse fare una connessione ad un database ,lavoreremo sempre con lo stesso dato. Non avremmmo connessioni multiple ad un batabase all'interno dell'applicazone. 
 ```
 export class Singleton {
     private static instance: Singleton;
@@ -430,7 +430,16 @@ export class Singleton {
 ```
 Per poter costruire la classe Singleton ho bisogno Object-Relational Mapping (ORM) per Node.js: Sequelize. È utilizzato per interagire con il database  MySQL e molti altri. Sequelize fornisce vari metodi utili per semplificare le operazioni di database come le query, la migrazione dei dati, la creazione e la gestione delle tabelle.
 ### Model-View-Controller 
-............COMING.SOON........................
+Nel pattern MVC abbiamo tre componenti principali che svolgono compiti diversi:
+- **Model** :Contiene la struttura dei dati , cioè contiene tutte le classi necessarie per l'applicazione
+- **Controller** :COmponente che gestisce le operazione da svolgere. Qui si creano e si modificano gli oggetti 
+- **View** : Qui possiamo visualizzare i i dari. Il client che utilizzerà l'appicazione può solo interagire con la View.
+  
+#### Pro di MVC:
+Il codice più facile da gestire e da riutilizzare, perché suddivide il programma in parti più piccole e indipendenti.Questo permette di avere diverse visualizzazioni dei dati. Ad esempio, potresti avere gli stessi dati mostrati in un grafico o in una tabella.Inoltre, promuove la creazione di moduli, che sono parti di codice che possono essere facilmente riutilizzate.
+
+#### Contro di MVC:
+Il controller può diventare un collo di bottiglia per applicazioni complesse con molte interazioni con l'utente.Può essere difficile da implementare per applicazioni con molte interazioni con l'utente.
 
 ## Programmazione Asincrona 
 ............COMING.SOON........................
