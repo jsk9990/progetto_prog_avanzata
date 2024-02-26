@@ -363,7 +363,7 @@ $ sudo service mysql status
 ![](/IMMAGINI/DATABASE1.png)
 
 ## Configurazioni iniziali
-Questo è un progetto basato su Node.js e TypeScript. Qui sono riportati i passaggi per configurare il tuo progetto.
+Questo è un progetto basato su Node.js e TypeScript. Qui sono riportati i passaggi per configurare il progetto.
 ### Configurazione Iniziale
 Inizia inizializzando il tuo progetto con npm. Questo creerà un file `package.json` per il tuo progetto.
 ```
