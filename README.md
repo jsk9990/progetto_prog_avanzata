@@ -401,8 +401,17 @@ Infine, è necessario modificare il file package.json per aggiungere un comando 
   }
 ```
 ## Pattern Utilizzati
-### Chain of Responsability
-............COMING.SOON........................
+### Chain of Responsability 
+La chain Responsability è uno dei pattern comportamentali che ci permette di metter in comunicazione diversi oggetti tra loro .La chain Responsability ci permette di passare una richiesta attraverso una catena di handler. Nel momento un  handler  riceve una richiesta;deve decide se processare la richiesta o passarla all'handler successivo.Sotto viene riportato il diagramma delle sequenze della catena delle responsabilità.
+
+![](/IMMAGINI/cor.png)
+
+Middleware: Le funzioni di middleware costituiscono la spina dorsale di un'applicazione Express.js. Queste funzioni possono intercettare le richieste in arrivo ed eseguire azioni prima di passarle al middleware successivo o di restituire una risposta. I middleware possono essere utilizzati per vari scopi, come l'autenticazione, la registrazione, la gestione degli errori e altro ancora.
+
+![](/IMMAGINI/middlware.png)
+
+
+
 ### Singleton 
 I design pattern mettono a disposizione agli sviluppatori dei metodi che vanno a risolvere problemi ricorrenti.Il singleton pattern appartiene alla categoria dei modelli creazionali.Questo pattern vien utilizzato nella applicazioni che hanno bisogno di una singola instanza di una data classe. Questo ci permette di lavorare sempre con lo stesso dato. Se ad esempio si dovesse fare una connessione ad un database ,lavoreremo sempre con lo stesso dato. Non avremmmo connessioni multiple ad un batabase all'interno dell'applicazone. 
 ```
