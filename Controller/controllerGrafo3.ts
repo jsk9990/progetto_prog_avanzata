@@ -244,19 +244,28 @@ export async function exportRichieste(req: Request, res: Response) {
         const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date: { [Op.gte]: from, [Op.lte]: to }, stato_richiesta: 'accettata' },attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
         //res.status(200).json({richieste : richieste});
 
+
+
+        const dataValuesOnly = richieste.map((item) => item.dataValues); 
+
         switch (format) {
             case 'csv':
-                const csv = writeCSV(richieste);
+                const csv = writeCSV(dataValuesOnly);
                 res.setHeader('Content-Type', 'text/csv');
                 res.send(csv);
                 break;
             case 'pdf':
-                const pdf = await generatePDF(richieste);
-                res.setHeader('Content-Type', 'application/pdf');
-                res.send(pdf);
+                generatePDF(dataValuesOnly).then((pdf) => {
+                    res.setHeader('Content-Type', 'application/pdf');    
+                    res.send(pdf);
+                })
+                .catch((err) => {
+                    res.status(500).json({error : err });
+                });
+                
                 break;
             case 'xml':
-                const xml = convertToXML(richieste);
+                const xml = convertToXML(dataValuesOnly);
                 res.setHeader('Content-Type', 'application/xml');
                 res.send(xml);
                 break;
@@ -267,7 +276,7 @@ export async function exportRichieste(req: Request, res: Response) {
         }
     }
     catch (err) {
-        res.json({error : err , message : 'Grafo non trovato'});
+        res.json({error : err , message : 'Errore interno'});
     }
     
 }
