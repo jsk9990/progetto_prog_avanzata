@@ -17,7 +17,7 @@ import { creaUtente, getUtenti, updateCredito} from './Controller/controllerUten
 import { calcolaPercorsoMinimo } from './Controller/controllerGrafo1';
 import { getSimulazione } from './Controller/controllerGrafo2';
 import { creaGrafo } from './Controller/controllerGrafo';
-import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta, viewRichiestePerData } from './Controller/controllerGrafo3';
+import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta, viewRichiestePerData, getRichiestePerModello, getRichiestePerUtente, exportRichieste} from './Controller/controllerGrafo3';
 
 
 //----------------CONFIGURAZIONI INIZIALI----------------------------------------//
@@ -38,6 +38,7 @@ import { decodeToken } from './Middleware/decodeToken';
 import { verificaStrutturaGrafo , verificaGrafoConnesso } from './Middleware/checkGrafo';
 import { checkAdmin } from './Middleware/checkAdmin';
 import { checkGrafoSimulazione, checkVerificaRequisiti} from './Middleware/checkGrafoSimulazione';
+import { validateGrafoUpdate } from './Middleware/checkGrafoUpdate';
 
 
 
@@ -86,7 +87,7 @@ app.post('/utenti/simulazione',checkToken,checkGrafoSimulazione,checkVerificaReq
  });
 
 
-app.post ('/utenti/aggiornaGrafo',checkToken,decodeToken,(req: any, res: any) => {
+app.post ('/utenti/aggiornaGrafo',checkToken,decodeToken,validateGrafoUpdate,(req: any, res: any) => {
   updateGrafo(req, res); 
 })
 
@@ -101,6 +102,14 @@ app.get('/utenti/view_aggiornamenti',checkToken,decodeToken, (req: any, res: any
   viewRichiestePerData(req, res);
 })
 
+app.get('/utenti/richieste_per_singolo_modello',checkToken,decodeToken, (req: any, res: any) => {
+  getRichiestePerModello(req, res);
+})
+
+app.get ('/utenti/richieste_per_singolo_utente',checkToken,decodeToken, (req: any, res: any) => {
+  getRichiestePerUtente(req, res);
+})
+
 
 app.post ('/utenti/richieste/approvaRichiesta',checkToken,decodeToken, (req: any, res: any) => {
 approvaRichiesta(req, res);
@@ -108,6 +117,10 @@ approvaRichiesta(req, res);
 
 app.post('/utenti/richieste/aggiornaGrafo',checkToken,decodeToken, (req: any, res: any) => {
   updateArcoAfterRequest(req, res);
+})
+
+app.use('/utenti/export',checkToken,decodeToken, (req: any, res: any) => {
+  exportRichieste(req, res);
 })
 
 //----------------------------------------------------------------------//
