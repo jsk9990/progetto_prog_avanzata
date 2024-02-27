@@ -10,12 +10,12 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
+DROP DATABASE IF EXISTS `mydb` ;
 
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE DATABASE IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
 -- -----------------------------------------------------
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Utente` (
   `id_utente` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `Credito` INT NOT NULL,
+  `Credito` FLOAT NOT NULL, -- credito iniziale da aggiungere ( facciamo 10)
   `privilegi` BOOLEAN NOT NULL, 
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_utente`))
@@ -43,9 +43,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Grafo` (
   `id_grafo` INT NOT NULL AUTO_INCREMENT,
   `id_utente` INT NOT NULL,
   `nome_grafo` VARCHAR(45) NOT NULL,
+  `costo` FLOAT NOT NULL,
   PRIMARY KEY (`id_grafo`),
   INDEX `id_utente_idx` (`id_utente` ASC) VISIBLE,
-  CONSTRAINT `id_utente`
+  CONSTRAINT `grafo_utente`
     FOREIGN KEY (`id_utente`)
     REFERENCES `mydb`.`Utente` (`id_utente`)
     ON DELETE NO ACTION
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Nodi` (
   `nodo_nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_nodi`),
   INDEX `id_grafo_idx` (`id_grafo` ASC) VISIBLE,
-  CONSTRAINT `id_grafo`
+  CONSTRAINT `nodi_grafo`
     FOREIGN KEY (`id_grafo`)
     REFERENCES `mydb`.`Grafo` (`id_grafo`)
     ON DELETE NO ACTION
@@ -89,17 +90,17 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Archi` (
   INDEX `id_grafo_idx` (`id_grafo` ASC) VISIBLE,
   INDEX `id_nodo_partenza_idx` (`id_nodo_partenza` ASC) VISIBLE,
   INDEX `id_nodo_arrivo_idx` (`id_nodo_arrivo` ASC) VISIBLE,
-  CONSTRAINT `id_grafo`
+  CONSTRAINT `archi_grafo`
     FOREIGN KEY (`id_grafo`)
     REFERENCES `mydb`.`Grafo` (`id_grafo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `id_nodo_partenza`
+  CONSTRAINT `fk_nodo_partenza_fk`
     FOREIGN KEY (`id_nodo_partenza`)
     REFERENCES `mydb`.`Nodi` (`id_nodi`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `id_nodo_arrivo`
+  CONSTRAINT `fk_nodo_arrivo_fk`
     FOREIGN KEY (`id_nodo_arrivo`)
     REFERENCES `mydb`.`Nodi` (`id_nodi`)
     ON DELETE NO ACTION
@@ -115,21 +116,28 @@ DROP TABLE IF EXISTS `mydb`.`Richieste` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Richieste` (
   `id_richieste` INT NOT NULL AUTO_INCREMENT,
-  `id_utente` INT NOT NULL,
+  `id_utente_request` INT NOT NULL,
+  `id_utente_response` INT NOT NULL,
   `id_grafo` INT NOT NULL,
-  `descrizione` VARCHAR(255) , 
+  `descrizione` VARCHAR(255) NOT NULL, 
   `modifiche` JSON NOT NULL,
-  `stato_richiesta` ENUM('pendig','accettata', 'rifiutata') NOT NULL, DEFAULT 'pendig',
-  `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `stato_richiesta` VARCHAR(20) NOT NULL DEFAULT 'pending',
+  `update_date` DATE NOT NULL DEFAULT (CURDATE()),
   PRIMARY KEY (`id_richieste`),
-  INDEX `id_utente_idx` (`id_utente` ASC) VISIBLE,
+  INDEX `id_utente_request_idx` (`id_utente_request` ASC) VISIBLE,
+  INDEX `id_utente_response_idx` (`id_utente_response` ASC) VISIBLE,
   INDEX `id_grafo_idx` (`id_grafo` ASC) VISIBLE,
-  CONSTRAINT `id_utente`
-    FOREIGN KEY (`id_utente`)
+  CONSTRAINT `richieste_utente_request`
+    FOREIGN KEY (`id_utente_request`)
     REFERENCES `mydb`.`Utente` (`id_utente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `id_grafo`
+  CONSTRAINT `richieste_utente_response`
+    FOREIGN KEY (`id_utente_response`)
+    REFERENCES `mydb`.`Utente` (`id_utente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `richieste_grafo`
     FOREIGN KEY (`id_grafo`)
     REFERENCES `mydb`.`Grafo` (`id_grafo`)
     ON DELETE NO ACTION
@@ -155,12 +163,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Simulazione` (
   PRIMARY KEY (`id_simulazione`),
   INDEX `id_grafo_idx` (`id_grafo` ASC) VISIBLE,
   INDEX `id_utente_idx` (`id_utente` ASC) VISIBLE,
-  CONSTRAINT `id_grafo`
+  CONSTRAINT `simulazione_grafo`
     FOREIGN KEY (`id_grafo`)
     REFERENCES `mydb`.`Grafo` (`id_grafo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `id_utente`
+  CONSTRAINT `simulazione_utente`
     FOREIGN KEY (`id_utente`)
     REFERENCES `mydb`.`Utente` (`id_utente`)
     ON DELETE NO ACTION
@@ -169,12 +177,8 @@ ENGINE = InnoDB
 COMMENT = 'Tabella per la gestione delle simulazioni ';
 
 SET SQL_MODE = '';
-DROP USER IF EXISTS jsk;
+
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-CREATE USER 'jsk' IDENTIFIED BY 'jsk';
-
-GRANT ALL ON `mydb`.* TO 'jsk';
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

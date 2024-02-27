@@ -1,7 +1,9 @@
 import {DataTypes,Sequelize} from 'sequelize'; //importo sequelize 
-import {singleton}  from './singleton'; //import singleton 
+import {Singleton}  from './Singleton'; //import singleton 
+import {Grafo}  from '../Model/Grafo'; //import Grafo
+import { Archi } from './Archi';
 
-const sequelize: Sequelize = singleton.getConnection();
+const sequelize: Sequelize = Singleton.getConnection();
 
 export const Nodi = sequelize.define('Nodi', {
     id_nodi: {
@@ -28,5 +30,19 @@ export const Nodi = sequelize.define('Nodi', {
     timestamps: false,
     freezeTableName: true
 }); 
+
+// Relazione Nodi-Grafo
+
+/*
+
+Nodi.belongsTo(Grafo, {
+    foreignKey: 'id_grafo',
+    targetKey: 'id_grafo'
+})
+
+Nodi.hasMany(Archi, {
+    foreignKey: 'id_nodi'
+})
+*/
 
 module.exports = { Nodi: Nodi };
