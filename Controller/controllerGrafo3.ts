@@ -19,7 +19,9 @@ async function updateArco (id_grafo: any, id_archi: any, peso: any){
         arco?.update({ peso: calcolo});
         await arco?.save();
 
-        const risultato = JSON.parse(JSON.stringify(archi));
+        const archi_aggiornati = await Archi.findAll({ where: { id_grafo: id_grafo } });
+
+        const risultato = JSON.parse(JSON.stringify(archi_aggiornati));
 
         return risultato
 }
@@ -79,12 +81,11 @@ export async function updateGrafo(req: Request, res: Response) {
       id_utente_response: data[1],
       id_grafo: id_grafo,
       descrizione: descrizione,
-      modifiche:
-        "Modifiche dell arco " +
-        id_archi +
-        " " +
-        "con un peso nuovo di " +
-        peso,
+      modifiche: {
+        "ID arco modificato " : id_archi ,
+        "peso nuovo " : peso,
+        "nome_grafo" : nome_grafo
+      },
       stato_richiesta: 'accettata'
     });
 
@@ -99,12 +100,11 @@ export async function updateGrafo(req: Request, res: Response) {
       id_utente_response: data[1],
       id_grafo: id_grafo,
       descrizione: descrizione,
-      modifiche:
-        "Modifiche dell arco " +
-        id_archi +
-        " " +
-        "con un peso nuovo di " +
-        peso,
+      modifiche:{
+        "ID arco modificato " : id_archi ,
+        "peso nuovo " : peso,
+        "nome_grafo" : nome_grafo
+      },
     });
 
     res.json(richiesta);
@@ -114,26 +114,43 @@ export async function updateGrafo(req: Request, res: Response) {
 
 
 export async function updateArcoAfterRequest (req: Request, res: Response) { 
-    const { jwtDecode, nome_grafo,id_richieste, id_archi, peso } = req.body;
+    const { jwtDecode, nome_grafo,id_richieste } = req.body;
 
-    console.log(req.body);
     
     const grafo = await Grafo.findOne({ where: { nome_grafo: nome_grafo } });
     const id_grafo = grafo?.dataValues.id_grafo;
     
     const risultatoRichiesta = await gestioneRichiesta(jwtDecode, id_grafo, id_richieste);
 
-    console.log(JSON.stringify(risultatoRichiesta));
+    const richieste = await Richieste.findOne({ 
+        where: { 
+           id_richieste: id_richieste,
+        },
+        attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta']
+     });
+     const modifiche = richieste?.getDataValue('modifiche');
+     const id_archi = modifiche['ID arco modificato '];
+     const peso = modifiche['peso nuovo '];
+     const nome_grafo_modifiche = modifiche['nome_grafo'];
+    //console.log(JSON.stringify(risultatoRichiesta));
 
-    if (risultatoRichiesta === 'accettata') {
-        const update = await updateArco(id_grafo, id_archi, peso);
-        res.status(200).json( {risultatoRichiesta : risultatoRichiesta , update : update});
-    } else if (risultatoRichiesta === 'rifiutata') {
-        res.json('Richiesta rifiutata');
-    } else {
-        res.json('Richiesta in attesa');
+    try{
+        if (nome_grafo === nome_grafo_modifiche){ 
+            if (risultatoRichiesta === 'accettata') {
+                const update = await updateArco(id_grafo, id_archi, peso);
+                res.status(200).json( {risultatoRichiesta : risultatoRichiesta , update : update});
+            } else if (risultatoRichiesta === 'rifiutata') {
+                res.json('Richiesta rifiutata');
+            } else {
+                res.json('Richiesta in attesa');
+            }
+        } else {
+            return res.status(404).json({ error: 'Nome del grafo non corrispondente' });
+            }
+        } catch (err) {
+            return res.status(500).json ({ error: err });   
+        }
     }
-}
  
 
 export async function getRichieste(req: Request, res: Response) {
@@ -192,17 +209,28 @@ export async function viewRichiestePerData(req:Request, res:Response) {
     const grafo = await Grafo.findOne({ where: { nome_grafo: nome_grafo, id_utente: id_utente } });
     const id_grafo = grafo?.dataValues.id_grafo;
 
-    if ( stato === 'accettata'){
+    try{
 
-        const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date: { [Op.gte]: from, [Op.lte]: to }, stato_richiesta: 'accettata' },attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
-    res.status(200).json({richieste : richieste});
-    }
+        if ( stato === 'accettata'){
 
-    if ( stato === 'rifiutata'){
-        const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date : { [Op.gte]: from, [Op.lte]: to } , stato_richiesta: 'rifiutata' }, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
-    res.status(200).json({richieste : richieste});
+            const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date: { [Op.gte]: from, [Op.lte]: to }, stato_richiesta: 'accettata' },attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+            console.log(richieste);
+            if (!richieste){
+                return res.status(404).json({ error: 'Grafo non ha richieste accettate' });
+            }
+            res.status(200).json({richieste : richieste});
+        } 
+
+        if ( stato === 'rifiutata'){
+            const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date : { [Op.gte]: from, [Op.lte]: to } , stato_richiesta: 'rifiutata' }, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+            if (!richieste){
+                return res.status(404).json({ error: 'Grafo non ha richieste rifiutate' });
+            }
+            res.status(200).json({richieste : richieste});
+        }
+    } catch (err) {
+    res.status(404).json({error : err });
     }
-    
 }
 
 export async function getRichiestePerModello(req:Request, res:Response) {
@@ -214,7 +242,7 @@ export async function getRichiestePerModello(req:Request, res:Response) {
     const id_grafo = grafo?.dataValues.id_grafo;
     const utente = await Utente.findOne({ where: { email : jwtDecode.email, password: jwtDecode.password } });
     const id_utente = utente?.dataValues.id_utente;
-    const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, id_utente_response: id_utente, stato_richiesta : 'pending'}, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+    const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, stato_richiesta : 'pending'}, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
     res.status(200).json({message : "Richieste in pending per il modello selezionato" ,richieste : richieste});
 }
 

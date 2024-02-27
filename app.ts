@@ -39,7 +39,7 @@ import { verificaStrutturaGrafo , verificaGrafoConnesso } from './Middleware/che
 import { checkAdmin } from './Middleware/checkAdmin';
 import { checkGrafoSimulazione, checkVerificaRequisiti} from './Middleware/checkGrafoSimulazione';
 import { validateGrafoUpdate } from './Middleware/checkGrafoUpdate';
-
+import { checkRichiestaFormat } from './Middleware/checkApprovaRichiesta';
 
 
 
@@ -111,7 +111,7 @@ app.get ('/utenti/richieste_per_singolo_utente',checkToken,decodeToken, (req: an
 })
 
 
-app.post ('/utenti/richieste/approvaRichiesta',checkToken,decodeToken, (req: any, res: any) => {
+app.post ('/utenti/richieste/approvaRichiesta',checkToken,decodeToken,checkRichiestaFormat, (req: any, res: any) => {
 approvaRichiesta(req, res);
 })
 
