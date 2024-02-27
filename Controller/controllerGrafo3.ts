@@ -192,17 +192,28 @@ export async function viewRichiestePerData(req:Request, res:Response) {
     const grafo = await Grafo.findOne({ where: { nome_grafo: nome_grafo, id_utente: id_utente } });
     const id_grafo = grafo?.dataValues.id_grafo;
 
-    if ( stato === 'accettata'){
+    try{
 
-        const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date: { [Op.gte]: from, [Op.lte]: to }, stato_richiesta: 'accettata' },attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
-    res.status(200).json({richieste : richieste});
-    }
+        if ( stato === 'accettata'){
 
-    if ( stato === 'rifiutata'){
-        const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date : { [Op.gte]: from, [Op.lte]: to } , stato_richiesta: 'rifiutata' }, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
-    res.status(200).json({richieste : richieste});
+            const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date: { [Op.gte]: from, [Op.lte]: to }, stato_richiesta: 'accettata' },attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+            console.log(richieste);
+            if (!richieste){
+                return res.status(404).json({ error: 'Grafo non ha richieste accettate' });
+            }
+            res.status(200).json({richieste : richieste});
+        } 
+
+        if ( stato === 'rifiutata'){
+            const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, update_date : { [Op.gte]: from, [Op.lte]: to } , stato_richiesta: 'rifiutata' }, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+            if (!richieste){
+                return res.status(404).json({ error: 'Grafo non ha richieste rifiutate' });
+            }
+            res.status(200).json({richieste : richieste});
+        }
+    } catch (err) {
+    res.status(404).json({error : err });
     }
-    
 }
 
 export async function getRichiestePerModello(req:Request, res:Response) {
@@ -214,7 +225,7 @@ export async function getRichiestePerModello(req:Request, res:Response) {
     const id_grafo = grafo?.dataValues.id_grafo;
     const utente = await Utente.findOne({ where: { email : jwtDecode.email, password: jwtDecode.password } });
     const id_utente = utente?.dataValues.id_utente;
-    const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, id_utente_response: id_utente, stato_richiesta : 'pending'}, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
+    const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, stato_richiesta : 'pending'}, attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
     res.status(200).json({message : "Richieste in pending per il modello selezionato" ,richieste : richieste});
 }
 
