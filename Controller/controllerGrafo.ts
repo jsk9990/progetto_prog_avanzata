@@ -5,18 +5,21 @@ import { Archi } from '../Model/Archi';
 import { Utente } from '../Model/Utente';
 import Graph from "node-dijkstra"; // Importa la libreria node-dijkstra
 import 'dotenv/config'
-import { Richieste } from '../Model/Richieste';
+
+
+
+import { parseJsonText } from 'typescript';
+import { Performance } from 'perf_hooks';
+import { getGrafoConNodiEArchi } from '../Utilitis/getGrafoConNodiEArchi';
+import { convertiArchiInFormatoDijkstra } from '../Utilitis/convertiArchiInFormatoDijkstra';
 import { calcolaCostoGrafo } from '../Utilitis/calcolaCostoGrafo';
 
 
 
-//Crea Grafo 
+//-------------Crea Grafo---------------------------------- 
 export async function creaGrafo(req: Request, res: Response) {
   //Dati dal body
   const { nome_grafo, struttura, jwtDecode } = req.body;
-  
-  //const costoTotale = calcolaCostoGrafo(req, res, jwtDecode, struttura);
-
   //Trovo utente 
   const utente = await Utente.findOne({ where: { email: jwtDecode.email, password: jwtDecode.password } });
   const id_utente = utente?.getDataValue('id_utente');
@@ -28,33 +31,9 @@ export async function creaGrafo(req: Request, res: Response) {
   if (utente?.dataValues.credito < 0) {
     return res.status(400).json({ message: 'Credito esaurito: Contattare admin per la ricarica' });
   }
-  // calcolo costo grafo 
-  if (utente?.dataValues.credito >= 0) {
-    const costoPerNodo : any = process.env.COSTO_PER_NODO;
-    const costoPerArco : any = process.env.COSTO_PER_ARCO;
-    if (!costoPerNodo || !costoPerArco) {
-     return res.status(400).json({ message: 'Errore: COSTO_PER_NODO o COSTO_PER_ARCO non definiti' }); 
-    }
-    //Map dei nodi della struttura
-    const nodiUnici = new Set();
-    struttura.forEach((arco: any) => {
-      nodiUnici.add(arco.nodo_partenza);
-      nodiUnici.add(arco.nodo_arrivo);
-    });
-    const numeroNodi = nodiUnici.size;
-    //Map degli archi
-    const numeroArchi = struttura.length;
-    //calcolo costo totale
-    const costoTotale = (numeroArchi * costoPerArco) + (numeroNodi * costoPerNodo);
-    //aggiornamento credito utente 
-    if (utente?.dataValues.credito < costoTotale) {
-      console.log ('Credito vecchio: ' + utente?.dataValues.credito);
-      return res.status(400).json({ message: 'Credito insufficente per generare il grafo. Il credito disponibile è' + utente?.dataValues.credito });
-    } else if (utente) {
-      utente.dataValues.credito = utente.dataValues.credito - costoTotale;
-      await utente.setDataValue('credito', utente.dataValues.credito);
-      await utente.save();
-    }
+
+  //richiamo la funzione per il calcolo del costo del grafo secondo le specifiche di traccia 
+  const costoTotale = await calcolaCostoGrafo(req, res, utente, utente?.dataValues.credito, struttura);
 
     //creazione del grafo 
     try {
@@ -102,11 +81,7 @@ export async function creaGrafo(req: Request, res: Response) {
           peso: peso,
           id_arco : nuovoArco.dataValues.id_archi
         }
-
-
       }
-
-
       return res.status(201).json({
         message: 'Grafo creato con successo',
         grafo: rappresentazione_grafo, 
@@ -119,6 +94,69 @@ export async function creaGrafo(req: Request, res: Response) {
       });
     }
   }
-}
 
-
+  export async function calcolaPercorsoMinimo(req: Request, res: Response) {
+    // parametri nel req.body
+    const { nome_grafo, nodo_partenza, nodo_arrivo, jwtDecode } = req.body;
+  
+    // trovo l'utente tramite il jwt
+    const utente = await Utente.findOne({ where: { email: jwtDecode.email, password: jwtDecode.password } });
+  
+    // prendo il credito dell'utente
+    let creditoUtente : number = utente?.getDataValue('credito');
+  
+    // trovo il grafo
+    const grafo = await Grafo.findOne({ where: { nome_grafo: nome_grafo } });
+  
+    // prendo l'ID del grafo
+    const id_grafo = grafo?.getDataValue('id_grafo');
+  
+    // prendo il costo del grafo calcolato in fase di creazione del grafo
+    const costoGrafo : number= grafo?.getDataValue('costo');
+  
+    // Controllo se l'utente ha abbastanza credito per calcolare il percorso minimo
+    if (creditoUtente < costoGrafo) {
+      res.status(400).json({ message: 'Credito insufficente per generare il grafo. Il credito disponibile è' + creditoUtente });
+    } else if (utente) {
+      try {
+        // Utilizzo funzione per prendere nodi e archi
+        const grafo = await getGrafoConNodiEArchi(id_grafo);
+        // Utilizzo funzione che formatta i dati nel modo appropriato richiesto dalla libreria
+  
+        const grafoDijkstraFormat = convertiArchiInFormatoDijkstra(grafo.archi);
+  
+        // Calcola il percorso minimo usando la libreria node-dijkstra
+  
+        const startTime = performance.now();
+  
+        const grafoDijkstra = new Graph(grafoDijkstraFormat);
+  
+        const percorsoMinimo = grafoDijkstra.path(nodo_partenza, nodo_arrivo, { cost: true });
+  
+        const endTime = performance.now();
+  
+        const tempoDiEsecuzione = endTime - startTime;
+  
+        let risultato = JSON.stringify(percorsoMinimo);
+        const risultatoJson = JSON.parse(risultato);
+  
+  
+        if (risultatoJson.path === null) {
+          return res.status(404).json({ message: 'Percorso non trovato' });
+        }
+        // Aggiorna il credito dell'utente
+        if (creditoUtente >= costoGrafo) {
+          creditoUtente = creditoUtente - costoGrafo;
+          utente.setDataValue('credito', creditoUtente);
+          await utente.save();
+        }
+        // Ritorna il percorso, tempi e costo addebitato
+        res.status(200).json({ percorso: percorsoMinimo, tempoEsecuzione: tempoDiEsecuzione, costoAddebbitato: costoGrafo, creditoResiduo: creditoUtente });
+  
+      } catch (error) {
+  
+        console.error(error);
+        res.status(500).json({ message: 'Errore nel calcolo del percorso minimo' });
+      }  
+    }
+  }
