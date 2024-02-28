@@ -60,9 +60,12 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 | /ricaricaCredito| POST | Ricarica credito dell'utente  |
 | /simulazione | POST | Creazione del grafo e calcolo del percorso minimo con variazione di peso dell'arco  |
 | /view_richieste | GET |Visualizzo tutte le richieste dell'utente corrispondente |
+| /richieste_per_singolo_modello | GET |Visualizzo tutte le richieste rispetto al modello |
+| /richieste_per_singolo_utente | GET |Visualizzo tutte le richieste dell'utente corrispondente |
 | /accetta_rifiuta | POST | Le richieste in pending possono diventare  accettate o rifiutate|
 | /aggiorna2 | POST | Aggiorno pesi dopo che la richiesta è stata accettata|
 | /esecuzione | POST | Creazione del grafo e calcolo del percorso minimo  |
+|/export| USE |Esposto file in formati differenti: csv,pdf,xml e json|
 
 ## Diagramma UML
 ## /home 
@@ -338,33 +341,9 @@ Questo progetto implementa un sistema per la gestione di **modelli di ottimizzaz
 ![](/IMMAGINI/DATABASE.png)
 
 MySQL è un sistema di gestione di database relazionale (RDBMS) open source basato sul linguaggio di programmazione SQL (Structured Query Language).È uno dei sistemi di gestione di database più popolari e ampiamente utilizzati al mondo. 
-### Installazione 
-Andiamo ad istallare mysql da terminal. I comandi fanno riferimento ad un sistema operativo **Ubuntu 20.04** .
-```
-//Aggiorno il sistema e installo MySql
-$ sudo apt update
-$ sudo apt update
-//verifico se installazione sia corretta
-$ sudo mysqld --version
-```
-Ora vado a creare un account 
-```
-$ mysql
-$ CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-//Gestione dei privilegi di accesso al databaseù
-$ GRANT ALL PRIVILEGES ON *.* TO ‘username’@'localhost';
-```
-Dopo aver creato un account abbiamo bisogno di fare un 'Data Import',qui abbiamo bisogno di specificare che lavoriamo il locale http://localhost:/ nella porta 3036. Dopodichè aggiorniamo lo schema del database.Ora possiamo creare dei file dove è possibile fare delle 'query', questo ci aiuta a visualizzare il contenuto del database. 
-
-Per poter visualizzare il server Mysql sia attivo ,o meno, occorre usare i seguenti comandi:
-```
-$ sudo service mysql star
-$ sudo service mysql status
-```
-![](/IMMAGINI/DATABASE1.png)
 
 ## Configurazioni iniziali
-Questo è un progetto basato su Node.js e TypeScript. Qui sono riportati i passaggi per configurare il progetto.
+Questo è un progetto basato su Node.js e TypeScript. Qui sono riporta tutti i passaggi per configurare il progetto.
 ### Configurazione Iniziale
 Inizia inizializzando il tuo progetto con npm. Questo creerà un file `package.json` per il tuo progetto.
 ```
@@ -393,8 +372,8 @@ Nodemon è uno strumento che aiuta a sviluppare applicazioni basate su node.js r
 npm install --save-dev nodemon
 npm install --save-dev ts-node
 ```
-### Modifica package.jsonlavoreremo 
-Infine, è necessario modificare il file package.json per aggiungere un comando start che avvia il tuo progetto con Nodemon e TypeScript. Questo permette di eseguire il tuo progetto con il comando npm start.
+### Modifica package.json  
+Infine, è necessario modificare il file package.json. Aggiungere il comando start che avvia il tuo progetto con Nodemon e TypeScript.Questo permette di eseguire il tuo progetto con il comando npm start.
 ```
  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -466,7 +445,7 @@ catch (error) {
 Nel esempio, creaUtente è una funzione asincrona che crea un nuovo utente. Utilizza await per aspettare che la funzione Utente.create sia completata prima di procedere. Se Utente.create ha successo, invia una risposta JSON con un messaggio di successo e i dati dell'utente. Se si verifica un errore, invia una risposta con un messaggio di errore.
 
 ## Docker
-**Docker** nasce dalla difficoltà dei sviluppatori di creare un applicazione che è in grado di essere eseguita da tutti i client con sistemi operativi diversi. Docker offre la possibilita di risolvere queste problematiche; automatizza il deployment, la scalabilità e la gestione isolata di applicazioni attraverso l'uso di container.IL Docker per funzionare ha bisogno del **Immagine** Docker cioè un insieme di file, che contiene tutto ciò che è necessario per eseguire un'applicazione, compreso il codice sorgente, le librerie di sistema, le dipendenze e altri file necessari. L'immagine Docker è utilizzata per creare i **Container** Docker in cui l'applicazione viene effettivamente eseguita.
+**Docker** nasce dalla difficoltà dei sviluppatori di creare un applicazione che è in grado di essere eseguita da tutti i client con sistemi operativi diversi. Docker offre la possibilità di risolvere queste problematiche; automatizza il deployment, la scalabilità e la gestione isolata di applicazioni attraverso l'uso di container.IL Docker per funzionare ha bisogno del **Immagine** Docker cioè un insieme di file, che contiene tutto ciò che è necessario per eseguire un'applicazione, compreso il codice sorgente, le librerie di sistema, le dipendenze e altri file necessari. L'immagine Docker è utilizzata per creare i **Container** Docker in cui l'applicazione viene effettivamente eseguita.
 
 ### Installazione Docker su Ubuntu 20.04
 L’installazione di Docker fa riferimento al sistema operativo Ubuntu 20.04 e prevede solo pochi passaggi.
