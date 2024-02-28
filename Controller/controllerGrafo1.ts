@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Grafo} from '../Model/Grafo';
-
+import 'dotenv/config'
 import { Utente } from '../Model/Utente';
 import Graph from "node-dijkstra"; // Importa la libreria node-dijkstra
 import { getGrafoConNodiEArchi } from '../Utilitis/getGrafoConNodiEArchi';
@@ -25,8 +25,8 @@ export async function calcolaPercorsoMinimo(req: Request, res: Response) {
       const grafo = await getGrafoConNodiEArchi(id_grafo);
       const grafoDijkstraFormat = convertiArchiInFormatoDijkstra(grafo.archi);
  
-      const costoPerNodo = 0.10;
-      const costoPerArco = 0.02;
+      const costoPerNodo = process.env.COSTO_PER_NODO;
+      const costoPerArco = process.env.COSTO_PER_ARCO;
 
       // Calcola il percorso minimo usando la libreria node-dijkstra
 

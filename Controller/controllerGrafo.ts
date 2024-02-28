@@ -4,6 +4,7 @@ import { Nodi } from '../Model/Nodi';
 import { Archi } from '../Model/Archi';
 import { Utente } from '../Model/Utente';
 import Graph from "node-dijkstra"; // Importa la libreria node-dijkstra
+import 'dotenv/config'
 import { Richieste } from '../Model/Richieste';
 import { calcolaCostoGrafo } from '../Utilitis/calcolaCostoGrafo';
 
@@ -15,8 +16,6 @@ export async function creaGrafo(req: Request, res: Response) {
   const { nome_grafo, struttura, jwtDecode } = req.body;
   
   //const costoTotale = calcolaCostoGrafo(req, res, jwtDecode, struttura);
-
-  
 
   //Trovo utente 
   const utente = await Utente.findOne({ where: { email: jwtDecode.email, password: jwtDecode.password } });
@@ -31,8 +30,11 @@ export async function creaGrafo(req: Request, res: Response) {
   }
   // calcolo costo grafo 
   if (utente?.dataValues.credito >= 0) {
-    const costoPerNodo = 0.10;
-    const costoPerArco = 0.02;
+    const costoPerNodo : any = process.env.COSTO_PER_NODO;
+    const costoPerArco : any = process.env.COSTO_PER_ARCO;
+    if (!costoPerNodo || !costoPerArco) {
+     return res.status(400).json({ message: 'Errore: COSTO_PER_NODO o COSTO_PER_ARCO non definiti' }); 
+    }
     //Map dei nodi della struttura
     const nodiUnici = new Set();
     struttura.forEach((arco: any) => {
@@ -53,8 +55,6 @@ export async function creaGrafo(req: Request, res: Response) {
       await utente.setDataValue('credito', utente.dataValues.credito);
       await utente.save();
     }
-
-    
 
     //creazione del grafo 
     try {
