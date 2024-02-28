@@ -2,7 +2,7 @@
 import { Grafo} from '../Model/Grafo';
 import { Nodi } from '../Model/Nodi';
 
-async function preprareData (arco: any, id_grafo: number): Promise<any> {
+export async function preprareData (arco: any, id_grafo: number): Promise<any> {
     const grafo = await Grafo.findByPk(id_grafo);
       if (!grafo) {
         throw new Error('Grafo non trovato');

@@ -14,11 +14,10 @@ import {Singleton}  from './Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './Controller/DB'; //importo controller utente
 import { creaUtente, getUtenti, updateCredito} from './Controller/controllerUtente';
-import { creaGrafo, calcolaPercorsoMinimo } from './Controller/controllerGrafo';
+import { creaGrafo, calcolaPercorsoMinimo, getSimulazione, updateGrafo, updateArcoAfterRequest, getRichieste, getRichiestePerModello, getRichiestePerUtente, approvaRichiesta, viewRichiestePerData, exportRichieste} from './Controller/controllerGrafo';
 
-import { getSimulazione } from './Controller/controllerGrafo2';
 
-import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta, viewRichiestePerData, getRichiestePerModello, getRichiestePerUtente, exportRichieste} from './Controller/controllerGrafo3';
+//import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta, viewRichiestePerData, getRichiestePerModello, getRichiestePerUtente, exportRichieste} from './Controller/controllerGrafo3';
 
 
 //----------------CONFIGURAZIONI INIZIALI----------------------------------------//
