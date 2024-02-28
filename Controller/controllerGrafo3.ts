@@ -162,8 +162,9 @@ export async function getRichieste(req: Request, res: Response) {
     
     try{
         if (!grafo){
-        res.json('Grafo non trovato');
-    } 
+        return res.json('Grafo non trovato');
+        } 
+        
     const id_grafo = grafo?.dataValues.id_grafo;
 
         const richieste = await Richieste.findAll({ where: { id_grafo: id_grafo, id_utente_request: id_utente } , attributes: ['id_richieste', 'id_grafo', 'id_utente_request', 'id_utente_response', 'descrizione', 'modifiche', 'stato_richiesta'] });
