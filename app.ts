@@ -2,6 +2,7 @@
 //---------------IMPORT-LIBRERIE-----------------------------------------------//
 import express, { Request, Response } from 'express'; //import express
 import { JSON, QueryTypes,Sequelize, json } from 'sequelize'; //importo sequelize
+import 'dotenv/config';
 //---------------IMPORT MODELLI------------------------------------------------//
 import {Utente} from './Model/Utente'; //importo model utente
 import {Grafo} from './Model/Grafo'; //importo model grafo
@@ -22,7 +23,7 @@ import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta, vi
 
 //----------------CONFIGURAZIONI INIZIALI----------------------------------------//
 const app = express();
-const port = 3001;
+const port = process.env.EXPRESS_PORT;
 app.use (express.json());
 
 //-----------------CREAZIONE ROUTES----------------------------------------------//
