@@ -523,11 +523,7 @@ Per creare TypeScript, Docker che utilizzerà il comando `build`. Devo prima mod
   } 
 ```
 ## 3. Dockerfile
-
-Creiamo il file Dockerfile con il seguente contenuto:
-
-Dockerfile
-
+Creo il file Dockerfile con il seguente contenuto:
 ```
 # .......Development Stage.......
 FROM node:20-alpine as development
@@ -565,7 +561,7 @@ services:
     # Configurazioni per il servizio app...
 ```
 ## 5. Creo credenziali per Account Mysql
-Crea un nuovo account e concedo i privilegi.
+Creo un nuovo account e concedo i privilegi.
 ```
 CREATE USER 'nuovo_utente'@'localhost' IDENTIFIED BY 'password';
 GRANT privilegio1, privilegio2 ON database_tabella TO 'nuovo_utente'@'localhost';
