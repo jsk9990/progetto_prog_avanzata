@@ -445,6 +445,7 @@ catch (error) {
 Nel esempio, creaUtente è una funzione asincrona che crea un nuovo utente. Utilizza await per aspettare che la funzione Utente.create sia completata prima di procedere. Se Utente.create ha successo, invia una risposta JSON con un messaggio di successo e i dati dell'utente. Se si verifica un errore, invia una risposta con un messaggio di errore.
 
 ## Docker
+![](/IMMAGINI/docker.png)
 **Docker** nasce dalla difficoltà dei sviluppatori di creare un applicazione che è in grado di essere eseguita da tutti i client con sistemi operativi diversi. Docker offre la possibilità di risolvere queste problematiche; automatizza il deployment, la scalabilità e la gestione isolata di applicazioni attraverso l'uso di container.IL Docker per funzionare ha bisogno del **Immagine** Docker cioè un insieme di file, che contiene tutto ciò che è necessario per eseguire un'applicazione, compreso il codice sorgente, le librerie di sistema, le dipendenze e altri file necessari. L'immagine Docker è utilizzata per creare i **Container** Docker in cui l'applicazione viene effettivamente eseguita.
 
 ### Installazione Docker su Ubuntu 20.04
@@ -495,12 +496,11 @@ sudo docker run hello-world
 
 ## 1. Preparazione di TypeScript
 
-Per creare TypeScript, Docker che utilizzerà il comando `build`. Devo prima modificare il file `tsconfig.json`:
+Per usare il comando `build`per costruire il Docker devo prima modificare il file `tsconfig.json`:
 
 ```
 {
     "compilerOptions": {
-        
         "target": "ES6",
         "esModuleInterop": true,
         "module": "CommonJS",
