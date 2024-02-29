@@ -185,6 +185,31 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Simulazione` (
 ENGINE = InnoDB
 COMMENT = 'Tabella per la gestione delle simulazioni ';
 
+-- -----------------------------------------------------
+-- Inserimento valori Utente 
+-- -----------------------------------------------------
+
+INSERT INTO `Utente` VALUES (1,'giuseppe@giuseppe.com','giuseppe',24.48,1,'2024-02-26 16:34:17'),(2,'andrea@andrea.com','andrea',100,1,'2024-02-27 07:30:14'),(3,'dani@dani.com','dani',204.66,0,'2024-02-27 14:23:02');
+
+-- ----------------------------------------------------
+-- Inserimento valori Grafo 
+-- ----------------------------------------------------
+
+INSERT INTO `Grafo` VALUES (1,3,'grafo dani 6',0.48);
+
+-- ----------------------------------------------------
+-- Inserimento valori Nodi 
+-- ----------------------------------------------------
+
+INSERT INTO `Nodi` VALUES (1,1,'Naruto'),(2,1,'Sasuke'),(3,1,'Kisame'),(4,1,'Itachi'); 
+
+-- ----------------------------------------------------
+-- Inserimento valori Archi 
+-- ----------------------------------------------------
+
+INSERT INTO `Archi` VALUES (1,1,1,2,44.0288),(2,1,1,3,1),(3,1,3,4,1),(4,1,4,2,1);
+
+
 SET SQL_MODE = '';
 
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
