@@ -491,10 +491,110 @@ Al termine dell’installazione potete avviare il container Docker “Hello Worl
 ```
 sudo docker run hello-world
 ```
-### Dockerizzazione 
-link utile----->https://thriveread.com/docker-nodejs-typescript-and-mysql/
 ### Avvio tramite Docker
-............COMING.SOON........................
+
+## 1. Preparazione di TypeScript
+
+Per creare TypeScript, Docker che utilizzerà il comando `build`. Devo prima modificare il file `tsconfig.json`:
+
+```
+{
+    "compilerOptions": {
+        
+        "target": "ES6",
+        "esModuleInterop": true,
+        "module": "CommonJS",
+        "outDir": "./build",
+        "rootDir": "./",
+        "strict": truec
+    }
+}
+```
+
+## 2. Comandi per l'esecuzione di TypeScript
+ Nel tuo package.json, è importante indicare come il docker avviera la nostra applicazione
+```
+ "scripts": {
+    "prod" : "node app.ts",
+    "dev" : "nodemon --exec ts-node app.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec ts-node app.ts"
+  } 
+```
+## 3. Dockerfile
+
+Creiamo il file Dockerfile con il seguente contenuto:
+
+Dockerfile
+
+```
+# .......Development Stage.......
+FROM node:20-alpine as development
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install -g npm@latest
+RUN npm config set fetch-retry-maxtimeout 600000 
+RUN npm install
+RUN npm install -g ts-node
+COPY . .
+RUN npm run build
+
+# .......Production Stage.......
+FROM node:20-alpine as production
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install --only=production
+COPY . .
+COPY --from=development /app/build ./build
+CMD npm run prod
+```
+
+## 4. Docker Compose
+
+Definisci il file docker-compose.yml:
+
+```
+version: '3.8'
+services:
+  mysql_server:
+    # Configurazioni MySQL...
+  app:
+    # Configurazioni per il servizio app...
+```
+## 5. Creo credenziali per Account Mysql
+Crea un nuovo account e concedo i privilegi.
+```
+CREATE USER 'nuovo_utente'@'localhost' IDENTIFIED BY 'password';
+GRANT privilegio1, privilegio2 ON database_tabella TO 'nuovo_utente'@'localhost';
+FLUSH PRIVILEGES;
+```
+Per poter visualizzare il server Mysql sia attivo ,o meno, occorre usare i seguenti comandi:
+```
+$ sudo service mysql star
+$ sudo service mysql status
+```
+
+## 6. Costruzione del progetto
+
+Esegui il comando per la costruzione del progetto:
+```
+npm run build
+```
+## 7. Creazione e avvio del container
+Esegui il seguente comando per creare e avviare il container:
+```
+docker-compose up --build 
+```
+## 8. Controllo se Docker Container e Docker Immagine sono state create correttamente.
+```
+docker ps -a 
+docker inspect progetto_prog_avanzata_app
+docker image ls
+``` 
+
 ## Software Utilizzati
 - **Visual Studio Code**: Editor di codice multipiattaforma sviluppato da Microsoft, offre funzionalità come debugging, controllo Git.
 - **TypeScript**: Linguaggio di programmazione open source sviluppato da Microsoft che estende JavaScript aggiungendo tipi statici e classi.
