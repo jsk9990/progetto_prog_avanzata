@@ -25,6 +25,8 @@ const app = express();
 const port = process.env.EXPRESS_PORT;
 app.use (express.json());
 
+
+
 //-----------------CREAZIONE ROUTES----------------------------------------------//
 
 
@@ -40,6 +42,8 @@ import { checkAdmin } from './Middleware/checkAdmin';
 import { checkGrafoSimulazione, checkVerificaRequisiti} from './Middleware/checkGrafoSimulazione';
 import { validateGrafoUpdate } from './Middleware/checkGrafoUpdate';
 import { checkRichiestaFormat } from './Middleware/checkApprovaRichiesta';
+import { checkDataUpdateAfterRequest, checkFormatUpdateAfterRequest } from './Middleware/checkGrafoAfterRequest';
+import { checkExport } from './Middleware/checkExport';
 
 
 
@@ -115,11 +119,11 @@ app.post ('/utenti/richieste/approvaRichiesta',checkToken,decodeToken,checkRichi
 approvaRichiesta(req, res);
 })
 
-app.post('/utenti/richieste/aggiornaGrafo',checkToken,decodeToken, (req: any, res: any) => {
+app.post('/utenti/richieste/aggiornaGrafo',checkToken,decodeToken,checkFormatUpdateAfterRequest, checkDataUpdateAfterRequest, (req: any, res: any) => {
   updateArcoAfterRequest(req, res);
 })
 
-app.use('/utenti/export',checkToken,decodeToken, (req: any, res: any) => {
+app.use('/utenti/export',checkToken,decodeToken,checkExport, (req: any, res: any) => {
   exportRichieste(req, res);
 })
 

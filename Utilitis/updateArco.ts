@@ -8,14 +8,14 @@ import { Op } from 'sequelize';
 import { writeCSV } from '../Utilitis/formatConverter';
 import { generatePDF } from '../Utilitis/formatConverter';
 import { convertToXML } from '../Utilitis/formatConverter';
-
+import 'dotenv/config';
 
 
 
 
  export async function updateArco (id_grafo: any, id_archi: any, peso: any){
-    const alpha = 0.8;
-    const archi = await Archi.findAll({ where: { id_grafo: id_grafo } });
+    const alpha = process.env.ALPHA ? (parseFloat(process.env.ALPHA) >= 0 && parseFloat(process.env.ALPHA) <= 1 ? parseFloat(process.env.ALPHA) : 0.8) : 0.8;
+
         const arco = await Archi.findByPk(id_archi);
 
         const calcolo = alpha * arco?.dataValues.peso + (1 - alpha) * peso;
