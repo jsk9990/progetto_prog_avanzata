@@ -2,8 +2,11 @@
   "name": "progetto_prog_avanzata",
   "version": "1.0.0",
   "description": "Questo progetto implementa un sistema per la gestione di modelli di ottimizzazione su grafi, consentendo agli utenti autenticati di creare e valutare tali modelli utilizzando JSON Web Tokens (JWT). Il sistema simula il concetto di crowd-sourcing, permettendo agli utenti di contribuire attivamente.",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
+    "prod" : "node app.ts",
+    "dev" : "nodemon --exec ts-node app.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node app.ts"
   },

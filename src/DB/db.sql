@@ -10,7 +10,16 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
+
+CREATE USER 'jsk'@'%' IDENTIFIED BY 'jsk';
+
+GRANT ALL PRIVILEGES ON *.* TO 'jsk'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+
 DROP DATABASE IF EXISTS `mydb` ;
+
 
 -- -----------------------------------------------------
 -- Schema mydb

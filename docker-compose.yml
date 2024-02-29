@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  mysql_server:
+    image: mysql:8.1.0
+    environment:
+      MYSQL_ROOT_PASSWORD: jsk
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: jsk
+    ports:
+      - "3306:3306"
+    volumes:
+      # - mysql-data:/var/lib/mysql
+      - ./src/DB/db.sql:/docker-entrypoint-initdb.d/db.sql
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+      dockerfile: DockerFile
+    volumes:
+      - .:/app
+    environment:
+      NODE_ENV: development
+      MYSQL_HOST: mysql_server
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: jsk
+      MYSQL_PASSWORD: jsk
+      MYSQL_PORT: 3306
+      MYSQL_CONNECTION_LIMIT: 10
+    depends_on:
+      - mysql_server
+    command: npm run dev
+    ports:
+      - "3003:3001" # 3001: porta messa nell'applicazione backend -------------- 3003: porta esposta da docker che gira i dati dalla porta 3001
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+

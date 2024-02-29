@@ -15,7 +15,7 @@ export class Singleton {
     private connection: Sequelize;
     private constructor() {
         this.connection = new Sequelize(dbName,dbUser,dbPassword,{
-            host : 'localhost',
+            host : 'mysql_server',
             dialect : 'mysql'
         }); 
     }; 

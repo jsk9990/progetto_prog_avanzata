@@ -4,17 +4,17 @@ import express, { Request, Response } from 'express'; //import express
 import { JSON, QueryTypes,Sequelize, json } from 'sequelize'; //importo sequelize
 import 'dotenv/config';
 //---------------IMPORT MODELLI------------------------------------------------//
-import {Utente} from './Model/Utente'; //importo model utente
-import {Grafo} from './Model/Grafo'; //importo model grafo
-import {Nodi} from './Model/Nodi'; //importo model nodi
-import {Archi} from './Model/Archi'; //importo model archi
-import {Richieste} from './Model/Richieste'; //importo model richieste
-import {Simulazione} from './Model/Simulazione';
-import {Singleton}  from './Model/Singleton'; //import singleton
+import {Utente} from './src/Model/Utente'; //importo model utente
+import {Grafo} from './src/Model/Grafo'; //importo model grafo
+import {Nodi} from './src/Model/Nodi'; //importo model nodi
+import {Archi} from './src/Model/Archi'; //importo model archi
+import {Richieste} from './src/Model/Richieste'; //importo model richieste
+import {Simulazione} from './src/Model/Simulazione';
+import {Singleton}  from './src/Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
-import {testDbConnection} from './Controller/DB'; //importo controller utente
-import { creaUtente, getUtenti, updateCredito} from './Controller/controllerUtente';
-import { creaGrafo, calcolaPercorsoMinimo, getSimulazione, updateGrafo, updateArcoAfterRequest, getRichieste, getRichiestePerModello, getRichiestePerUtente, approvaRichiesta, viewRichiestePerData, exportRichieste} from './Controller/controllerGrafo';
+import {testDbConnection} from './src/Controller/DB'; //importo controller utente
+import { creaUtente, getUtenti, updateCredito} from './src/Controller/controllerUtente';
+import { creaGrafo, calcolaPercorsoMinimo, getSimulazione, updateGrafo, updateArcoAfterRequest, getRichieste, getRichiestePerModello, getRichiestePerUtente, approvaRichiesta, viewRichiestePerData, exportRichieste} from './src/Controller/controllerGrafo';
 
 
 //import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta, viewRichiestePerData, getRichiestePerModello, getRichiestePerUtente, exportRichieste} from './Controller/controllerGrafo3';
@@ -32,18 +32,18 @@ app.use (express.json());
 
 
 //-------------------MIDDLEWARE-------------------------------------------------//
-import { generateToken } from './Middleware/generateToken';
-import {checkToken} from './Middleware/checkToken';
-import {checkUtente, checkCredenziali, checkEmailFormat} from './Middleware/checkUtente';
-import { checkGrafoEsecuzione } from './Middleware/checkGrafoEsecuzione';
-import { decodeToken } from './Middleware/decodeToken';
-import { verificaStrutturaGrafo , verificaGrafoConnesso } from './Middleware/checkGrafo';
-import { checkAdmin } from './Middleware/checkAdmin';
-import { checkGrafoSimulazione, checkVerificaRequisiti} from './Middleware/checkGrafoSimulazione';
-import { validateGrafoUpdate } from './Middleware/checkGrafoUpdate';
-import { checkRichiestaFormat } from './Middleware/checkApprovaRichiesta';
-import { checkDataUpdateAfterRequest, checkFormatUpdateAfterRequest } from './Middleware/checkGrafoAfterRequest';
-import { checkExport } from './Middleware/checkExport';
+import { generateToken } from './src/Middleware/generateToken';
+import {checkToken} from './src/Middleware/checkToken';
+import {checkUtente, checkCredenziali, checkEmailFormat} from './src/Middleware/checkUtente';
+import { checkGrafoEsecuzione } from './src/Middleware/checkGrafoEsecuzione';
+import { decodeToken } from './src/Middleware/decodeToken';
+import { verificaStrutturaGrafo , verificaGrafoConnesso } from './src/Middleware/checkGrafo';
+import { checkAdmin } from './src/Middleware/checkAdmin';
+import { checkGrafoSimulazione, checkVerificaRequisiti} from './src/Middleware/checkGrafoSimulazione';
+import { validateGrafoUpdate } from './src/Middleware/checkGrafoUpdate';
+import { checkRichiestaFormat } from './src/Middleware/checkApprovaRichiesta';
+import { checkDataUpdateAfterRequest, checkFormatUpdateAfterRequest } from './src/Middleware/checkGrafoAfterRequest';
+import { checkExport } from './src/Middleware/checkExport';
 
 
 

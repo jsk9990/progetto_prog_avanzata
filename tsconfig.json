@@ -4,7 +4,9 @@
         "target": "ES6",
         "esModuleInterop": true,
         "module": "CommonJS",
-        "outDir": "./dist",
+        //"outDir": "./dist",
+        "outDir": "./build",
+        "rootDir": "./",
         "strict": true
     }
 }
