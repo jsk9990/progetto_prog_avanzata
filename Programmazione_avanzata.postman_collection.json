@@ -245,11 +245,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/login",
+					"raw": "localhost:3003/login",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"login"
 					]
@@ -288,40 +288,28 @@
 		},
 		{
 			"name": "Return modelli nel sistema",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyNzg5Mzl9.Aybq-DSfx4hU5O6-j-9jCWTRtLGvWfKXLEXQecUXSoM",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyODYyOTd9.GQ5YSSnBo9dFRCnlIoO6VJ4FmF5-bQPuU1BGSfnoIT8",
 							"type": "string"
 						}
 					]
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "// basta fornire il token di qualsiasi utente e ritorna tutti gli utenti presenti nel sistema ",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:3003/utenti/admin",
+					"raw": "localhost:3003/utenti/modelli",
 					"host": [
 						"localhost"
 					],
 					"port": "3003",
 					"path": [
 						"utenti",
-						"admin"
+						"modelli"
 					]
 				}
 			},
@@ -374,7 +362,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyODA1NDh9.Vif6qjtAkKs2vpLUmp_-X-lgDIKqk1a2d5tm9OEsTWI",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYUBhbmRyZWEuY29tIiwicGFzc3dvcmQiOiJhbmRyZWEiLCJpYXQiOjE3MDkyODUxNDJ9.nOGUHvVAk1P2P_oFlPDYFpq01CChPfwkJD8iAWX3-1I",
 							"type": "string"
 						}
 					]
@@ -413,7 +401,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDg5NDQ4NzV9.FTrCMi_IxMCxwSNJ8oHGvQbF5YiUOERDofsEiTJZ15Q",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlYUBhbmRyZWEuY29tIiwicGFzc3dvcmQiOiJhbmRyZWEiLCJpYXQiOjE3MDkyODUyMDh9.s-FKwxHvZWDngNfVfJ4GcOr5G_m8WONoKiCyjBeR2L4",
 							"type": "string"
 						}
 					]
@@ -422,7 +410,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \n    //\"nome_grafo\": \"grafo dani 6\",\n    \"nome_grafo\": \"grafo demo 1 \", \n    \"nodo_partenza\": \"1\", \n    \"nodo_arrivo\": \"8\" \n}\n\n// per demo 1 : 1-->3-->7-->8 costo: 6; \n",
+					"raw": "{ \n    //\"nome_grafo\": \"grafo dani 6\",\n    \"nome_grafo\": \"grafo demo 1\", \n    \"nodo_partenza\": \"1\", \n    \"nodo_arrivo\": \"8\" \n}\n\n// per demo 1 : 1-->3-->7-->8 costo: 6; \n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -461,7 +449,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome_grafo\": \"grafo demo 1\",\n    \"id_arco\" : 7, //arco abbastanza pesante, valore di default 11\n    \"nodo_partenza\" : \"1\",  \n    \"nodo_arrivo\" : \"8\", \n    \"start_peso\": 1,\n    \"stop_peso\" :  10,\n    \"step\" : 1\n}\n\n//per demo 1: \n//da peso 1 a peso 2 : 1-->6-->7-->8;\n// iterazioni successive :  1-->3-->7-->8 \n ",
+					"raw": "{\n    \"nome_grafo\": \"grafo demo 2\",\n    \"id_arco\" : 21, //arco abbastanza pesante, valore di default 11\n    \"nodo_partenza\" : \"A\",  \n    \"nodo_arrivo\" : \"J\", \n    \"start_peso\": 1,\n    \"stop_peso\" :  10,\n    \"step\" : 1\n}\n\n//per demo 1: \n//da peso 1 a peso 2 : 1-->6-->7-->8;\n// iterazioni successive :  1-->3-->7-->8 \n ",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -502,7 +490,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome_grafo\": \"grafo dani 6\",\n    \"from\" : \"2024-02-20\",\n    \"to\" : \"2024-02-28\",\n    \"stato\" : \"rifiutata\"\n}",
+					"raw": "{\n    \"nome_grafo\": \"grafo dani 6\",\n    \"from\" : \"2024-02-01\",\n    \"to\" : \"2024-03-01\",\n    \"stato\" : \"accettata\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -510,11 +498,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/utenti/view_aggiornamenti",
+					"raw": "localhost:3003/utenti/view_aggiornamenti",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"utenti",
 						"view_aggiornamenti"
@@ -535,7 +523,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkwNDM3ODJ9.ne9kkk4HI6cgb3JAika8n8k8AuZPa21J1WX_aHEjPtk",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyODY4NTR9.MrRZBuX8Vl7cunS6i2WbHuEiOM150WWz29cx4Wcbbuk",
 							"type": "string"
 						}
 					]
@@ -544,7 +532,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome_grafo\" : \"grafo giuseppe 3\"\n    // qualsiasi utente con il token può accedere a queste informazioni sulle richieste  del grafo specificato \n}",
+					"raw": "{\n    \"nome_grafo\" : \"grafo dani 6\"\n    // qualsiasi utente con il token può accedere a queste informazioni sulle richieste  del grafo specificato \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -552,11 +540,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/utenti/richieste_per_singolo_modello",
+					"raw": "localhost:3003/utenti/richieste_per_singolo_modello",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"utenti",
 						"richieste_per_singolo_modello"
@@ -576,7 +564,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkxMzYzMDV9.1zeXwbBVBaF6hLZeNNnClnwnnf0Vx2PwPfRI_e4rgw4",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkyODcwMTV9.Tozv5rtT1xNZ1z6590Exc7b4nwFj4NaIWrQn1JgM4Sk",
 							"type": "string"
 						}
 					]
@@ -585,7 +573,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "// bisogna passare il token dell'utente di cui vogliamo visualizzare le richieste in pending",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -593,11 +581,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/utenti/richieste_per_singolo_utente",
+					"raw": "localhost:3003/utenti/richieste_per_singolo_utente",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"utenti",
 						"richieste_per_singolo_utente"
@@ -617,7 +605,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkxMzYzMjl9.y84NXbnHZiSRooiAUnYPdeBHekDRszeDvaFMDOIntnI",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkyODcxNzF9.KIs0WxlzoknrDEeppdF6jzxslUaP28NxTr1BvbUpeqE",
 							"type": "string"
 						}
 					]
@@ -634,11 +622,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/utenti/richieste",
+					"raw": "localhost:3003/utenti/richieste",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"utenti",
 						"richieste"
@@ -655,7 +643,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkxMzY0ODl9.qfDKANkKyPA-kBBUJ0w0tltMc-QlIbZS4nOlyuwp9-M",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkyODcxNzF9.KIs0WxlzoknrDEeppdF6jzxslUaP28NxTr1BvbUpeqE",
 							"type": "string"
 						}
 					]
@@ -664,7 +652,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id_richieste\" : 15,\n    \"stato_richiesta\" : \"rifiutata\"\n}",
+					"raw": "{ //ci vuole il token del propietario del grafo naturalmente \n    \"id_richieste\" : 4,\n    \"stato_richiesta\" : \"rifiutata\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -672,11 +660,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/utenti/richieste/approvaRichiesta",
+					"raw": "localhost:3003/utenti/richieste/approvaRichiesta",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"utenti",
 						"richieste",
@@ -694,7 +682,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkxMzY1NzN9.GYYMYQ9JtGmjjeWf7mIpV6zEvgUBqf0DSX0ygQ00d34",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyODcyNDZ9.UuxghI6xoMtrlYoeujF72A-07vrX652ISM3Tt04_Zyw",
 							"type": "string"
 						}
 					]
@@ -703,7 +691,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome_grafo\" : \"grafo dani 6\",\n    \"id_richieste\" : 17\n}\n",
+					"raw": "{\n    \"nome_grafo\" : \"grafo dani 6\",\n    \"id_richieste\" : 4\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -711,11 +699,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/utenti/richieste/aggiornaGrafo",
+					"raw": "localhost:3003/utenti/richieste/aggiornaGrafo",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"utenti",
 						"richieste",
@@ -733,7 +721,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkxMzY2NTF9.oS6w2oTL83YFXgT3gV3kutuJaDSm6MaO7SlKgmcBrCk",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyODcxNDR9.PTKr-JYLf37SjOVxeStR3HmmGSAKS59av6dA8HoesUs",
 							"type": "string"
 						}
 					]
@@ -742,7 +730,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome_grafo\": \"grafo dani 6\",\n    \"id_archi\": 29,\n    \"descrizione\": \"modifiche arco più pesante del grafo\",\n    \"peso\": 1000\n}",
+					"raw": "{\n    \"nome_grafo\": \"grafo dani 6\",\n    \"id_archi\": 1,\n    \"descrizione\": \"modifiche arco più pesante del grafo\",\n    \"peso\": 1000\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -750,11 +738,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/utenti/aggiornaGrafo",
+					"raw": "localhost:3003/utenti/aggiornaGrafo",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"utenti",
 						"aggiornaGrafo"
@@ -783,7 +771,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome_grafo\" : \"grafo dani 6\",\n    \"from\" : \"2024-02-01\",\n    \"to\" : \"2024-02-28\",\n    \"stato_richiesta\" : \"rifiutata\",\n    \"format\": \"pdf\" //csv, xml, pdf, json\n}",
+					"raw": "{\n    \"nome_grafo\" : \"grafo dani 6\",\n    \"from\" : \"2024-02-01\",\n    \"to\" : \"2024-03-02\",\n    \"stato_richiesta\" : \"accettata\", // solo accettata o rifiutata\n    \"format\": \"json\" //csv, xml, pdf, json\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -791,11 +779,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3001/utenti/export",
+					"raw": "localhost:3003/utenti/export",
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3003",
 					"path": [
 						"utenti",
 						"export"
