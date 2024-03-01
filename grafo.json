@@ -1,0 +1,404 @@
+
+------------------------------GRAFO1---------------------------------------------------------
+{
+            "nome_grafo": "grafo demo 1",
+            "id_utente": 1,
+            "id_grafo": 2,
+            "archi": [
+                {
+                    "id_archi": 5,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 5,
+                    "id_nodo_arrivo": 6,
+                    "peso": 1
+                },
+                {
+                    "id_archi": 6,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 5,
+                    "id_nodo_arrivo": 7,
+                    "peso": 3
+                },
+                {
+                    "id_archi": 7,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 5,
+                    "id_nodo_arrivo": 8,
+                    "peso": 11
+                },
+                {
+                    "id_archi": 8,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 6,
+                    "id_nodo_arrivo": 8,
+                    "peso": 2
+                },
+                {
+                    "id_archi": 9,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 6,
+                    "id_nodo_arrivo": 9,
+                    "peso": 5
+                },
+                {
+                    "id_archi": 10,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 7,
+                    "id_nodo_arrivo": 8,
+                    "peso": 1
+                },
+                {
+                    "id_archi": 11,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 7,
+                    "id_nodo_arrivo": 10,
+                    "peso": 1
+                },
+                {
+                    "id_archi": 12,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 7,
+                    "id_nodo_arrivo": 11,
+                    "peso": 7
+                },
+                {
+                    "id_archi": 13,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 8,
+                    "id_nodo_arrivo": 9,
+                    "peso": 5
+                },
+                {
+                    "id_archi": 14,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 8,
+                    "id_nodo_arrivo": 10,
+                    "peso": 1
+                },
+                {
+                    "id_archi": 15,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 8,
+                    "id_nodo_arrivo": 11,
+                    "peso": 5
+                },
+                {
+                    "id_archi": 16,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 10,
+                    "id_nodo_arrivo": 9,
+                    "peso": 3
+                },
+                {
+                    "id_archi": 17,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 10,
+                    "id_nodo_arrivo": 11,
+                    "peso": 3
+                },
+                {
+                    "id_archi": 18,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 10,
+                    "id_nodo_arrivo": 12,
+                    "peso": 2
+                },
+                {
+                    "id_archi": 19,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 9,
+                    "id_nodo_arrivo": 12,
+                    "peso": 7
+                },
+                {
+                    "id_archi": 20,
+                    "id_grafo": 2,
+                    "id_nodo_partenza": 11,
+                    "id_nodo_arrivo": 12,
+                    "peso": 2
+                }
+            ],
+            "nodi": [
+                {
+                    "id_nodi": 5,
+                    "id_grafo": 2,
+                    "nodo_nome": "1"
+                },
+                {
+                    "id_nodi": 6,
+                    "id_grafo": 2,
+                    "nodo_nome": "2"
+                },
+                {
+                    "id_nodi": 7,
+                    "id_grafo": 2,
+                    "nodo_nome": "3"
+                },
+                {
+                    "id_nodi": 8,
+                    "id_grafo": 2,
+                    "nodo_nome": "6"
+                },
+                {
+                    "id_nodi": 9,
+                    "id_grafo": 2,
+                    "nodo_nome": "4"
+                },
+                {
+                    "id_nodi": 10,
+                    "id_grafo": 2,
+                    "nodo_nome": "7"
+                },
+                {
+                    "id_nodi": 11,
+                    "id_grafo": 2,
+                    "nodo_nome": "5"
+                },
+                {
+                    "id_nodi": 12,
+                    "id_grafo": 2,
+                    "nodo_nome": "8"
+                }
+            ]
+        },.
+
+------------------------------GRAFO2---------------------------------------------------------
+{
+            "nome_grafo": "grafo demo 2",
+            "id_utente": 2,
+            "id_grafo": 3,
+            "archi": [
+                {
+                    "id_archi": 21,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 13,
+                    "id_nodo_arrivo": 14,
+                    "peso": 1
+                },
+                {
+                    "id_archi": 22,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 13,
+                    "id_nodo_arrivo": 15,
+                    "peso": 18
+                },
+                {
+                    "id_archi": 23,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 13,
+                    "id_nodo_arrivo": 16,
+                    "peso": 1
+                },
+                {
+                    "id_archi": 24,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 14,
+                    "id_nodo_arrivo": 17,
+                    "peso": 9
+                },
+                {
+                    "id_archi": 25,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 14,
+                    "id_nodo_arrivo": 18,
+                    "peso": 7
+                },
+                {
+                    "id_archi": 26,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 14,
+                    "id_nodo_arrivo": 15,
+                    "peso": 7
+                },
+                {
+                    "id_archi": 27,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 16,
+                    "id_nodo_arrivo": 15,
+                    "peso": 3
+                },
+                {
+                    "id_archi": 28,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 16,
+                    "id_nodo_arrivo": 19,
+                    "peso": 5
+                },
+                {
+                    "id_archi": 29,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 16,
+                    "id_nodo_arrivo": 20,
+                    "peso": 4
+                },
+                {
+                    "id_archi": 30,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 15,
+                    "id_nodo_arrivo": 18,
+                    "peso": 15
+                },
+                {
+                    "id_archi": 31,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 15,
+                    "id_nodo_arrivo": 21,
+                    "peso": 16
+                },
+                {
+                    "id_archi": 32,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 15,
+                    "id_nodo_arrivo": 19,
+                    "peso": 12
+                },
+                {
+                    "id_archi": 33,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 19,
+                    "id_nodo_arrivo": 20,
+                    "peso": 1
+                },
+                {
+                    "id_archi": 34,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 19,
+                    "id_nodo_arrivo": 22,
+                    "peso": 8
+                },
+                {
+                    "id_archi": 35,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 20,
+                    "id_nodo_arrivo": 22,
+                    "peso": 7
+                },
+                {
+                    "id_archi": 36,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 17,
+                    "id_nodo_arrivo": 18,
+                    "peso": 1
+                },
+                {
+                    "id_archi": 37,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 17,
+                    "id_nodo_arrivo": 23,
+                    "peso": 6
+                },
+                {
+                    "id_archi": 38,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 18,
+                    "id_nodo_arrivo": 23,
+                    "peso": 3
+                },
+                {
+                    "id_archi": 39,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 18,
+                    "id_nodo_arrivo": 21,
+                    "peso": 3
+                },
+                {
+                    "id_archi": 40,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 23,
+                    "id_nodo_arrivo": 21,
+                    "peso": 5
+                },
+                {
+                    "id_archi": 41,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 23,
+                    "id_nodo_arrivo": 24,
+                    "peso": 4
+                },
+                {
+                    "id_archi": 42,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 21,
+                    "id_nodo_arrivo": 24,
+                    "peso": 4
+                },
+                {
+                    "id_archi": 43,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 21,
+                    "id_nodo_arrivo": 22,
+                    "peso": 9
+                },
+                {
+                    "id_archi": 44,
+                    "id_grafo": 3,
+                    "id_nodo_partenza": 22,
+                    "id_nodo_arrivo": 24,
+                    "peso": 6
+                }
+            ],
+            "nodi": [
+                {
+                    "id_nodi": 13,
+                    "id_grafo": 3,
+                    "nodo_nome": "A"
+                },
+                {
+                    "id_nodi": 14,
+                    "id_grafo": 3,
+                    "nodo_nome": "B"
+                },
+                {
+                    "id_nodi": 15,
+                    "id_grafo": 3,
+                    "nodo_nome": "K"
+                },
+                {
+                    "id_nodi": 16,
+                    "id_grafo": 3,
+                    "nodo_nome": "C"
+                },
+                {
+                    "id_nodi": 17,
+                    "id_grafo": 3,
+                    "nodo_nome": "D"
+                },
+                {
+                    "id_nodi": 18,
+                    "id_grafo": 3,
+                    "nodo_nome": "E"
+                },
+                {
+                    "id_nodi": 19,
+                    "id_grafo": 3,
+                    "nodo_nome": "H"
+                },
+                {
+                    "id_nodi": 20,
+                    "id_grafo": 3,
+                    "nodo_nome": "G"
+                },
+                {
+                    "id_nodi": 21,
+                    "id_grafo": 3,
+                    "nodo_nome": "L"
+                },
+                {
+                    "id_nodi": 22,
+                    "id_grafo": 3,
+                    "nodo_nome": "I"
+                },
+                {
+                    "id_nodi": 23,
+                    "id_grafo": 3,
+                    "nodo_nome": "F"
+                },
+                {
+                    "id_nodi": 24,
+                    "id_grafo": 3,
+                    "nodo_nome": "J"
+                }
+            ]
+        }
+    ]
+}
