@@ -14,7 +14,7 @@ import {Singleton}  from './src/Model/Singleton'; //import singleton
 //---------------IMPORT CONTROLLERS------------------------------------------//
 import {testDbConnection} from './src/Controller/DB'; //importo controller utente
 import { creaUtente, getUtenti, updateCredito} from './src/Controller/controllerUtente';
-import { creaGrafo, calcolaPercorsoMinimo, getSimulazione, updateGrafo, updateArcoAfterRequest, getRichieste, getRichiestePerModello, getRichiestePerUtente, approvaRichiesta, viewRichiestePerData, exportRichieste} from './src/Controller/controllerGrafo';
+import { creaGrafo, calcolaPercorsoMinimo, getSimulazione, updateGrafo, updateArcoAfterRequest, getRichieste, getRichiestePerModello, getRichiestePerUtente, approvaRichiesta, viewRichiestePerData, exportRichieste, returnGrafo} from './src/Controller/controllerGrafo';
 
 
 //import { updateGrafo, updateArcoAfterRequest, getRichieste, approvaRichiesta, viewRichiestePerData, getRichiestePerModello, getRichiestePerUtente, exportRichieste} from './Controller/controllerGrafo3';
@@ -70,8 +70,8 @@ app.get('/utenti', checkToken, (req: any, res: any) => {
     getUtenti(req, res);  
 })
 
-app.get('/utenti/admin',checkToken,decodeToken,checkAdmin, (req: any, res: any) => { 
-  getUtenti(req, res);
+app.get('/utenti/modelli',checkToken, (req: any, res: any) => { 
+  returnGrafo(req, res); 
 })
 
 app.post('/utenti/admin/ricaricaCredito',checkToken,decodeToken,checkAdmin, (req: any, res: any) => {

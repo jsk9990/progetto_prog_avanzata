@@ -1,0 +1,814 @@
+{
+	"info": {
+		"_postman_id": "1cc2cd1f-2f05-4668-b43a-1c2161721077",
+		"name": "Programmazione_avanzata",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32811677"
+	},
+	"item": [
+		{
+			"name": "Iscrizione",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"email\": \"prova@prova.com\", // per iscirivere un nuovo utente usare il formato example@example\n    \"password\": \"prova\", \n    \"credito\" : 100, \n    \"privilegi\": false //questi sono i privilegi per le operazioni di admin \n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/sign_in",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"sign_in"
+					]
+				},
+				"description": "Sign In"
+			},
+			"response": []
+		},
+		{
+			"name": "Login Andrea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"An access token is returned\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('token')",
+							"    pm.expect(pm.response.json().token).to.be.a('string')",
+							"    // Set the collection-scope \"token\" variable to the token received from the API",
+							"    // This lets us use it in other requests",
+							"    pm.collectionVariables.set('token', pm.response.json().token)",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"email\": \"andrea@andrea.com\",\n    \"password\": \"andrea\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"login"
+					]
+				},
+				"description": "This returns a `token` that you can use to retrieve information later on.\n\nWe have included a test to confirm if a token is returned. We have also added test scripts to copy the token to the `token` collection variable. This makes it easy for us to reuse this token in other requests in the collection."
+			},
+			"response": []
+		},
+		{
+			"name": "Login prova",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"An access token is returned\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('token')",
+							"    pm.expect(pm.response.json().token).to.be.a('string')",
+							"    // Set the collection-scope \"token\" variable to the token received from the API",
+							"    // This lets us use it in other requests",
+							"    pm.collectionVariables.set('token', pm.response.json().token)",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"email\": \"prova@prova.com\",\n    \"password\": \"prova\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"login"
+					]
+				},
+				"description": "This returns a `token` that you can use to retrieve information later on.\n\nWe have included a test to confirm if a token is returned. We have also added test scripts to copy the token to the `token` collection variable. This makes it easy for us to reuse this token in other requests in the collection."
+			},
+			"response": []
+		},
+		{
+			"name": "Login Giuseppe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"An access token is returned\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('token')",
+							"    pm.expect(pm.response.json().token).to.be.a('string')",
+							"    // Set the collection-scope \"token\" variable to the token received from the API",
+							"    // This lets us use it in other requests",
+							"    pm.collectionVariables.set('token', pm.response.json().token)",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"email\": \"giuseppe@giuseppe.com\",\n    \"password\": \"giuseppe\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"login"
+					]
+				},
+				"description": "This returns a `token` that you can use to retrieve information later on.\n\nWe have included a test to confirm if a token is returned. We have also added test scripts to copy the token to the `token` collection variable. This makes it easy for us to reuse this token in other requests in the collection."
+			},
+			"response": []
+		},
+		{
+			"name": "Login Daniele",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"An access token is returned\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('token')",
+							"    pm.expect(pm.response.json().token).to.be.a('string')",
+							"    // Set the collection-scope \"token\" variable to the token received from the API",
+							"    // This lets us use it in other requests",
+							"    pm.collectionVariables.set('token', pm.response.json().token)",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"email\": \"dani@dani.com\",\n    \"password\": \"dani\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"login"
+					]
+				},
+				"description": "This returns a `token` that you can use to retrieve information later on.\n\nWe have included a test to confirm if a token is returned. We have also added test scripts to copy the token to the `token` collection variable. This makes it easy for us to reuse this token in other requests in the collection."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Utenti nel sistema",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyODI5NDd9.vrXl8WNeT_QxfqJmkHFxUUWLriPdFt2t3-euAiR7HhE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3003/utenti",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"utenti"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return modelli nel sistema",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyNzg5Mzl9.Aybq-DSfx4hU5O6-j-9jCWTRtLGvWfKXLEXQecUXSoM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// basta fornire il token di qualsiasi utente e ritorna tutti gli utenti presenti nel sistema ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/utenti/admin",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"utenti",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin ricarica credito",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyNzg1NDh9.aRagqEAV5E_9UG8ivx-1NnM5RhONghUJPoEozOd0GFg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    // bisogna anche fornire il token di un utente con privilegi\n    \"utente_da_ricaricare\": \"dani@dani.com\", //fornire l'email dell'utente da ricaricare \n    \"nuovo_credito\" : 205 //inserire il nuovo credito, non verrà sommato al precedente \n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/utenti/admin/ricaricaCredito",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"utenti",
+						"admin",
+						"ricaricaCredito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creazione grafo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyODA1NDh9.Vif6qjtAkKs2vpLUmp_-X-lgDIKqk1a2d5tm9OEsTWI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   //specificare il nome del grafo che si vuole creare e la sua struttura \n    \"nome_grafo\": \"grafo demo 2\",\n    \"struttura\": [\n        {\n            \"nodo_partenza\": \"A\",\n            \"nodo_arrivo\": \"B\",\n            \"peso\": 1\n        },\n        {\n            \"nodo_partenza\": \"A\",\n            \"nodo_arrivo\": \"K\",\n            \"peso\": 18\n        },\n        {\n            \"nodo_partenza\": \"A\",\n            \"nodo_arrivo\": \"C\",\n            \"peso\": 1\n        },\n        {\n            \"nodo_partenza\": \"B\",\n            \"nodo_arrivo\": \"D\",\n            \"peso\": 9\n        },\n        {\n            \"nodo_partenza\": \"B\",\n            \"nodo_arrivo\": \"E\",\n            \"peso\": 7\n        },\n        {\n            \"nodo_partenza\": \"B\",\n            \"nodo_arrivo\": \"K\",\n            \"peso\": 7\n        },\n        {\n            \"nodo_partenza\": \"C\",\n            \"nodo_arrivo\": \"K\",\n            \"peso\": 3\n        },\n        {\n            \"nodo_partenza\": \"C\",\n            \"nodo_arrivo\": \"H\",\n            \"peso\": 5\n        },\n        {\n            \"nodo_partenza\": \"C\",\n            \"nodo_arrivo\": \"G\",\n            \"peso\": 4\n        },\n        {\n            \"nodo_partenza\": \"K\",\n            \"nodo_arrivo\": \"E\",\n            \"peso\": 15\n        },\n        {\n            \"nodo_partenza\": \"K\",\n            \"nodo_arrivo\": \"L\",\n            \"peso\": 16\n        },\n        {\n            \"nodo_partenza\": \"K\",\n            \"nodo_arrivo\": \"H\",\n            \"peso\": 12\n        },\n        {\n            \"nodo_partenza\": \"H\",\n            \"nodo_arrivo\": \"G\",\n            \"peso\": 1\n        },\n        {\n            \"nodo_partenza\": \"H\",\n            \"nodo_arrivo\": \"I\",\n            \"peso\": 8\n        },\n        {\n            \"nodo_partenza\": \"G\",\n            \"nodo_arrivo\": \"I\",\n            \"peso\": 7\n        },\n        {\n            \"nodo_partenza\": \"D\",\n            \"nodo_arrivo\": \"E\",\n            \"peso\": 1\n        },\n        {\n            \"nodo_partenza\": \"D\",\n            \"nodo_arrivo\": \"F\",\n            \"peso\": 6\n        },\n        {\n            \"nodo_partenza\": \"E\",\n            \"nodo_arrivo\": \"F\",\n            \"peso\": 3\n        },\n        {\n            \"nodo_partenza\": \"E\",\n            \"nodo_arrivo\": \"L\",\n            \"peso\": 3\n        },\n        {\n            \"nodo_partenza\": \"F\",\n            \"nodo_arrivo\": \"L\",\n            \"peso\": 5\n        },\n        {\n            \"nodo_partenza\": \"F\",\n            \"nodo_arrivo\": \"J\",\n            \"peso\": 4\n        },\n        {\n            \"nodo_partenza\": \"L\",\n            \"nodo_arrivo\": \"J\",\n            \"peso\": 4\n        },\n        {\n            \"nodo_partenza\": \"L\",\n            \"nodo_arrivo\": \"I\",\n            \"peso\": 9\n        },\n        {\n            \"nodo_partenza\": \"I\",\n            \"nodo_arrivo\": \"J\",\n            \"peso\": 6\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/utenti/crea_grafo",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"utenti",
+						"crea_grafo"
+					]
+				},
+				"description": "Crea Grafo"
+			},
+			"response": []
+		},
+		{
+			"name": "Esecuzione modello",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDg5NDQ4NzV9.FTrCMi_IxMCxwSNJ8oHGvQbF5YiUOERDofsEiTJZ15Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    //\"nome_grafo\": \"grafo dani 6\",\n    \"nome_grafo\": \"grafo demo 1 \", \n    \"nodo_partenza\": \"1\", \n    \"nodo_arrivo\": \"8\" \n}\n\n// per demo 1 : 1-->3-->7-->8 costo: 6; \n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/utenti/esecuzione_modello",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"utenti",
+						"esecuzione_modello"
+					]
+				},
+				"description": "rotta per l'esecuzione di un modello a nostra scelta "
+			},
+			"response": []
+		},
+		{
+			"name": "Simulazione",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkyODA1NDh9.Vif6qjtAkKs2vpLUmp_-X-lgDIKqk1a2d5tm9OEsTWI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_grafo\": \"grafo demo 1\",\n    \"id_arco\" : 7, //arco abbastanza pesante, valore di default 11\n    \"nodo_partenza\" : \"1\",  \n    \"nodo_arrivo\" : \"8\", \n    \"start_peso\": 1,\n    \"stop_peso\" :  10,\n    \"step\" : 1\n}\n\n//per demo 1: \n//da peso 1 a peso 2 : 1-->6-->7-->8;\n// iterazioni successive :  1-->3-->7-->8 \n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/utenti/simulazione",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"utenti",
+						"simulazione"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View richieste per data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkxMzYwOTZ9.ZjsODFkJAcAdmusQtuNArDEA-YlnIXUtevWkCbMcFas",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_grafo\": \"grafo dani 6\",\n    \"from\" : \"2024-02-20\",\n    \"to\" : \"2024-02-28\",\n    \"stato\" : \"rifiutata\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/utenti/view_aggiornamenti",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"utenti",
+						"view_aggiornamenti"
+					]
+				},
+				"description": "Aggiorna arco di un grafo"
+			},
+			"response": []
+		},
+		{
+			"name": "Richieste per singolo modello",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkwNDM3ODJ9.ne9kkk4HI6cgb3JAika8n8k8AuZPa21J1WX_aHEjPtk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_grafo\" : \"grafo giuseppe 3\"\n    // qualsiasi utente con il token può accedere a queste informazioni sulle richieste  del grafo specificato \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/utenti/richieste_per_singolo_modello",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"utenti",
+						"richieste_per_singolo_modello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Richieste per singolo utente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkxMzYzMDV9.1zeXwbBVBaF6hLZeNNnClnwnnf0Vx2PwPfRI_e4rgw4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/utenti/richieste_per_singolo_utente",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"utenti",
+						"richieste_per_singolo_utente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get richieste",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkxMzYzMjl9.y84NXbnHZiSRooiAUnYPdeBHekDRszeDvaFMDOIntnI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_grafo\": \"grafo dani 6\" \n}\n//ci vuole il token del proprietario del grafo e riporta tutte le richieste, accettate e rifiutate",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/utenti/richieste",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"utenti",
+						"richieste"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approva richiesta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkxMzY0ODl9.qfDKANkKyPA-kBBUJ0w0tltMc-QlIbZS4nOlyuwp9-M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id_richieste\" : 15,\n    \"stato_richiesta\" : \"rifiutata\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/utenti/richieste/approvaRichiesta",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"utenti",
+						"richieste",
+						"approvaRichiesta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update grafo dopo richiesta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdpdXNlcHBlQGdpdXNlcHBlLmNvbSIsInBhc3N3b3JkIjoiZ2l1c2VwcGUiLCJpYXQiOjE3MDkxMzY1NzN9.GYYMYQ9JtGmjjeWf7mIpV6zEvgUBqf0DSX0ygQ00d34",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_grafo\" : \"grafo dani 6\",\n    \"id_richieste\" : 17\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/utenti/richieste/aggiornaGrafo",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"utenti",
+						"richieste",
+						"aggiornaGrafo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aggiorna grafo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkxMzY2NTF9.oS6w2oTL83YFXgT3gV3kutuJaDSm6MaO7SlKgmcBrCk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_grafo\": \"grafo dani 6\",\n    \"id_archi\": 29,\n    \"descrizione\": \"modifiche arco più pesante del grafo\",\n    \"peso\": 1000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/utenti/aggiornaGrafo",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"utenti",
+						"aggiornaGrafo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Export richieste",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZGFuaS5jb20iLCJwYXNzd29yZCI6ImRhbmkiLCJpYXQiOjE3MDkxMzY2NTF9.oS6w2oTL83YFXgT3gV3kutuJaDSm6MaO7SlKgmcBrCk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_grafo\" : \"grafo dani 6\",\n    \"from\" : \"2024-02-01\",\n    \"to\" : \"2024-02-28\",\n    \"stato_richiesta\" : \"rifiutata\",\n    \"format\": \"pdf\" //csv, xml, pdf, json\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/utenti/export",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"utenti",
+						"export"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}

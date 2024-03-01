@@ -46,8 +46,8 @@ app.post('/sign_in', checkUtente_1.checkEmailFormat, checkUtente_1.checkUtente, 
 app.get('/utenti', checkToken_1.checkToken, (req, res) => {
     (0, controllerUtente_1.getUtenti)(req, res);
 });
-app.get('/utenti/admin', checkToken_1.checkToken, decodeToken_1.decodeToken, checkAdmin_1.checkAdmin, (req, res) => {
-    (0, controllerUtente_1.getUtenti)(req, res);
+app.get('/utenti/modelli', checkToken_1.checkToken, (req, res) => {
+    (0, controllerGrafo_1.returnGrafo)(req, res);
 });
 app.post('/utenti/admin/ricaricaCredito', checkToken_1.checkToken, decodeToken_1.decodeToken, checkAdmin_1.checkAdmin, (req, res) => {
     (0, controllerUtente_1.updateCredito)(req, res);

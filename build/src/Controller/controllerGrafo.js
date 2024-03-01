@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.exportRichieste = exports.getRichiestePerUtente = exports.getRichiestePerModello = exports.viewRichiestePerData = exports.approvaRichiesta = exports.getRichieste = exports.updateArcoAfterRequest = exports.updateGrafo = exports.getSimulazione = exports.calcolaPercorsoMinimo = exports.creaGrafo = void 0;
+exports.exportRichieste = exports.getRichiestePerUtente = exports.getRichiestePerModello = exports.viewRichiestePerData = exports.approvaRichiesta = exports.getRichieste = exports.updateArcoAfterRequest = exports.updateGrafo = exports.getSimulazione = exports.calcolaPercorsoMinimo = exports.returnGrafo = exports.creaGrafo = void 0;
 const Grafo_1 = require("../Model/Grafo");
 const Nodi_1 = require("../Model/Nodi");
 const Archi_1 = require("../Model/Archi");
@@ -110,6 +110,19 @@ function creaGrafo(req, res) {
     });
 }
 exports.creaGrafo = creaGrafo;
+//-------------Ritorno modelli fatti da un utente specifico oppure tutti-----
+function returnGrafo(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const grafo = yield Grafo_1.Grafo.findAll();
+            return res.status(200).json({ grafi: grafo });
+        }
+        catch (error) {
+            return res.status(404).json({ message: 'Nessun grafo nel sistema' });
+        }
+    });
+}
+exports.returnGrafo = returnGrafo;
 //--------------------------Calcola percorso minimo--------------------------
 function calcolaPercorsoMinimo(req, res) {
     return __awaiter(this, void 0, void 0, function* () {

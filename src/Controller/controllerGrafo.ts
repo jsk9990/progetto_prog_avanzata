@@ -105,6 +105,22 @@ export async function creaGrafo(req: Request, res: Response) {
   }
 }
 
+//-------------Ritorno modelli fatti da un utente specifico oppure tutti-----
+export async function returnGrafo (req: Request, res: Response) {
+  try{
+    const risultati = [];
+    const grafo = await Grafo.findAll();
+    for (let i = 0; i < grafo.length; i++) {
+      const archi = await Archi.findAll({ where: { id_grafo: grafo[i].dataValues.id_grafo } });
+      const nodi = await Nodi.findAll({ where: { id_grafo: grafo[i].dataValues.id_grafo } });
+      risultati.push({ nome_grafo: grafo[i].dataValues.nome_grafo,id_utente : grafo[i].dataValues.id_utente, id_grafo: grafo[i].dataValues.id_grafo, archi, nodi });
+    }
+    return res.status(200).json({ grafi : risultati });
+  }
+  catch(error){
+    return res.status(404).json({ message : 'Nessun grafo nel sistema' });
+  } 
+}
 
 //--------------------------Calcola percorso minimo--------------------------
 export async function calcolaPercorsoMinimo(req: Request, res: Response) {
