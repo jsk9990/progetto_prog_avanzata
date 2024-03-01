@@ -382,7 +382,7 @@ Infine, è necessario modificare il file package.json. Aggiungere il comando sta
   }
 ```
 ## Grafo
-Per testare la nostra applicazione creiamo un due grafi con 8 nodi e 16 archi e verifichiamo se l 'algoritmo di Dijkstra funziona correttamente. Per poter visualizzare il file Json , aprire il file: [grafo.json](grafo.json).
+Per testare la nostra applicazione creiamo due grafi con 8 nodi e 16 archi e verifichiamo se l 'algoritmo di Dijkstra funziona correttamente. Per poter visualizzare il file Json , aprire il file: [grafo.json](grafo.json).
 ![](/IMMAGINI/grafo1.png)
 ![](/IMMAGINI/grafo2.png)
 ## Pattern Utilizzati
