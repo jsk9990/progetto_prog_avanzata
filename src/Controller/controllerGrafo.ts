@@ -179,7 +179,7 @@ export async function calcolaPercorsoMinimo(req: Request, res: Response) {
         await utente.save();
       }
       // Ritorna il percorso, tempi e costo addebitato
-      res.status(200).json({ percorso: percorsoMinimo, tempoEsecuzione: tempoDiEsecuzione, costoAddebbitato: costoGrafo, creditoResiduo: creditoUtente });
+      res.status(200).json({ percorso: percorsoMinimo, tempoEsecuzione: tempoDiEsecuzione + ' secondi', costoAddebbitato: costoGrafo, creditoResiduo: creditoUtente });
 
     } catch (error) {
 
