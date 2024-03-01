@@ -8,6 +8,7 @@
 - [🔀 Rotte](#rotte)
 - [📐 Diagramma UML](#diagrammaUML)
 - [💽 Database](#Database)
+- [🛠️ Grafo](#Grafo)
 - [⚙️ Configurazioni iniziali](#configurazioni)
 - [🧩 Pattern Utilizzati](#pattern-utilizzati)
 - [🧩 Programmazione Asincrona](#pattern-utilizzati)
@@ -380,6 +381,10 @@ Infine, è necessario modificare il file package.json. Aggiungere il comando sta
     "start": "nodemon --exec ts-node app.ts"
   }
 ```
+## Grafo
+Per testare la nostra applicazione creiamo un due grafi con 8 nodi e 16 archi e verifichiamo se l 'algoritmo di Dijkstra funziona correttamente. Per poter visualizzare il file Json , aprire il file: [grafo.json](grafo.json).
+![](/IMMAGINI/grafo1.png)
+![](/IMMAGINI/grafo2.png)
 ## Pattern Utilizzati
 ### Chain of Responsability 
 La chain Responsability è uno dei pattern comportamentali che ci permette di metter in comunicazione diversi oggetti tra loro .La chain Responsability ci permette di passare una richiesta attraverso una catena di handler. Nel momento un  handler  riceve una richiesta;deve decide se processare la richiesta o passarla all'handler successivo.Sotto viene riportato il diagramma delle sequenze della catena delle responsabilità.
