@@ -114,8 +114,14 @@ exports.creaGrafo = creaGrafo;
 function returnGrafo(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            const risultati = [];
             const grafo = yield Grafo_1.Grafo.findAll();
-            return res.status(200).json({ grafi: grafo });
+            for (let i = 0; i < grafo.length; i++) {
+                const archi = yield Archi_1.Archi.findAll({ where: { id_grafo: grafo[i].dataValues.id_grafo } });
+                const nodi = yield Nodi_1.Nodi.findAll({ where: { id_grafo: grafo[i].dataValues.id_grafo } });
+                risultati.push({ nome_grafo: grafo[i].dataValues.nome_grafo, id_utente: grafo[i].dataValues.id_utente, costo: grafo[i].dataValues.costo, id_grafo: grafo[i].dataValues.id_grafo, archi, nodi });
+            }
+            return res.status(200).json({ grafi: risultati });
         }
         catch (error) {
             return res.status(404).json({ message: 'Nessun grafo nel sistema' });

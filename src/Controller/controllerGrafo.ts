@@ -113,7 +113,7 @@ export async function returnGrafo (req: Request, res: Response) {
     for (let i = 0; i < grafo.length; i++) {
       const archi = await Archi.findAll({ where: { id_grafo: grafo[i].dataValues.id_grafo } });
       const nodi = await Nodi.findAll({ where: { id_grafo: grafo[i].dataValues.id_grafo } });
-      risultati.push({ nome_grafo: grafo[i].dataValues.nome_grafo,id_utente : grafo[i].dataValues.id_utente, id_grafo: grafo[i].dataValues.id_grafo, archi, nodi });
+      risultati.push({ nome_grafo: grafo[i].dataValues.nome_grafo, id_utente : grafo[i].dataValues.id_utente, costo : grafo[i].dataValues.costo, id_grafo: grafo[i].dataValues.id_grafo, archi, nodi });
     }
     return res.status(200).json({ grafi : risultati });
   }
